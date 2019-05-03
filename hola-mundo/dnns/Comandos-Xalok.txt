@@ -1,0 +1,1705 @@
+    }
+     elseif(($source=='local_goldfish')||($source=='goldfish_upload')){
+          $codevideo = $this->container->getParameter('url.estaticos')."/media/".trim($codevideo).'?category=&movil=true&autoplay=0';
+          $module_content = '<figure data-feedback="fb:likes, fb:comments" class="op-interactive"><iframe width="560" height="315" src="'.$codevideo.'"></iframe></figure>';
+        }elseif($source=='ooyala'){
+          $codevideo = 'https://player.ooyala.com/iframe.html?ec='.trim($codevideo).'&pbid='.trim($ooyalaPlayerId).'&platform=html5';
+          $module_content = '<figure data-feedback="fb:likes, fb:comments" class="op-interactive"><iframe width="560" height="315" src="'.$codevideo.'"></iframe></figure>';
+        }
+
+if ($this->container->getParameter('pase_goldfish')=='no')
+    {
+    return $this->mediapViewAction($mediaId);
+    }
+
+?{{ "now"|date('YmdHis') }}
+[qa]- TROME Se implemento la reproducción de videos con reproductor de goldfish
+se solicito sgte merge
+[[http://gitlab.ec.pe/contenidos/cms/merge_requests/3917]]
+
+realizar composer install a entorno y agregar los siguientes datos a las variables, tener en cuenta que las variables se cambiaran para cuando se pase a prod
+> reproductor_powa.id: 'powa-9f2e1f47-2d16-4989-9a7a-ab5e1e67834e'
+> reproductor_powa.uuidfirst: '9f2e1f47-2d16-4989-9a7a-ab5e1e67834e'
+> reproductor_powa.data-env: 'sandbox'
+> reproductor_powa.data-api: 'sandbox'
+> reproductor_powa.data-org: 'elcomercio'
+correr los  archivo migrate  (si es que no se corrio anteriormente ) con comando:
+ php ./app/admin/console doctrine:migrations:execute 20190227162124 --up 
+ php ./app/admin/console doctrine:migrations:execute 20190313210658 --up
+
+Validar:
+* que el reproductor que sirva a los videos sea el de powa para los videos con assets agregados antes del 2019
+* que la fuente de los videos sea los mp4 que estan alojados en los assets del sitio
+* que, si se da el caso que el video tiene id de golfish (los videos que tendran id de golfish son los que se migraran en su momento y son los videos creados en el 2019) se usara la fuente de golfish para reproducir el video en el mismo reproductor powa 
+* que los videos se vean bien (no se validaran estilos del reproductor)
+* Que se agreguen las publicidades (si existiesen) previas al video
+
+
+//ruta si esta disponible 
+https://gestion.pe/video/check-if-available/d4YzVoaDE6Tn8Kxs__I5a8Uy9vE8H8ay {{media_id}}
+
+491,
+sitio   local   oyala   youtube
+depor   26       13        1
+p21     10       10        1
+gestion 3        7         1
+trome   30       8         4 
+
+
+VideoRepository
+        public function findOneByMediaId($mediaId)
+    {
+        $em = $this->getEntityManager();
+        $dql = "
+            SELECT video
+            FROM AppCmsBundle:Video video
+            WHERE
+            video.mediaId = :id 
+            ORDER BY video.id DESC
+            ";
+        $query = $em->createQuery($dql);
+        $query->setParameter('id', $mediaId);
+        $query->setMaxResults(1);
+
+        return $query->getOneOrNullResult();
+    }
+Local YML
+    reproductor_powa.id: 'powa-a9b7412c-4ced-44bf-b7f3-0c0891aa9a8a'
+    reproductor_powa.uuidfirst: '84a9a8e8-13a7-4d32-9551-e05c7ad1b209'
+    reproductor_powa.data-env: 'sandbox'
+    reproductor_powa.data-api: 'sandbox'
+    reproductor_powa.data-org: 'elcomercio'
+    video_migracion_completa: 'no'
+
+php ./app/admin/console doctrine:migrations:execute 20190227162124 --up
+ArticleController
+
+
+    /**
+     * @Route("/mediap/{mediaId}",
+     *      name="por_article_mediap_id",
+     *      requirements={
+     *          "mediaId": ".*",
+     *      }
+     * )
+     * @Template()
+     */
+    public function mediapViewAction($mediaId)
+    {
+        $noads = 1;
+        $domains = $this->container->getParameter('wf_sitio');
+        $domains = '/'.ucwords($domains);
+        if(isset($_GET['noads'])){$noads = 0;}
+
+        return $this->render("AppCmsBundle:Article$domains:mediaView.html.twig",
+        [
+            'media_id' => $mediaId,
+            'noads' => $noads,
+            'category' => isset($_GET['category'])?$_GET['category']:'',
+            'movil' => (isset($_GET['movil']) && $_GET['movil'] =='true')?'Movil'.'_':'',
+        ]);
+    }
+    /**
+     * @Route("/media/{mediaId}",
+     *      name="por_article_media_id",
+     *      requirements={
+     *          "mediaId": ".*",
+     *      }
+     * )
+     * @Template()
+     */
+    public function mediaViewAction($mediaId)
+public function mediaViewAction($mediaId)
+    {
+        // lo que vamos hacer aca es que de acuerdo al mediaId, obtendremos el 
+        // objeto video, validaremos la fecha y de acuerdo a ello obtenemos la ruta del
+        //mp4 del video para darle la plantilla correspondiente con los datos requeridos,
+        // a la vista 
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppCmsBundle:Video')->findOneByMediaId($mediaId);
+        $retorno=array();
+        $flag=0;
+        $uuid=$this->container->getParameter('reproductor_powa.uuidfirst');
+        $noads = 1;
+        $domains = $this->container->getParameter('wf_sitio');
+        $domains = '/'.ucwords($domains);
+        if(isset($_GET['noads'])){$noads = 0;}
+        if(is_object($entity))
+        {
+//            if ((int)$entity->getCreatedAt()->format('Y')>=2019)
+//            {
+                $retorno= $entity;
+                if(is_null($entity->getGoldfishId()))
+                {
+                $flag=1;
+                }
+                else
+                {
+                    $uuid=$entity->getGoldfishId();
+                }
+                return $this->render("AppCmsBundle:Article$domains:mediapView.html.twig",
+                [
+                    'retorno'=>$retorno,
+                    'flag'=>$flag,
+                    'uuid'=>$uuid,
+                    'noads' => $noads,
+                    'autoplay'=>(isset($_GET['autoplay']) && $_GET['autoplay']=='1')?'true':'false',
+                    'category' => isset($_GET['category'])?$_GET['category']:'',
+                    'movil' => (isset($_GET['movil']) && $_GET['movil'] =='true')?'Movil'.'_':'',
+                ]);
+//            }
+//            else
+//            {
+//            return $this->render("AppCmsBundle:Article$domains:mediaView.html.twig",
+//                [
+//                    'media_id' => $mediaId,
+//                    'noads' => $noads,
+//                    'category' => isset($_GET['category'])?$_GET['category']:'',
+//                    'movil' => (isset($_GET['movil']) && $_GET['movil'] =='true')?'Movil'.'_':'',
+//                ]);
+//                       
+//            }
+        }
+        
+    }
+
+
+mediapView.html
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Player gestion.pe</title>
+    <meta name="robots" content="noindex,nofollow">    
+</head>
+
+<body style="margin: 0;padding: 0">
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WGPJNC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <div id="container" style="width:100%;"></div>
+<div
+        class="powa"
+        id="{{powa_id}}"
+        data-env="{{powa_data_env}}"
+        data-api="{{powa_data_api}}"
+        data-org="{{powa_data_org}}"
+        data-uuid="{{uuid}}"
+        {%if flag==1%}data-stream="{{baseUrlImg}}/uploads/{{retorno.getUploadPrefix}}/{{retorno.getVideoName}}"{%elseif flag==2%}data-stream="{{retorno.getUrlVideo}}"{%else%}{%endif%}        
+        data-aspect-ratio="0.562"
+        data-autoplay="{{autoplay}}"
+>
+    <script src="https://d1tqo5nrys2b20.cloudfront.net/sandbox/powaBoot.js?org=elcomercio"></script>
+</div>
+<script type="text/javascript">
+    window.addEventListener('powaRender', event => console.warn(event));
+    window.addEventListener('powaError', event => console.error(event));
+
+    window.PoWaSettings.advertising = {
+        adBar: true,
+
+        // adTag can be a function or a simple string
+        // if it's a function we pass in the data object of the current video
+        // receives 'data' object...
+        // data = {
+        //     id: <id of .powa element>,
+        //     muted: <(true|false)>,
+        //     videoData: <video JSON>
+        // }
+        // returns ad tag URL
+            
+        adTag: (data) => {
+            function getUrlPrerroll(category){
+            var sections = ['Politica', 'Política', 'política', 'politica', 'Opinion', 'Opinión', 'opinion', 'opinión'];
+            var URL_PRERROL = '';
+
+            if(sections.indexOf(category) > -1){
+                    category = category.charAt(0).toUpperCase() + category.slice(1);
+                    URL_PRERROL = "https://pubads.g.doubleclick.net/gampad/ads?iu=/28253241/Gestion_"+category+"_Preroll&description_url=[placeholder]&env=vp&impl=s&correlator=&tfcd=0&npa=0&gdfp_req=1&output=vast&sz=640x360&ciu_szs=640x360,640x480&unviewed_position_start=1";
+            }else{
+                    URL_PRERROL = "https://pubads.g.doubleclick.net/gampad/ads?iu=/28253241/GESTION_Preroll&description_url=[placeholder]&env=vp&impl=s&correlator=&tfcd=0&npa=0&gdfp_req=1&output=vast&sz=640x360&unviewed_position_start=1";
+            }
+            return URL_PRERROL;
+             };
+            function getQueryVariable(variable) {
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var i=0;i<vars.length;i++) {
+                    var pair = vars[i].split("=");
+                    if (pair[0] == variable) {
+                        return pair[1];
+                    }
+                } 
+            };
+            var ads = {{ noads }};
+            var category = "{{ category }}";
+            var URL_PRERROL = getUrlPrerroll(category);
+
+            if(ads == 1){
+                            preroll = URL_PRERROL;
+            }else{
+                            preroll = "";
+            }
+ //           preroll = "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=";
+ //           console.log("ads dnns: "+preroll);
+            return preroll;
+        }
+    };
+
+    window.PoWaSettings.promo = {
+        size: 'medium',
+
+        style: {
+            backgroundColor: 'black',
+            fontFamily: '"HelveticaNeue", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif',
+            zIndex: 1,
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            top: '0px',
+            left: '0px',
+
+            // inline style can be applied to child elements by specifying the class or id of the child
+            '.powa-shot-image': {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+                height: '100%',
+                overflow: 'hidden',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+            },
+
+            '.powa-shot-title': {
+                fontSize: 'xx-large',
+                color: '#EEE',
+                textShadow: '2px 2px 3px rgba(0,0,0, 0.8), -1px -1px 0 rgba(0,0,0, 0.3), 1px -1px 0 rgba(0,0,0, 0.3), -1px 1px 0 rgba(0,0,0, 0.3), 1px 1px 0 rgba(0,0,0, 0.3)',
+                position: 'absolute',
+                top: '30px',
+                left: '30px'
+            },
+
+            '.powa-shot-play-btn': {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '75px',
+                height: '75px',
+                cursor: 'pointer',
+                fontSize: 'xx-large',
+                color: '#EEE',
+                backgroundClip: 'padding-box',
+                border: '3px solid rgba(255,255,255, 0.5)',
+                borderRadius: '50%',
+                backgroundColor: '#111'
+            },
+
+            '.powa-shot-duration': {
+                fontSize: 'x-large',
+                color: '#EEE',
+                textShadow: '2px 2px 3px rgba(0,0,0, 0.8), -1px -1px 0 rgba(0,0,0, 0.3), 1px -1px 0 rgba(0,0,0, 0.3), -1px 1px 0 rgba(0,0,0, 0.3), 1px 1px 0 rgba(0,0,0, 0.3)',
+                position: 'absolute',
+                bottom: '30px',
+                left: '30px'
+            },
+        },
+
+        // receives 'data' object...
+        // data = {
+        //     image: <url>,
+        //     title: <string>,
+        //     videoData: <video JSON>
+        // }
+        // returns string of HTML
+        template: function (data) {
+            function getImage (videoData) {
+                let resized = videoData.additional_properties.imageResizerUrls.find(image => image && image.size && image.size === PoWaSettings.promo.size);
+
+                return resized && resized.url ? resized.url : videoData.promo_image.url;
+            }
+
+            function getTime (videoData) {
+                if (!videoData.duration) return '';
+
+                let duration = videoData.duration / 1000;
+
+                let hours = Math.floor(duration / 3600);
+                let minutes = Math.floor(duration / 60);
+                let seconds = Math.floor(duration % 60);
+
+                let hourDisplay = hours ? `${ hours }:` : '';
+                let minuteDisplay = hours && (minutes < 10) ? `0${ minutes }:` : `${ minutes }:`;
+                let secondDisplay = seconds < 10 ? `0${ seconds }` : seconds;
+
+                return `${ hourDisplay }${ minuteDisplay }${ secondDisplay }`;
+            }
+            var img= getImage(data.videoData).replace(/^http:/, '');
+            var title= data.videoData.headlines.basic;
+            var duration=getTime(data.videoData);
+            {%if flag>=1%}
+            var img='{{baseUrlImg}}/uploads/{{retorno.getUploadPrefix}}/{{retorno.getThumbName}}';   
+            var title='{{retorno.getTitle}}';
+            var duration= '';
+            {%endif%}
+            let template = `
+            <div class="powa-shot-image powa-shot-click powa-shot-click-play powa-shot-touch powa-shot-touch-background" style="background-image: url('`+img+`')">
+                    <div class="powa-shot-title powa-shot-click powa-shot-click-title">`+title+`</div>
+                    <div class="powa-shot-play-btn powa-shot-hover powa-shot-click powa-shot-click-play"><div class="test">▶</div></div>
+                    <div class="powa-shot-duration powa-shot-hover powa-shot-hover-duration">`+duration+`</div>
+            </div>`;
+
+            return template.trim();
+        }
+    }
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+se solicito sgte merge
+[[http://gitlab.ec.pe/contenidos/cms/merge_requests/3870]]
+
+* realizar composer install a entorno y agregar las variables mencionadas por defecto, tener en cuenta que las variables se cambiaran para cuando se pase a prod 
+* >     reproductor_powa.id: 'powa-a9b7412c-4ced-44bf-b7f3-0c0891aa9a8a'
+* >     reproductor_powa.uuidfirst: '84a9a8e8-13a7-4d32-9551-e05c7ad1b209'
+* >     reproductor_powa.data-env: 'sandbox'
+* >     reproductor_powa.data-api: 'sandbox'
+* >     reproductor_powa.data-org: 'elcomercio'
+* correr archivo migrate con comando: php ./app/admin/console doctrine:migrations:execute 20190227162124 --up (si es que no se corrio en el ambiente )
+
+Para los videos hasta diciembre del 2018, validar en el código que se muestre la ruta del MP4.
+Se buscar reproducir este MP4 en POWA. Ver Imagen Documento Capítulo 4.2.1
+
+!image.png!
+
+
+
+antes niegue sus luces el sol, que faltemos al voto solemne que la patria al eterno elevo:
+La patria a elevado un juramento a Dios por ayudarles en su libertad, y antes de faltar a 
+ese voto solemne,el sol deberia negarnos la luz.
+
+update video set uuid_goldfish='d0db8ad3-1b6c-4218-b200-03b42c1401d2' where media_id='';
+mysql> select  status,video_name,slug,source,media_id, status origin from video where 1;
++--------+-------------------+-------------------+--------------+----------------------------------+--------+
+| status | video_name        | slug              | source       | media_id                         | origin |
++--------+-------------------+-------------------+--------------+----------------------------------+--------+
+| new    | 5c7979a539637.mp4 | year              | local_ooyala | drdHNjaDE6J4kOQ3AUg0WlUD0BafAIZb | new    |
+| new    | 5c797c3196f6f.mp4 | ssdfsd-a-fadf-sad | local_ooyala | pnMnRjaDE6ETk-GuOw2fzyCx8qONe-SS | new    |
++--------+-------------------+-------------------+--------------+----------------------------------+--------+
+
+
+// cambios en bd para funcionamiento de carga de videos en xalok
+    considerar configurar la sgte ruta 
+    http://local.minoticia.pe/cmsconfig/
+
+mysql> description cms_config
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'description cms_config' at line 1
+mysql> select * from cms_config
+    -> ;
+Empty set (0.00 sec)
+
+mysql> show field from cms_config;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'field from cms_config' at line 1
+mysql> show field cms_config;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'field cms_config' at line 1
+mysql> drop ALTER TABLE cms_config DROP appnexus_nota 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ALTER TABLE cms_config DROP appnexus_nota' at line 1
+mysql> ALTER TABLE cms_config DROP appnexus_nota;
+Query OK, 0 rows affected (0.27 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE cms_config DROP appnexus_nota;
+ERROR 1091 (42000): Can't DROP 'appnexus_nota'; check that column/key exists
+mysql> ALTER TABLE cms_config ADD appnexus_home MEDIUMTEXT NOT NULL, ADD appnexus_default MEDIUMTEXT NOT NULL, ADD appnexus_nota MEDIUMTEXT NOT NULL;
+ERROR 1060 (42S21): Duplicate column name 'appnexus_home'
+mysql> ALTER TABLE cms_config  ADD appnexus_default MEDIUMTEXT NOT NULL, ADD appnexus_nota MEDIUMTEXT NOT NULL;ERROR 1060 (42S21): Duplicate column name 'appnexus_default'
+mysql> ALTER TABLE cms_config   ADD appnexus_nota MEDIUMTEXT NOT NULL;
+Query OK, 0 rows affected (0.28 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO cms_config (created_at, updated_at, email, appnexus_nota, appnexus_home, appnexus_default, config_youtube) VALUES (1, 1, 1, 1, 1, 1, 1);
+Query OK, 1 row affected, 2 warnings (0.04 sec)
+
+mysql> 
+
+// ruta log de sitios de xalok local
+
+
+/var/log/nginx/adminapplo_error.log
+tailf {{ruta log}}
+     <script type="text/javascript">
+          AllImageGalleryV2 = document.querySelectorAll(".principal-slider img"); for (var i = 0; i < AllImageGalleryV2.length; i++) {
+            var element = AllImageGalleryV2[i].getAttribute('src'); var element2= element.replace('/files/article_content_ec_fotos', ""); console.log(element2); AllImageGalleryV2[i].setAttribute('src',element2 ); };
+        </script>
+
+
+Galerias VErticales
+seo, agregar en /home/usuario/xalok/cms/src/App/Bundle/CmsBundle/Resources/views/Article/Depor/seo.html.twig :
+    {% if page.getContentType is defined %}
+        {% if page.galeriaLista=='yes' and page.getContentType=='galeria'%}
+            <meta name="typeNota" content="galeria_vertical">
+        {% else %}
+            <meta name="typeNota" content="{{ page.getContentType }}">
+        {% endif %}    
+        <meta name="typeNota" content="{{ page.getContentType }}">
+    {% endif %}
+
+{{page.galeriaLista}}
+
+
+//motor el comercio
+PANEL ADMINISTRATIVO :
+    DESARROLLO           =      http://dev.3.depor.multidiario.com/
+        admin
+        DmeBnAqm
+
+    PRE-PRODUCCIÓN   =     http://pre.3.depor.multidiario.com/
+        admin
+        DmeBnAqm
+
+    PRODUCCIÓN           =     http://depor3.multidiario.com/
+        admin
+        DmeBnAqm
+
+        
+
+
+// funcion que deshabilita el boton de abrir en app de las notas de depor
+/home/usuario/xalok/cms/src/App/Bundle/CmsBundle/Resources/depor/source/js/pages/masters/SitePage.js
+
+dnnsIoshide() 
+
+
+// atajos y cerrar programas en ubuntu
+
+Vamos al panel de configuración.
+Entramos en las opciones de Teclado.
+Nos dirigimos a la pestaña de Atajos.
+En la lista encontraremos un elemento que pone Combinaciones personalizadas. Lo pulsamos.
+Escribiremos en la orden “xkill”, en el nombre pondremos lo que queramos.
+Pulsaremos sobre desactivado y añadimos la combinación de teclas que queramos que ejecute el comando.
+
+
+
+//url de redmine para saber los tiempos personales por fecha
+http://plataformadigital.ec.pe/time_entries/report?utf8=%E2%9C%93&criteria%5B%5D=project&f%5B%5D=spent_on&op%5Bspent_on%5D=*&f%5B%5D=user_id&op%5Buser_id%5D=%3D&v%5Buser_id%5D%5B%5D=me&f%5B%5D=&c%5B%5D=project&c%5B%5D=spent_on&c%5B%5D=user&c%5B%5D=activity&c%5B%5D=issue&c%5B%5D=comments&c%5B%5D=hours&columns=month&criteria%5B%5D=
+
+
+//  para transferir via red archivos de una pc a otra
+//sudo rsync -avz node_modules usuario@172.18.31.51:/home/usuario/temp-docker-xalok/cms/
+//sudo rsync -avz data usuario@172.18.31.51:/home/usuario/temp-docker-xalok/
+
+
+// para docker si es q no se puede inicializar bien
+sudo chown usuario:usuario /var/run/docker.sock
+
+//Newsletter Prensa Popular :
+
+Trome : 
+Vista previa : http://archivo.elcomercio.pe/newsletter_xalok_pp/trome/preview
+Servicio :  http://archivo.elcomercio.pe/newsletter_xalok_pp/trome/service      
+Depor : 
+Vista previa: http://archivo.elcomercio.pe/newsletter_xalok_pp/depor/preview
+Servicio :  http://archivo.elcomercio.pe/newsletter_xalok_pp/depor/service  
+Gestion :
+Vista previa:  https://archivo.gestion.pe/index.php/newsletter/preview
+Servicio:   https://archivo.gestion.pe/index.php/newsletter/service 
+
+Perú21 : 
+Vista previa : http://archivo.peru21.pe/index.php/newsletter/preview
+Servicio: http://archivo.peru21.pe/index.php/newsletter/service
+ 
+
+Blog Gestión : 
+
+Admin: http://blogs.gestion.pe/wp-admin/
+User : ge_blog
+Clave : g3st10n
+
+
+Notificaciones : https://onesignal.com/
+
+Publimetro: 
+Usuario : digitales.ec2013@gmail.com
+Contraseña : Publ1m3tr0
+
+Gestión: 
+Usuario :  soporte.prensapopular@ec.pe
+Contraseña : G3sT10n-2018
+
+
+
+
+//pags frecuentes
+http://plataformadigital.ec.pe
+http://rundeck.eclabs.systems:4440/user/login		dastahuaman
+http://gitlab.ec.pe/users/sign_in			vastahuaman@idteam.pe
+
+https://www.udemy.com/master-en-javascript-aprender-js-jquery-angular-nodejs-y-mas/
+https://www.edx.org/es
+
+
+//pagina que da servicios de json falsos (usarlo en casos de prueba para obtener un servicio json)
+jsonplaceholder-fake ->
+
+// suad (sinergia union agilidad digital)
+/// twig 
+{% if 'BranchCMS' starts with 'Bran' %}
+{% endif %}
+
+
+///
+DROP INDEX page_type_idx ON page;
+ALTER TABLE dig_tag CHANGE slug slug VARCHAR(65535) NOT NULL, CHANGE route route VARCHAR(65535) NOT NULL;
+ALTER TABLE tag ADD site VARCHAR(128) DEFAULT NULL;
+ALTER TABLE dig_noads CHANGE route route VARCHAR(65535) NOT NULL;
+
+
+
+
+
+
+//javascript
+debugger; //isntrucccion que ayuda a saber como esta un bucle, ayuda a l debug
+prompt;
+//'use strict'//
+parametros REST y SPREAD
+...resto_de_frutas // almacena el resto de los parametros en un arreglo (parametros tipo REST) al final 
+...frutas // almacena el resto de los parametros en un arreglo (parametros tipo SPREAD) al inicio de el envio de parametros
+funcion anonima y funcion de callback en jscript 
+funciones js:
+	match (de un string)
+	search (de un streing)
+	substr
+	replace 
+	slice
+	split
+	trim
+interpolacion de variables $(variable) para concatenar una plantilla en js
+
+arreglos js
+array.forEach(elemento, indice)=>{
+	document.write("<li>"+indice+" - "+ elemento+ "</li>"");
+}
+
+
+modx ssl o http://
+cambiar a https cambiar .htaccess y descomentar las redirecciones respectivas
+cambiar parametro de link_tag_scheme
+
+//modx
+para actualizar una version:
+primero bajarte la nueva version y descomprimirla en tu servido 
+hacer flush a todas las sesiones del sitio actual y borrar todas los archivos de la ruta core/cache del sitio actual
+se recomienda actualizar todos los paquetes instalados
+copiar todo el contenido de la carpeta descomprimida a la locacion de los archivos del sitio actual (merge, nos daremos cuenta que se agregará la carpeta setup,) ingresar a la url {{misitio}}/setup/index.php y seguir las instrucciones, asi de facil y me tire mas de 1 hora en realizarlo por cojudo
+
+
+//
+docker
+git  (solo practicar para empezar un proyecto de 0 y brindar permisos)
+	//practicando git
+	tenemos una cuenta en github y alli creamos nuestros proyectos
+	para obtenerlo desde cualquier maquina simplemente tenenos que localizarnos en el directorio local
+	y clonarlo en git  con el siguiente comando obtener la ruta desde la web del repositorio
+	 git clone https://github.com/dnnstone/symfo.git 
+	 a partir de ai, ya podemos trabajar con los comandos usados
+	 https://guides.github.com/activities/hello-world/
+
+redmine
+rundeck
+symfony 
+xalok
+nginx
+	// http://nginx.org/en/docs/http/ngx_http_rewrite_module.html
+
+infraestructura
+aws
+google basic
+
+//intereses
+blockchaing
+phyton- django (framework) cms
+wordpress
+Design Thinking FlipKit
+redaccion,comunicación, oratoria
+jp
+ARC
+
+
+
+// mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+
+server {
+    root /blog/web/;
+    server_name local.blog.gestion.pe;
+    client_max_body_size 200M;
+    location / {
+#        try_files $uri /index.html$is_args$args;
+
+
+       if ($uri !~* "\.(jpg|png|php)$") {
+                set $blog A;
+                #rewrite ^/(.*)/(.*)/(.*)/(.*).html$ https://local.gestion.pe/blog/$1/$2/$3/$4.html last;
+                #rewrite ^/(.*)$ https://local.gestion.pe/blog/$1 last;
+        }
+
+        if ($uri !~* "/(wp-admin|wp-admin/(.*)|wp-login\.php)$") {
+                set $blog "${blog}B";
+        }
+
+#        if ($blog = AB) {
+
+
+#                rewrite ^/(.*)$ https://local.gestion.pe/blog/$1 last;
+
+#        }
+
+
+        if ($blog = AB)
+         {
+
+#                       if ($uri ~* "^(.*)/(tag/|\d\d\d\d/)(.*)$")
+#                {
+#                rewrite ^/(.*)/(tag/|\d\d\d\d/)(.*)$ https://local.gestion.pe/blog/$1 last;
+#                }
+#                else
+#                {
+                rewrite ^/(.*)$ https://local.gestion.pe/blog/$1 last;
+#                }
+
+        }
+    try_files  $uri /index.html$is_args$args;
+    }
+    location ~* ^/wp-content/uploads/(.*)$ {
+ #   if ( !-e $request_filename ) {
+rewrite ^ http://local.gestion.pe;
+ #   }
+}
+    error_log /var/log/nginx/adminapploblog_error.log;
+    access_log /var/log/nginx/adminapploblog_access.log;
+}
+
+
+
+//eliminando archivos  swp que se generan al no guardar o salir bien del editor vi en linux
+
+1:) Run "ls -la" where the file exist so that you can view the .swp file for the same.
+
+2:) Now "rm -i *.swp" i.e., remove the ".swp" file from the directory .
+
+3:) Now confirm wether the ".swp" file has been removed .
+
+4:) Now enjoy from those warnings.
+
+
+//oauth 2.0 google aspesin
+id_cliente: 372609295183-3117k6le4f9ln9scf0g385r33l75f8mf.apps.googleusercontent.com
+
+secreto_cliente: IvEw5j7Q0xzI4U7LrKmLePnd
+
+
+//final nginx
+
+       if ($uri !~* "\.(jpg|png|php)$") {
+                set $blog A;
+        }
+        if ($uri !~* "/(wp-admin|wp-admin/(.*)|wp-login\.php)$") {
+                set $blog "${blog}B";
+        }
+        if ($blog = AB)
+         {
+                rewrite ^/(.*)(\/tag\/|\/\d\d\d\d\/|\/\d\d\d\d)(.*)$ https://pre01.gestion.pe/blog/$1 last;
+                rewrite ^/(.*\/)$ https://pre01.gestion.pe/blog/$1 last;
+        }
+//
+
+
+//ngnix configuration etc/ngnix/sites-enabled/default
+
+
+
+
+
+server {
+    root /blog/web/;
+    server_name local.blog.gestion.pe;
+    client_max_body_size 200M;
+    location / {
+        try_files $uri /index.html$is_args$args;
+
+
+    }
+
+    error_log /var/log/nginx/adminapploblog_error.log;
+    access_log /var/log/nginx/adminapploblog_access.log;
+}
+
+
+
+		if ($uri !~* "\.(jpg|png)$") {
+                set $blog A;
+                #rewrite ^/(.*)/(.*)/(.*)/(.*).html$ https://local.gestion.pe/blog/$1/$2/$3/$4.html last;
+                #rewrite ^/(.*)$ https://local.gestion.pe/blog/$1 last;
+        }
+
+        if ($uri !~* "/(wp-admin|wp-login\.php)$") {
+                set $blog "${blog}B";
+        }
+
+        if ($blog = AB) {
+                rewrite ^/(.*)$ https://local.gestion.pe/blog/$1 last;
+        }
+
+
+location ~* ^/wp-content/uploads/(.*)$ {
+    if ( !-e $request_filename ) {
+      proxy_pass http://local.gestion.pe$uri;
+    }
+
+       if ($uri !~* "\.(jpg|png|php)$") {
+                set $blog A;
+                #rewrite ^/(.*)/(.*)/(.*)/(.*).html$ https://local.gestion.pe/blog/$1/$2/$3/$4.html last;
+                #rewrite ^/(.*)$ https://local.gestion.pe/blog/$1 last;
+        }
+
+        if ($uri !~* "/(wp-admin|wp-admin/(.*)|wp-login\.php)$") 
+        {
+                set $blog "${blog}B";
+        }
+
+        if ($blog = AB) 
+        {
+                rewrite ^/(.*)$ https://local.gestion.pe/blog/$1 last;
+
+        }
+
+
+
+
+
+
+
+
+       if ($blog = AB) {
+       		if($uri ~* "(.*)/(tag/|\d\d\d\d/)(.*)$")}
+                rewrite ^/(.*)/(tag/|\d\d\d\d/)(.*)$ https://local.gestion.pe/blog/$1 last;
+                }
+             else
+             {
+             	rewrite ^/(.*)$ https://local.gestion.pe/blog/$1 last;
+             }   
+
+        }
+
+
+
+
+
+
+///
+one signal= tecnologia para push notification en cualquier web, es un script que se inserta y sale en la web como un popup de la forma Trome.pe quiere enviarte las noticias mas relevantes permitir, no gracias, es buena idea si se quiere implementar una web con notificaciones permanentes a los clientes.
+
+
+es posible hacer la redireccion de las rutas de ciertas urls sin considerar urls de imagenes 
+
+
+Arquitectura:
+Si seguimos las instruccciones con SonataAdminBunlde, deberiamos por ahora tener un Admin Class y un Admin Servicio,
+
+La  Clase Admin
+Mapea un modelo especifico para la interfaz CRUD proveida por SonataAdminBundle, en otras palabras,  usando la clase admin, se puede configurar que es mostrado por SonataAdminBundle en cada accion CRUD para el modelo asociado. por ahora, podremos ver 3 de esas acciones  en las paginas de  "empezar a usar" que son listar, filtrar y el formulario de crear o editar. sin embargo, una interminable configuracion  en la Admin class puede ser definido con mas acciones
+
+-list: The fields displayed in the list table
+-filter: The fields available for filtering the list
+-form: The fields used to create/edit the entity
+-show: The fields used to show the entity
+-Batch actions: Actions that can be performed on a group of entities (e.g.    bulk delete)
+
+
+#estrategia:
+duplica tu bd antes de trabajar en los cambios
+documenta cada paso 
+documenta cada nuevo cambio
+
+#ruta de admin en vendor
+/home/dennis/temp-docker-xalok/cms/vendor/wfcms/cms-base-admin-bundle/Wf/Bundle/CmsBaseAdminBundle/Resources/config/admin.xml
+
+
+#mysql
+show fields from tag;
+
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| slug       | varchar(128) | NO   | UNI | NULL    |                |
+| title      | varchar(255) | NO   | MUL | NULL    |                |
+| created_at | datetime     | NO   |     | NULL    |                |
+| updated_at | datetime     | YES  |     | NULL    |                |
+| type       | varchar(50)  | YES  |     | NULL    |                |
+| deleted_at | datetime     | YES  |     | NULL    |                |
+
+
+
+
+
+
+
+
+<div class="page" idx="{% for usergroup in app.user.groups %}{{ usergroup }} {% endfor %}">
+
+/home/dennis/temp-docker-xalok/cms/app/admin/aaa
+
+Ingresar al redis del servidor docker
+>redis-cli -h 127.0.0.1
+ver las claves redis
+>KEYS *
+ver claves con un inicio dado
+>KEYS *key*
+ver datos de una clave redis
+MGET key
+
+
+//pasos para crear una sección multiple de acuerdo a cada categoria
+CREAR UN TEMPLATE 
+ 
+Crear el template en: 
+/src/App/Bundle/CmsBundle/Resources/views/Category/ 
+Ejemplo: emprendedor-trome.html.twig 
+Agregar el nombre del template en el archivo de configuracion: 
+/app/config/parameters/project.yml 
+ 
+CREAR MODULO PARA SECCIONES 
+ 
+Agregar bloque de código en: 
+/app/config/cms/board_templates.yml 
+Ejemplo: 
+sh-ad1x2: 
+            title: %category.title% publicidad 1x2 
+            template: board/category/subhome/shAd1x2 
+            slug: sh-ad1x2 
+            preview: wf_category_show 
+La tercera linea corresponde a la ruta del template del modulo 
+considerar que el slug debe ser igual que el nombre del modulo sh-ad1x2 == h-ad1x2
+Si el modulo es una lista es necesario agregar el template correspondiente en la carpeta Listing 
+/src/App/Bundle/CmsBundle/Resources/views/Listing/ 
+Ejemplo: listing_entero1x1_seccion_2.html.twig 
+Luego agregar el filtro de la lista en el archivo /app/config/misc/avalanche.yml 
+listing_entero1x1_seccion_2: 
+            type:    thumbnail 
+            options: { size: [300, 352], mode: inset, quality: 70 } 
+            groups: [listing] 
+Finalmente agregar el nombre de la plantilla en la funcion getTemplateName en: /src/App/Bundle/CmsBundle/PageRenderer/ListingPageRenderer.php 
+//
+
+RUNDECK dnnstone
+http://34.235.158.58:4440
+dastahuaman HanvufAutteulk
+
+https://www.loginstore.com/tablet-advance-prime-pr6145-7-1024x600-android-4-4-3g-dual-sim-8gb-1gb-dtv-21407
+
+
+//response en json de objetos
+    public function latestAction($_format, $page = 1) {
+        $serializer = $this->container->get('serializer');
+        $serializer->setGroups(array('list'));
+
+        $articleRepository = $this->get('wf_cms.repository.article');
+        $qb = $articleRepository->getLatestItemsQB(null, null, false);
+
+        $pagerFactory = $this->get('wf_cms.pager.factory');
+        $articlesPager = $pagerFactory->createPager($qb, $page);
+        $articlesPager->setMaxPerPage(14);
+
+        $ret = array();
+        $ret['results'] = json_decode($serializer->serialize($articlesPager->getCurrentPageResults(), 'json'));
+        $ret['pager'] = $this->get('wf_cms_admin.pager.renderer.search')->render($articlesPager, array(
+            'routeName' => 'wfadmin_latest_articles',
+            'routeParams' => array(
+            )
+        ));
+
+        return new Response(json_encode($ret));
+
+    }
+
+
+php app/admin/console doctrine:
+//DOCTRINE MIGRATIONS 
+http://gitnacho.github.io/symfony-docs-es/bundles/DoctrineMigrationsBundle/index.html
+
+//en resumen, vemos el estado de nuestro ambiente respecto a las actualizaciones de bd 
+php app/admin/console doctrine:migrations:status
+
+//creamos un nuevo archivo de migracion
+php app/admin/console doctrine:migrations:generate
+//nos dara una ruta en la que tendremos que agregar nuestra respectiva consulta 
+
+//migra todos los archivos pendientes por migrar en la instancia
+php app/admin/console doctrine:migrations:migrate
+
+//migrar un achivo en especifico
+php ./app/admin/console doctrine:migrations:execute 20180829231851 --up
+//donde el numero es la version creada
+//para restaurar la migracion de una bd
+php ./app/admin/console doctrine:migrations:execute 20180829231851 --down
+
+
+
+
+
+{{baseUrlImg ~ asset('bundles/appcms/images/gestion/logo_cma.jpg')}}
+
+
+delete from page where slug in ('comercial-portada-boarda1','comercial-portada-boarda2','comercial-portada-boardb1','comercial-portada-boardb2','comercial-portada-boardb3','g-cabecera-temadia','portada');br
+
+
+g_home_1x1_entero
+g_home_1x1_parcial
+aspesin.org	
+EPP Code:
+CVVV-858-763-961
+
+The EPP Code is a password that must be given to a registrar to initiate a transfer. A transfer to another registrar cannot be started without the correct EPP code.
+
+Please review our video tutorial for more information regarding domain transferring.
+
+The domain aspesin.org is currently NOT pending transfer. 
+
+
+
+
+
+
+//permisos masivos
+chmod -R 777   /xalok/app/admin/cache /xalok/app/public/cache /xalok/app/admin/var /xalok/app/public/var /xalok/app/admin/logs /xalok/app/public/logs
+
+funciones twig: son utiles para cuando queremos tener en una funcion una funcionalidad esclusiva en la vista o en los twig 
+
+
+
+//para cuando haya que  correr las migraciones que faltan (doctrine migration)
+php app/admin/console doctrine:migrations:migrate
+
+
+// texto log  de php
+//entrar al mysql desde consola de xalok
+mysql -u root -p
+
+//para conocer desde consola todos los atributos de una tabla determinada
+SHOW COLUMNS FROM page FROM wfcms
+
+//obtener cualquier parametro de configuracion en controlador symfony
+// ojo no el el que defines en el yml seccion twig, es cualquier parametro definido.
+
+$prefijo= $this->container->getParameter('url.elemento.img');
+// populate
+./app/admin/console wf:cm:pu:po -m n
+
+
+
+//settings listing
+
+array(24) { 
+["content"]=> string(11) "contentNews" 
+["category"]=> int(5) 
+["subcategories"]=> bool(true) 
+["secondary_categories"]=> bool(true) 
+["contentNews"]=> string(6) "latest" 
+["contentAuthor"]=> NULL 
+["contentType"]=> NULL 
+["start"]=> int(0) 
+["perPage"]=> int(20) 
+["pages"]=> int(5) 
+["paginator"]=> NULL 
+["paginatorMore"]=> NULL 
+["url"]=> string(8) "/offside" 
+["descriptionLength"]=> NULL 
+["elements"]=> array(5) 
+	{ 
+	[0]=> string(5) "title" 
+	[1]=> string(3) "url" 
+	[2]=> string(8) "category" 
+	[3]=> string(5) "thumb" 
+	[4]=> string(5) "share" 
+	} 
+	 ["elements_ordered"]=> string(30) "title,url,category,thumb,share" 
+	 ["elements_boards"]=> string(2) "{}"
+	 ["contentTags"]=> NULL 
+	 ["filter"]=> string(33) "listing_ec_home_separador_standar" 
+	 ["title"]=> string(15) "Minuto a minuto" 
+	 ["displayType"]=> string(4) "list" 
+	 ["gridColumns"]=> NULL 
+	 ["footer"]=> NULL 
+	 ["footerUrl"]=> NULL 
+	 }
+
+
+
+
+
+// para quitar las claves foraneas y poder elimiar tablas con referencias
+SET FOREIGN_KEY_CHECKS=0;
+
+// para obtener todos los branchs que estan en el repositorio origin 
+git pull
+
+// error git
+error: insufficient permission for adding an object to repository database .git/objects
+solucion:
+sudo chmod 777 -R .git/objects
+
+//para listar todos los branch que existen en el repositorio remoto
+git branch -a
+//para listar todos los branch que existen en el repositorio local
+git branch
+//nuevos comandos git para merge forks
+git commit -am "prueba branch"
+git pull origin eco-rediseno
+git push dnnstone2 eco-rediseno
+//informacion del ultimo update de la rama
+git log -1
+
+//obtenemos la info de cada bloque declarado en los board fixtures
+Name         wf_page_show
+Path         /view/page/{slug}.html
+Host         ANY
+Scheme       ANY
+Method       ANY
+Class        Symfony\Component\Routing\Route
+Defaults     _controller: AppCmsBundle:Page:show
+Requirements slug: .*
+Options      compiler_class: Symfony\Component\Routing\RouteCompiler
+Path-Regex   #^/view/page/(?P<slug>.*)\.html$#s
+
+          {{ render_esi(url('wf_page_show',{ 'slug': 'ecbloque1' })) }} 
+           {{ render_esi(url('wf_page_show',{ 'slug': 'elcomercio/nadine-heredia-participo-reuniones-gasoducto-afirmo-ex-ministra-energia-minas-119' })) }} 
+
+//info de el comercio
+Rediseño elcomercio.pe
+===================
+Plantillas
+http://dev.3.elcomercio.pe/f/2016/public/html/index.html
+Sprints
+https://docs.google.com/spreadsheets/d/1ySOtlT9ze56upCNLl90E7ZmNVoNHyFHn8zzNFrJfatg/edit#gid=0
+Referencia
+https://docs.google.com/spreadsheets/d/1Ljp6MV54tmfToLBPRXzEJRst6HWd_9dA5t8M79G6Qjs/edit#gid=0
+
+//add otro trerminal de  docker
+docker exec -i -t xalok /bin/bash 
+
+
+//diferentes opciones de avalanche
+        listing_depor_separador_diosas_heighten:
+            type:    relative_resize
+            options: { heighten: 222 } # Transforms 50x40 to 75x60
+        listing_depor_separador_diosas_widen:
+            type:    relative_resize
+            options: { widen: 296}    # Transforms 50x40 to 40x32
+        listing_depor_separador_diosas_cga:
+            type:    resize
+            options: { size: [296, 222] }
+
+//porsiaca
+make elastic_reindex === .app/admin/console fos:elastica:populate
+
+//para cambiar de entorno de diario
+make change_site site=depor reindex=1 dev=1
+
+
+//para usar un parametro yml en controlador o archivo php
+$this->container->getParameter('wf_sitio')
+
+
+//para cambiar la contraseña de admin xalok 
+./app/admin/console fos:user:change-password admin NEWPASSWORD
+ten en cuenta que si no ingresas con la nueva contrseña asegurate de cambiar los permisos a la siguiente ruta
+chmod -R 777 app/admin/var/
+
+//para saber la arquitectura del ubuntu
+uname -m
+
+//routing add url with /
+
+
+
+//netbeans shortcuts
+1	ctrl+h ------> reemplazar
+2	subrayas una variable(php) ctrl+r y puedes reemplazar todos las ocurrencias de la variable al mismo tiempo
+3	ctrl + shift + flecha hacia abajo ó arriba: duplica la línea donde se encuentra el cursor o duplica el texto seleccionado
+4   Ctrl + Space : Completa el código que estamos escribiendo
+5	Shift+Alt+F – Estructurar automáticamete el código seleccionado.
+
+//agregar plantilla de notas 
+
+1ro: agregar plantilla en templates.yml
+2do: traducir el nombre de la plantilla de notas en /home/dennis/temp-docker-xalok/cms/app/admin/Resources/translations/WfCmsAdmin.es.xliff
+3ro: crear su plantilla twig con los los modulos que deberia tener la plantilla, Cannot find module './article/publi_reportaje.html
+
+
+paremetros en ruta  twig
+{{ path('app_cms_archivo_section_date', {section: pagerOptions.section, date:opcion.date}) }}
+
+
+//renderizar en un twig nuestros datos u obtener el html de estos
+
+$response = $this->render('WfCmsBaseBundle:Search:advancedSearch.html.twig', $data);
+
+//usar dentro de nuestro metodo un metodo del padre,
+
+        $data = parent::indexAction($query, $page, $request);
+
+//
+
+pw admin 09/09    soaDufNfxYjm
+pw admin 31/08
+
+arM0QTfOVQKG
+
+// obtener datos de metodo de controlador papa  reescribiendo en el nuevo controlador hijo
+
+$data = parent::indexAction($query, $page, $request);
+
+// obtener url desde controlador  dependiendo de router y parametros:
+		return $this->redirect($this->generateUrl('app_cms_archivo_section_date',
+            array('date' => $date, 'section' => 'trome','page'=>1)
+
+// obtener url desde vista twig
+
+
+// usuarios y passwords de diferentes aplicaciones para visualizar
+
+	1: http://cases-assoc.com/beta/trome/control/index.html
+		cases
+		cases
+
+
+	
+	
+//diferencias y trucos
+//agregar agente ssh para usar repositorios remotos
+	1	si sale your configuration does not allow connection to http //packagist.org ...
+		agrega 
+	2	// esto es para usar el usuario ssh de la maquina virtual.
+		//	https://www.youtube.com/watch?v=G69dfwG2DJ4
+		// localizate en la carpeta /.ssh i ubica el archivo .pub
+		//a continuacion solicitamos un agente 
+		$	eval $(ssh-agent -s)
+		//nos saldra la id de agente 
+		Agent pid 34345
+		// luego hacemos que el agente agregue en memoria a usuario ssh mediante el siguiente comando
+		$	ssh-add /home/god/.ssh/id_rsa    //donde la ruta corresponde al archivo ssh sin pub
+	3   El  composer.json  que hace referencia la actual maquina virtual Server ElComercio tiene un git que hace referencia a 
+		git@git.webflow.ro:sol90/eltiempogroup-wfcms.git
+		y no a la ruta indicada en el correo del proyecto del comercio
+		http://git.webflow.ro/sol90/ecperu git@git.webflow.ro:sol90/ecperu.git 
+		se hará una prueba con la mencionada ruta de repositorio
+	4	Aumentar el tiempo de espera en nginx y en php 
+		php 
+			vim /etc/php5/fpm/php.ini
+			Set…
+
+			max_execution_time = 300
+			
+		nginx
+			If you want to increase time-limit for all-sites on your server, you can edit main nginx.conf file:
+			vim /etc/nginx/nginx.conf
+			Add following in http{..} section
+			
+			http {
+			#...
+				fastcgi_read_timeout 300; 
+			#...
+			}
+	
+	5	PHP Catchable fatal error: 
+			Argument 1 passed to Wf\Bundle\CmsBaseAdminBundle\Security\SecurityContext::setCategoryRepository() 
+			must be an instance of Wf\Bundle\CmsBaseBundle\Entity\Repository\CategoryRepository, 
+			instance of Doctrine\ORM\EntityRepository given, 
+			called in /var/www/etmotor2/app/admin/cache/dev/adminDevDebugProjectContainer.php on line 5339 and defined in
+			/var/www/etmotor2/vendor/wfcms/cms-base-admin-bundle/Wf/Bundle/CmsBaseAdminBundle/Security/SecurityContext.php on line 27
+	
+	
+	6 	es este el proyecto asignado?  git@git.webflow.ro:sol90/ecperu.git
+	
+	7	error al instalar proyecto
+		> Wf\Bundle\CmsBaseAdminBundle\Composer\ScriptHandler::postInstall
+		Post install
+		Admin env (admin.app.lo) is not setup correctly: Empty check response
+
+	8 	Luego de superado el problema anterior (lo arreglaron la gente de xalok) sale este error por determinar
+	
+		 An exception has been thrown during the compilation of a template 
+		 ("Unable to find file "@AppCmsBundle/Resources/public/stylesheets/screen.css".") 
+		 in "/var/www/elcomercio/src/App/Bundle/CmsBundle/Resources/views/layout_content.html.twig".
+		500 Internal Server Error - Twig_Error_Syntax
+		1 linked Exception:
+		InvalidArgumentException » 
+
+
+	
+	
+
+
+-----------//////TODO  GIT/////----------------
+1	clonar un repositorio /sea con usuaro ssh o ruta no segura	
+	git clone username@host:/path/to/repository  usamos para el comercio
+	git clone /path/to/repository                usamos para cualquier proyecto libre en github
+	
+2	3 ARBOLES, 
+	Directorio de trabajo, Index (storage),	Head (apunta al ultimo commit)
+	
+3	Para registrar cambios (añade al Index) los archivos cambiados
+	git add <filename>  //o
+	gid add . 			//agrega todo lo que vea con cambios
+
+4	Para hacer commit a este cambio	
+	git commit -m 	"mensaje inclusivo"  //significa que el archivo va al HEAD, pero aun no está en el repositorio
+	git commit -am  "mensaje"  // el 'a' significa que agrega todos los archivos (hace un git add . previo) 
+							   // el 'm' significa que queremos agregar un mensaje 	
+
+5   para enviar los cambios al repositorio (del HEAD al Repositorio)
+	git push origin master   //Podemos reemplazar origin masster por la rama a ala que quieress enviar tus cambios
+	
+6 	Si no has clonado un repositorio ya existente y quieres conectar tu repositorio local a un repositorio remoto, usa
+	git remote add origin <server>
+	
+7	Ramas Las ramas son utilizadas para desarrollar funcionalidades aisladas unas de otras. La rama master es la rama "por defecto" cuando creas un repositorio. Crea nuevas ramas durante el desarrollo y fusiónalas a la rama principal cuagndo termines.
+	crear una nueva rama	"feaure_x"  
+	git checkout -b feature_x
+	//vuelve a la rama principal
+	git checkout master
+	//y borra la rama
+	git branch -d feature_x
+	//Una rama nueva no estará disponible para los demás a menos que subas (push) la rama a tu repositorio remoto
+	git push origin <branch>
+
+8	//Actualiza y fusiona Para actualizar tu repositorio local al commit más nuevo, ejecuta 
+	git pull
+	//en tu directorio de trabajo para bajar y fusionar los cambios remotos.
+	//Para fusionar otra rama a tu rama activa (por ejemplo master), utiliza
+	git merge <branch>
+	//en ambos casos git intentará fusionar automáticamente los cambios. Desafortunadamente, no siempre será posible y se podrán producir conflictos. Tú eres responsable de fusionar esos conflictos manualmente al editar los archivos mostrados por git. Después de modificarlos, necesitas marcarlos como fusionados con
+	git add <filename>
+	//Antes de fusionar los cambios, puedes revisarlos usando
+	git diff <source_branch> <target_branch>
+	
+9	ETIQUETAS
+	//Se recomienda crear etiquetas para cada nueva versión publicada de un software. Este concepto no es nuevo, ya que estaba disponible en SVN. Puedes crear una nueva etiqueta llamada 1.0.0 ejecutando
+	git tag 1.0.0 1b2e1d63ff
+	//1b2e1d63ff se refiere a los 10 caracteres del commit id al cual quieres referirte con tu etiqueta. Puedes obtener el commit id con 
+	git log
+	//también puedes usar menos caracteres que el commit id, pero debe ser un valor único.	
+
+10	REEMPLAZA CAMBIOS LOCALES
+	//En caso de que hagas algo mal (lo que seguramente nunca suceda ;) puedes reemplazar cambios locales usando el comando
+	git checkout -- <filename>
+	//Este comando reemplaza los cambios en tu directorio de trabajo con el último contenido de HEAD. Los cambios que ya han sido agregados al Index, así como también los nuevos archivos, se mantendrán sin cambio.
+	Por otro lado, si quieres deshacer todos los cambios locales y commits, puedes traer la última versión del servidor y apuntar a tu copia local principal de esta forma
+	git fetch origin
+	git reset --hard origin/master
+
+11	datos útiles
+	Interfaz gráfica por defecto
+	gitk
+	Colores especiales para la consola
+	git config color.ui true
+	Mostrar sólo una línea por cada commit en la traza
+	git config format.pretty oneline
+	Agregar archivos de forma interactiva
+	git add -i	
+
+12  index -> stage
+	al hacer add, agregamos los archivos al index
+	al hace commit, agregamos los que tan el en index al archivos al stoge
+	si haces commit con -am, directamente llevas todos los archivos al stoge
+	el stoge es el estado en el que se comparar y es el camino previo de los demas archivos que se agregan de otros usuarios
+	si queremos regresar algun archivo del stoge hasta antes del index (es decir revertir el cambio commiteado) usamos el comando:
+		git reset HEAD <ruta del archivo>	
+		este cambio no borra la información del archivo que se regreso, 
+			git reset --soft HEAD <ruta del archivo>
+			git reset --hard HEAD <ruta del archivo>
+
+13
+	# CREANDO UN NUEVO BRANCH
+	$ git branch nombredelbranch
+
+	# CAMBIARSE DE BRANCH
+	$ git checkout nombredelbrach
+
+	# VIENDO LOS BRANCHES DEL PROYECTO
+	# (el asterisco indica el branch donde estamos)
+	$ git branch
+
+	# UNIFICANDO BRANCHES
+	# (esto actualiza el branch donde estamos con los
+	# cambios que tenga el branch que indiquemos)
+	$ git merge NombreDelBranchAunificar
+
+14 si nuestra rama no esta en el servidor y queremos hacer push
+	usamos git push origin "<nombre de nuestra rama creada>"
+	
+-----//twig principales de xalok//---------
+header AppCmsBundle.header.default.html.twig entrando a la ruta http://elcomercio.lo/header/
+	
+-----//configuracion y versiones de servicios minimos necesarios para q funcione xalok
+redis: $ redis-server --version
+		Redis server version 2.4.14 (00000000:0)
+elasticsearch: curl -XGET 'localhost:9200' 
+		{
+		  "status" : 200,
+		  "name" : "Fenris Wolf",
+		  "cluster_name" : "elasticsearch",
+		  "version" : {
+			"number" : "1.7.5",
+			"build_hash" : "00f95f4ffca6de89d68b7ccaf80d148f1f70e4d4",
+			"build_timestamp" : "2016-02-02T09:55:30Z",
+			"build_snapshot" : false,
+			"lucene_version" : "4.10.4"
+		  },
+		  "tagline" : "You Know, for Search"
+		}
+
+		
+----//////////////Comandos Adicionales para Instalación de XALOK
+// para estos comandos asegurarse de agregar al  /etc/hosts del servidor las rutas de la aplicacion creada (admin u front)
+make wf_assets
+make assetic-dump
+make compass_compile_admin_prod
+make compass_compile_public_prod
+make compass_compile
+
+
+
+Tabla demas descubierta en xalok_elcomercio		
+drupal_routes 
+forum registration
+
+
+tablas faltantes: 
+migration_versions
+	
+	
+Mapa de XALOK
+	
+	admin.etmotor.lo
+		/web/app_admin.php
+	etmotor.lo
+		/web/app_public.php
+			app/public/PublicKernel.php
+				\ETGroup\Bundle\CmsBundle\Kernel\CmsKernel
+					\Wf\Bundle\CmsBaseBundle\Kernel\CmsKernel
+						new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
+						new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+						new \Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+						new \FOS\UserBundle\FOSUserBundle(),
+						new \Lexik\Bundle\TranslationBundle\LexikTranslationBundle(),
+						//admin bundle (and its dependencies)
+						new \Sonata\CoreBundle\SonataCoreBundle(),
+						new \Sonata\BlockBundle\SonataBlockBundle(),
+						new \Sonata\jQueryBundle\SonatajQueryBundle(),
+						new \Sonata\AdminBundle\SonataAdminBundle(),
+						new \Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+						new \CCDNUser\SecurityBundle\CCDNUserSecurityBundle(),
+						//wfbundles
+						new \Wf\Bundle\CmsBaseAdminBundle\WfCmsBaseAdminBundle(),
+						new \Wf\Bundle\CmsEditorBundle\WfCmsEditorBundle(),
+					new \ETGroup\Bundle\CmsBundle\ETGroupCmsBundle()
+				ETMotor\Bundle\WebappBundle\ETMotorWebappBundle()
+		
+	Los lugares mas oscuros del infierno están reservados para  aquellos que se mantienen
+	neutrales en tiempos de crisis moral
+	dante alighieri
+	
+	
+///////////////CONFIGURACION YAML XALOK /////////////////////////////////////////////////////
+
+
+//actualizaciones...
+
+ 
+ //comandos make
+ make wf-templates-config
+ make clean
+ make wf_assets 
+ //tast  ofiiciales 
+ // agregar make antes del comando siguiente
+ 
+ ADMIN_SF_ENV=dev
+ADMIN_SF_CONSOLE=./app/admin/console --env=$(ADMIN_SF_ENV)
+ADMIN_HOST=admin-wfcms.lo
+
+PUBLIC_SF_ENV=$(ADMIN_SF_ENV)
+PUBLIC_SF_CONSOLE=./app/public/console --env=$(PUBLIC_SF_ENV)
+PUBLIC_HOST=wfcms.lo
+
+WEBSERVER_USER=$(shell ps axho user,comm|grep -E "httpd|apache|nginx" | uniq | grep -v "root"|cut -d " " -f1)
+COMPASS=compass
+
+DERIVED_DIRS=web/uploads web/files app/admin/var app/public/var app/admin/cache app/public/cache app/admin/logs app/public/logs
+
+GULP="./node_modules/gulp/bin/gulp.js"
+
+include .project-config
+-include .make-config
+
+PERMISSION_DIRS=$(DERIVED_DIRS) web/sitemap
+SRC_DIR=./src/$(PROJECT_NAMESPACE)
+SK_DIRS=$(SRC_DIR) ./app
+
+UNAME=$(shell uname)
+PROJECT_DIR=$(shell pwd)
+ifeq ($(UNAME), Darwin)
+	SEDI=sed -i '.bak'
+else
+	SEDI=sed -i
+endif
+
+default:
+
+rebuild_db:
+ifeq ($(ADMIN_SF_ENV),dev)
+	-$(ADMIN_SF_CONSOLE) doctrine:database:drop --force
+	$(ADMIN_SF_CONSOLE) doctrine:database:create
+	make migrate-db
+else
+	@echo reloading DB supressed on ADMIN_SF_ENV != dev, change your ADMIN_SF_ENV var in .make-config
+endif
+
+migrate-db:
+	$(ADMIN_SF_CONSOLE) doctrine:migrations:migrate --no-interaction
+
+load_fixtures:
+ifeq ($(ADMIN_SF_ENV),dev)
+	$(ADMIN_SF_CONSOLE) doctrine:fixtures:load
+	make elastic_reindex
+	make wf_assets
+	#make translation-extract
+else
+	@echo fixtures loading supressed on ADMIN_SF_ENV != dev, change your ADMIN_SF_ENV var in .make-config
+endif
+
+clean:
+	make clean-admin
+	make clean-public
+
+clean-admin:
+	$(ADMIN_SF_CONSOLE) cache:clear
+
+clean-public:
+	$(PUBLIC_SF_CONSOLE) cache:clear
+
+fix_permissions:
+ifeq ($(UNAME), Darwin)
+	chmod -R +a "$(WEBSERVER_USER) allow delete,write,append,file_inherit,directory_inherit" $(PERMISSION_DIRS)
+	chmod -R +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" $(PERMISSION_DIRS)
+else
+	setfacl -R -m u:$(WEBSERVER_USER):rwx -m u:`whoami`:rwx $(DERIVED_DIRS)
+	setfacl -dR -m u:$(WEBSERVER_USER):rwx -m u:`whoami`:rwx $(DERIVED_DIRS)
+endif
+
+install_composer: composer.phar
+	curl -s https://getcomposer.org/installer | php
+
+install_third_party: install_composer
+	#rm -rf vendor/*
+	#php composer.phar install
+	make install_npms
+
+install_npms_project:
+	npm install
+
+install_npms_lock:
+	cd vendor/wfcms/cms-base-admin-bundle/Wf/Bundle/CmsBaseAdminBundle/Resources/node_app; npm install
+
+install_npms_tracking:
+	cd vendor/wfcms/cms-tracking-bundle/Wf/Bundle/TrackingBundle/Resources/node_app; npm install
+
+install_npms: install_npms_project install_npms_lock install_npms_tracking
+
+install-assets:
+	cd vendor/wfcms/cms-assets-bundle/Wf/Bundle/CmsBaseAssetsBundle; make install
+
+link_assets:
+	-cd web; ln -s bundles/$(PUBLIC_BUNDLE_LC_NAME)/javascripts; ln -s bundles/$(PUBLIC_BUNDLE_LC_NAME)/stylesheets css; ln -s bundles/$(PUBLIC_BUNDLE_LC_NAME)/images
+	-cd web/javascripts; ln -s ../../../../../../../vendor/wfcms/cms-assets-bundle/Wf/Bundle/CmsBaseAssetsBundle/Resources/public/javascripts/lib
+
+copy_dev_configs:
+	cp app/admin/config/config_dev.yml.dist app/admin/config/config_dev.yml
+	cp app/public/config/config_dev.yml.dist app/public/config/config_dev.yml
+
+copy_prod_configs:
+	cp app/admin/config/config_prod.yml.dist app/admin/config/config_prod.yml
+	cp app/public/config/config_prod.yml.dist app/public/config/config_prod.yml
+
+pre_install_skeleton:
+	#remove temporary files, just in case
+
+install_skeleton: pre_install_skeleton
+	mv src/skeleton $(SRC_DIR)
+	find $(SK_DIRS) -type f -print0 | xargs -0 $(SEDI) -e 's/{{PROJECT_LC_NAMESPACE}}/$(PROJECT_LC_NAMESPACE)/g' -e 's/{{PROJECT_NAMESPACE}}/$(PROJECT_NAMESPACE)/g'
+	find $(SK_DIRS) -type f -name "*.bak" | xargs rm
+	find $(SK_DIRS) -type f -name "*__PROJECT_NAMESPACE__*" | sed -e 's/\(.*\)__PROJECT_NAMESPACE__\(.*\)/mv & \1$(PROJECT_NAMESPACE)\2/' | sh
+	-mkdir src/$(PROJECT_NAMESPACE)/Bundle/CmsAdminBundle/Resources/public/images
+	cd src/$(PROJECT_NAMESPACE)/Bundle/CmsAdminBundle/Resources/public/images; ln -s ../../../../../../../vendor/wfcms/cms-base-admin-bundle/Wf/Bundle/CmsBaseAdminBundle/Resources/public/images base
+	cd src/$(PROJECT_NAMESPACE)/Bundle/CmsAdminBundle/Resources/public; ln -s ../../../../../../vendor/wfcms/cms-assets-bundle/Wf/Bundle/CmsBaseAssetsBundle/Resources/public/config.rb; ln -s ../../../../../../vendor/wfcms/cms-assets-bundle/Wf/Bundle/CmsBaseAssetsBundle/Resources/public/config_prod.rb
+
+create_project: install_skeleton
+
+create_derived_dirs:
+	-mkdir $(DERIVED_DIRS)
+	make fix_permissions
+
+pre_install: copy_dev_configs copy_prod_configs create_derived_dirs install_npms install-assets
+
+post_install: rebuild_db link_assets bower_install compass_compile_admin_prod compass_compile_public_prod load_fixtures assetic-dump
+
+assetic-dump-admin:
+	$(ADMIN_SF_CONSOLE) assetic:dump
+
+assetic-dump-public:
+	$(PUBLIC_SF_CONSOLE) assetic:dump
+
+assetic-dump: assetic-dump-admin assetic-dump-public
+
+assetic-watch:
+	$(PUBLIC_SF_CONSOLE) assetic:dump --watch
+
+elastic_reindex:
+	$(ADMIN_SF_CONSOLE) fos:elastica:populate
+
+bower_install:
+	bower install --allow-root
+
+compass_compile: compass_compile_admin compass_compile_public
+
+compass_compile_public:
+	$(GULP) compass-compile-public
+
+compass_compile_admin:
+	$(GULP) compass-compile-admin
+
+compass_compile_admin_dist:
+	cd vendor/wfcms/cms-base-admin-bundle/Wf/Bundle/CmsBaseAdminBundle/Resources/public; $(COMPASS) compile --force -c config_dist.rb; git status; git add dist_css; git commit -m "updated dist CSSs"; git push
+
+compass_compile_public_prod:
+	$(GULP) compass-compile-public-prod
+
+compass_compile_admin_prod:
+	$(GULP) compass-compile-admin-prod
+
+compass_watch_public:
+	$(GULP) compass-watch-public
+
+compass_watch_admin:
+	cd $(SRC_DIR)/Bundle/CmsAdminBundle/Resources/public; $(COMPASS) watch
+
+test:
+	echo $(WEBSERVER_USER)
+
+update-wfcms:
+	composer update wfcms/cms-assets-bundle wfcms\/cms-base-bundle wfcms\/cms-base-admin-bundle wfcms\/cms-editor-bundle wfcms\/cms-assets-bundle wfro\/common-bundle wfcms\/cms-tracking-bundle wfcms\/blog-bundle wfcms\/cms-rss-bundle wfcms/xalok-red-bundle wfcms/xalok-docs-importer-bundle
+	git add composer.lock
+	git commit -m "update wfcms"
+	git push
+
+uw:
+	make update-wfcms
+
+translation-extract: clean
+	$(ADMIN_SF_CONSOLE) translation:extract -c project
+	$(ADMIN_SF_CONSOLE) lexik:translations:import
+	make wf_assets #extracting translations also dumps template_messages.json - used in JS I18n
+
+translation-save:
+	$(ADMIN_SF_CONSOLE) lexik:translations:export
+	make clean
+	make wf_assets
+	git status
+	git add app/public/Resources/translations
+	git add app/config/cms/template_messages.json
+	git commit -m "update translations"
+	git push origin
+
+translation-update-base:
+	find `pwd`/vendor/wfcms `pwd`/vendor/wfro -type d -name "translations" -print0 | xargs -0 -I{} find '{}' -type f -print0 | xargs -0 -I{} sh -c 'eval F={}; eval FN=$(basename $F);cp app/admin/Resources/translations/$FN $F'
+	@echo Translation files have been copied in the base bundles. Check each base bundle for leftovers (project's name in translations), commit and push
+
+translation-from-base:
+	find `pwd`/vendor/wfcms `pwd`/vendor/wfro -type d -name "translations" -print0 | xargs -0 -I{} find '{}' -type f -print0 | xargs -0 -I{} sh -c 'eval F={}; eval FN=$(basename $F);cp $F app/admin/Resources/translations/$FN'
+	@echo Translation files have been copied in the base bundles. Check each base bundle for leftovers (project's name in translations), commit and push
+
+wf-templates-config:
+	@echo !!!NO need to run this task anymore, the templates' configuration is taken from the HTML modules directly. In the worst case scenario, just clear symfony's cache, the templates will be parsed on the next request.
+	@#$(ADMIN_SF_CONSOLE) wf:cms:templates-config-dump $(ADMIN_HOST)
+
+unit-tests-sample-data:
+	cd vendor/wfcms/cms-base-bundle/Wf/Bundle/CmsBaseBundle; phantomjs Resources/dump/unit-tests-sample-data.js $(ADMIN_HOST); git status; git add Resources/test/roled_modules_data; git commit -m "updated unit tests sample data"; git push
+
+wf_assets:
+	@#$(ADMIN_SF_CONSOLE) wf:cms:assets:dump -u -d $(ADMIN_HOST)
+	$(GULP) wf-assets
+	$(GULP) webpack
+
+dev:
+	$(GULP) dev
+
+
+publish-populate:
+	sh ./vendor/wfcms/cms-base-admin-bundle/Wf/Bundle/CmsBaseAdminBundle/Resources/bin/publish-populate
+
+ Boards tambien en bundle etmotors
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ///////////////////////
+ ////////////////////////
+ //////////////////////// rutinas de instalacion con docker
+ 
+composer install
+make pre_install
+bower install --allow-root
+rm -rf app/admin/cache/*
+rm -rf app/public/cache/*
+make fix_permissions
+make assetic-dump
+php app/admin/console assets:install --symlink
+make compass_compile_admin_prod
+make compass_compile
+make post_install
+make elastic_reindex
+make clean
+make load_fixtures
+
+
+///rutinas de fiuxtures y repoblado
+sidebar/category
+metatags
+php app/admin/console doctrine:schema:drop --force
+php app/admin/console doctrine:schema:create
+php app/admin/console doctrine:fixtures:load
+
+
+//contraseña docker admin 
+//repiblar los menus de xalok
+app/admin/console wf:cm:re:me
+
+IMgH3AH_1vSo
+O6RffLbwbVTk
+
+
