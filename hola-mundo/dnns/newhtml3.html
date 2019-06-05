@@ -1,16 +1,522 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+
+  <div id="expresiones" class="box-page box4">
+    <div class="container">
+      <div class="container-inner">
+        <div class="header-page">
+          <div class="title-box">
+            <div class="section_logo">
+              <a href="/"><img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/min_logo.jpg" alt="Perú 21"></a>
+            </div>
+            <h2>EXPRESIONES</h2>
+          </div>
+          <div class="social_share">
+            <a class="fb li_left" href="https://www.facebook.com/sharer/sharer.php?u=<?=urlencode($this->config->item('base_url').'todaslasvoces/page/expresiones')?>" onclick="gec.fn.popup(this,event)"><i></i><span></span></a>
+            <a class="gp li_top" href="https://plus.google.com/share?url=<?=urlencode($this->config->item('base_url').'todaslasvoces/page/expresiones')?>" onclick="gec.fn.popup(this,event)"><i></i><span></span></a>
+            <a class="tw li_right" href="https://twitter.com/intent/tweet?original_referer=<?=urlencode($this->config->item('base_url').'todaslasvoces/page/expresiones')?>&text=Todas+las+voces+Expresiones&hashtags=Todaslasvoces&tw_p=tweetbutton&url=<?=urlencode($this->config->item('base_url').'todaslasvoces/page/expresiones')?>&via=peru21pe"  onclick="gec.fn.popup(this,event)"><i></i><span></span></a>
+            <?/*if(detectar()){?><a href="#" class="wp li_bottom"><i></i><span></span></a><?}*/?>
+            <?if(detectar()){?><a href="whatsapp://send?text=Todas+las+voces+Expresiones - <?=urlencode($this->config->item('base_url').'todaslasvoces/page/expresiones')?>" class="wp li_bottom"><i></i><span></span></a><?}?>
+          </div>
+        </div>
+
+        <div class="menu-expr">
+          <ul class="clearfix">
+            <li><i class="ico"><img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_quechua.png" alt=""></i> QUECHUA</li>
+            <li><i class="ico"><img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" alt=""></i> AIMARA</li>
+            <li><i class="ico"><img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_shipibo.png" alt=""></i> SHIPIBO</li>
+            <li><i class="ico"><img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" alt=""></i> AWAJÚN</li>
+            <li><i class="ico"><img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_ashaninka.png" alt=""></i> ASHÁNINKA</li>
+          </ul>
+        </div>
+        <div id="p21_expresiones" class="clearfix">
+          <div class="circle-sound">
+            <div class="circle-inner">
+              <div class="circle circle-1">
+
+                <div class="circle_group left">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Quechua","trad":"Imay hurataq","orig":"¿Qué hora es?", "audio":"/f/lenguasnativas/include/QUECHUA/QUE_HORA_ES.mp3"}'>
+                    <span class="ttip">Quechua</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_quechua.png" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Aimara","trad":"Qhawqhaspasa","orig":"¿Qué hora es?", "audio":"/f/lenguasnativas/include/AYMARA/QUE_HORA_ES.mp3"}'>
+                    <span class="ttip">Aimara</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" ></i>
+
+                  <i class="ico min_ico ship" data-expresion='{"idioma":"Shipibo","trad":"¿Jawetiri?","orig":"¿Qué hora es?", "audio":"/f/lenguasnativas/include/SHIPIBO/QUE_HORA_ES.mp3"}'>
+                    <span class="ttip">Shipibo</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_shipibo.png" ></i>
+
+                  <i class="ico min_ico awaj" data-expresion='{"idioma":"Awajún","trad":"Wajupa  akikaita","orig":"¿Qué hora es?", "audio":"/f/lenguasnativas/include/AWAJUN/QUE_HORA_ES.mp3"}'>
+                    <span class="ttip">Awajún</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" ></i>
+
+                  <i class="ico min_ico asha" data-expresion='{"idioma":"Asháninka","trad":"Jaoka okarati","orig":"¿Qué hora es?", "audio":"/f/lenguasnativas/include/ASHANINKA/QUE_HORA_ES.mp3"}'>
+                    <span class="ttip">Asháninka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_ashaninka.png" ></i>
+                </div>
+                <div class="cr">
+                  <span>¿Qué hora<br> es?</span>
+                </div>
+              </div>
+              <div class="circle circle-2">
+
+                <div class="circle_group left">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Quechua","trad":"Kusa","orig":"Muy bien", "audio":"/f/lenguasnativas/include/QUECHUA/MUY_BIEN.mp3"}'>
+                    <span class="ttip">Quechua</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_quechua.png" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Aimara","trad":"Waliki","orig":"Muy bien", "audio":"/f/lenguasnativas/include/AYMARA/MUY_BIEN.mp3"}'>
+                    <span class="ttip">Aimara</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" ></i>
+
+                  <i class="ico min_ico ship" data-expresion='{"idioma":"Shipibo","trad":"Jakon biris","orig":"Muy bien", "audio":"/f/lenguasnativas/include/SHIPIBO/MUY_BIEN.mp3"}'>
+                    <span class="ttip">Shipibo</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_shipibo.png" ></i>
+
+                  <i class="ico min_ico awaj" data-expresion='{"idioma":"Awajún","trad":"pegkejai","orig":"Muy bien", "audio":"/f/lenguasnativas/include/AWAJUN/MUY_BIEN.mp3"}'>
+                    <span class="ttip">Awajún</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" ></i>
+
+                  <i class="ico min_ico asha" data-expresion='{"idioma":"Asháninka","trad":"Kamesa nosaiki","orig":"Muy bien", "audio":"/f/lenguasnativas/include/ASHANINKA/MUY_BIEN.mp3"}'>
+                    <span class="ttip">Asháninka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_ashaninka.png" ></i>
+                </div>
+                <div class="cr">
+                  <span>Muy<br> bien</span>
+                </div>
+              </div>
+              <div class="circle circle-3">
+                <div class="circle_group top">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Quechua","trad":"Ama hina kaspa","orig":"Por favor", "audio":"/f/lenguasnativas/include/QUECHUA/POR_FAVOR.mp3"}'>
+                    <span class="ttip">Quechua</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_quechua.png" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Aimara","trad":"Mirä","orig":"Por favor", "audio":"/f/lenguasnativas/include/AYMARA/POR_FAVOR.mp3"}'>
+                    <span class="ttip">Aimara</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" ></i>
+
+                  <i class="ico min_ico ship" data-expresion='{"idioma":"Shipibo","trad":"Ea akinwe","orig":"Por favor", "audio":"/f/lenguasnativas/include/SHIPIBO/POR_FAVOR.mp3"}'>
+                    <span class="ttip">Shipibo</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_shipibo.png" ></i>
+
+                  <i class="ico min_ico awaj" data-expresion='{"idioma":"Awajún","trad":"wait  aneasam","orig":"Por favor", "audio":"/f/lenguasnativas/include/AWAJUN/POR_FAVOR.mp3"}'>
+                    <span class="ttip">Awajún</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" ></i>
+
+                  <i class="ico min_ico asha" data-expresion='{"idioma":"Asháninka","trad":"Kametsajiketi","orig":"Por favor", "audio":"/f/lenguasnativas/include/ASHANINKA/POR_FAVOR.mp3"}'>
+                    <span class="ttip">Asháninka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_ashaninka.png" ></i>
+                </div>
+                <div class="cr">
+                  <span>Por<br> favor</span>
+                </div>
+              </div>
+              <div class="circle circle-4">
+                <div class="circle_group top">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Quechua","trad":"Rinaykullayki","orig":"Buenos días", "audio":"/f/lenguasnativas/include/QUECHUA/BUENOS_DIAS.mp3"}'>
+                    <span class="ttip">Quechua</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_quechua.png" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Aimara","trad":"Aski arukipanaya","orig":"Buenos días", "audio":"/f/lenguasnativas/include/AYMARA/BUENOS_DIAS.mp3"}'>
+                    <span class="ttip">Aimara</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" ></i>
+
+                  <i class="ico min_ico ship" data-expresion='{"idioma":"Shipibo","trad":"Jakon yamekiri","orig":"Buenos días", "audio":"/f/lenguasnativas/include/SHIPIBO/BUENOS_DIAS.mp3"}'>
+                    <span class="ttip">Shipibo</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_shipibo.png" ></i>
+
+                  <i class="ico min_ico awaj" data-expresion='{"idioma":"Awajún","trad":"Tsawajumek","orig":"Buenos días", "audio":"/f/lenguasnativas/include/AWAJUN/BUENOS_DIAS.mp3"}'>
+                    <span class="ttip">Awajún</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" ></i>
+
+                  <i class="ico min_ico asha" data-expresion='{"idioma":"Asháninka","trad":"Kitaiteri","orig":"Buenos días", "audio":"/f/lenguasnativas/include/ASHANINKA/BUENOS_DIAS.mp3"}'>
+                    <span class="ttip">Asháninka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_ashaninka.png" ></i>
+                </div>
+                <div class="cr">
+                  <span>Buenos<br> días</span>
+                </div>
+              </div>
+              <div class="circle circle-5">
+                <div class="circle_group top">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Quechua","trad":"¿Imaynallam kachkanki?","orig":"¿Cómo estas?", "audio":"/f/lenguasnativas/include/QUECHUA/COMO_ESTAS.mp3"}'>
+                    <span class="ttip">Quechua</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_quechua.png" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Aimara","trad":"¿Kamisaraki?","orig":"¿Cómo estas?", "audio":"/f/lenguasnativas/include/AYMARA/COMO_ESTAS.mp3"}'>
+                    <span class="ttip">Aimara</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" ></i>
+
+                  <i class="ico min_ico ship" data-expresion='{"idioma":"Shipibo","trad":"¿Jaweskarín mia?","orig":"¿Cómo estas?", "audio":"/f/lenguasnativas/include/SHIPIBO/COMO_ESTAS.mp3"}'>
+                    <span class="ttip">Shipibo</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_shipibo.png" ></i>
+
+                  <i class="ico min_ico awaj" data-expresion='{"idioma":"Awajún","trad":"¿makek  pujam?","orig":"¿Cómo estas?", "audio":"/f/lenguasnativas/include/AWAJUN/COMO_ESTAS.mp3"}'>
+                    <span class="ttip">Awajún</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" ></i>
+
+                  <i class="ico min_ico asha" data-expresion='{"idioma":"Asháninka","trad":"¿Jaoka pikantai?","orig":"¿Cómo estas?", "audio":"/f/lenguasnativas/include/ASHANINKA/COMO_ESTAS.mp3"}'>
+                    <span class="ttip">Asháninka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_ashaninka.png" ></i>
+                </div>
+                <div class="cr">
+                  <span>¿Cómo<br> estas?</span>
+                </div>
+              </div>
+              <div class="circle circle-6">
+
+                <div class="circle_group leftTop">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Quechua","trad":"Añaychayki","orig":"Gracias", "audio":"/f/lenguasnativas/include/QUECHUA/GRACIAS.mp3"}'>
+                    <span class="ttip">Quechua</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_quechua.png" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Aimara","trad":"Paysuma","orig":"Gracias", "audio":"/f/lenguasnativas/include/AYMARA/GRACIAS.mp3"}'>
+                    <span class="ttip">Aimara</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" ></i>
+
+                  <i class="ico min_ico ship" data-expresion='{"idioma":"Shipibo","trad":"Irake","orig":"Gracias", "audio":"/f/lenguasnativas/include/SHIPIBO/GRACIAS.mp3"}'>
+                    <span class="ttip">Shipibo</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_shipibo.png" ></i>
+
+                  <i class="ico min_ico awaj" data-expresion='{"idioma":"Awajún","trad":"See","orig":"Gracias", "audio":"/f/lenguasnativas/include/AWAJUN/GRACIAS.mp3"}'>
+                    <span class="ttip">Awajún</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" ></i>
+
+                  <i class="ico min_ico asha" data-expresion='{"idioma":"Asháninka","trad":"Pasonki","orig":"Gracias", "audio":"/f/lenguasnativas/include/ASHANINKA/GRACIAS.mp3"}'>
+                    <span class="ttip">Asháninka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_ashaninka.png" ></i>
+                </div>
+                <div class="cr">
+                  <span>Gracias</span>
+                </div>
+              </div>
+              <div class="circle circle-7">
+
+                <div class="circle_group right">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Quechua","trad":"Ama llakikuychu","orig":"De nada", "audio":"/f/lenguasnativas/include/QUECHUA/DE_NADA.mp3"}'>
+                    <span class="ttip">Quechua</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_quechua.png" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Aimara","trad":"Ukhampana","orig":"De nada", "audio":"/f/lenguasnativas/include/AYMARA/DE_NADA.mp3"}'>
+                    <span class="ttip">Aimara</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" ></i>
+
+                  <i class="ico min_ico ship" data-expresion='{"idioma":"Shipibo","trad":"Ikama","orig":"De nada", "audio":"/f/lenguasnativas/include/SHIPIBO/DE_NADA.mp3"}'>
+                    <span class="ttip">Shipibo</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_shipibo.png" ></i>
+
+                  <i class="ico min_ico awaj" data-expresion='{"idioma":"Awajún","trad":"Tiipa","orig":"De nada", "audio":"/f/lenguasnativas/include/AWAJUN/DE_NADA.mp3"}'>
+                    <span class="ttip">Awajún</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" ></i>
+
+                  <i class="ico min_ico asha" data-expresion='{"idioma":"Asháninka","trad":"Tekatsi","orig":"De nada", "audio":"/f/lenguasnativas/include/ASHANINKA/DE_NADA.mp3"}'>
+                    <span class="ttip">Asháninka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_ashaninka.png" ></i>
+                </div>
+                <div class="cr">
+                  <span>De<br> nada</span>
+                </div>
+
+              </div>
+              <div class="circle circle-8">
+                <div class="circle_group right">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Quechua","trad":"Arí","orig":"Si", "audio":"/f/lenguasnativas/include/QUECHUA/SI.mp3"}'>
+                    <span class="ttip">Quechua</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_quechua.png" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Aimara","trad":"Jisa","orig":"Si", "audio":"/f/lenguasnativas/include/AYMARA/SI.mp3"}'>
+                    <span class="ttip">Aimara</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" ></i>
+
+                  <i class="ico min_ico ship" data-expresion='{"idioma":"Shipibo","trad":"Jeje","orig":"Si", "audio":"/f/lenguasnativas/include/SHIPIBO/SI.mp3"}'>
+                    <span class="ttip">Shipibo</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_shipibo.png" ></i>
+
+                  <i class="ico min_ico awaj" data-expresion='{"idioma":"Awajún","trad":"Ehe","orig":"Si", "audio":"/f/lenguasnativas/include/AWAJUN/SI.mp3"}'>
+                    <span class="ttip">Awajún</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" ></i>
+
+                  <i class="ico min_ico asha" data-expresion='{"idioma":"Asháninka","trad":"Je","orig":"Si", "audio":"/f/lenguasnativas/include/ASHANINKA/SI.mp3"}'>
+                    <span class="ttip">Asháninka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_ashaninka.png" ></i>
+                </div>
+                <div class="cr">
+                  <span>Si</span>
+                </div>
+              </div>
+              <div class="circle circle-9">
+
+                <div class="circle_group bottom">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Quechua","trad":"Manam","orig":"No", "audio":"/f/lenguasnativas/include/QUECHUA/NO.mp3"}'>
+                    <span class="ttip">Quechua</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_quechua.png" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Aimara","trad":"Janiwa","orig":"No", "audio":"/f/lenguasnativas/include/AYMARA/NO.mp3"}'>
+                    <span class="ttip">Aimara</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" ></i>
+
+                  <i class="ico min_ico ship" data-expresion='{"idioma":"Shipibo","trad":"Akama","orig":"No", "audio":"/f/lenguasnativas/include/SHIPIBO/NO.mp3"}'>
+                    <span class="ttip">Shipibo</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_shipibo.png" ></i>
+
+                  <i class="ico min_ico awaj" data-expresion='{"idioma":"Awajún","trad":"Atsa","orig":"No", "audio":"/f/lenguasnativas/include/AWAJUN/NO.mp3"}'>
+                    <span class="ttip">Awajún</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" ></i>
+
+                  <i class="ico min_ico asha" data-expresion='{"idioma":"Asháninka","trad":"Te","orig":"No", "audio":"/f/lenguasnativas/include/ASHANINKA/NO.mp3"}'>
+                    <span class="ttip">Asháninka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_ashaninka.png" ></i>
+                </div>
+                <div class="cr">
+                  <span>No</span>
+                </div>
+
+              </div>
+              <div class="circle circle-10">
+
+                <div class="circle_group bottom">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Quechua","trad":"Kusikuniku kaypi kasqaykimanta","orig":"Bienvenido", "audio":"/f/lenguasnativas/include/QUECHUA/BIENVENIDO.mp3"}'>
+                    <span class="ttip">Quechua</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_quechua.png" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Aimara","trad":"Aski juttaxa","orig":"Bienvenido", "audio":"/f/lenguasnativas/include/AYMARA/BIENVENIDO.mp3"}'>
+                    <span class="ttip">Aimara</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" ></i>
+
+                  <i class="ico min_ico ship" data-expresion='{"idioma":"Shipibo","trad":"Bekanwe","orig":"Bienvenido", "audio":"/f/lenguasnativas/include/SHIPIBO/BIENVENIDO.mp3"}'>
+                    <span class="ttip">Shipibo</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_shipibo.png" ></i>
+
+                  <i class="ico min_ico awaj" data-expresion='{"idioma":"Awajún","trad":"Shiij  taume","orig":"Bienvenido", "audio":"/f/lenguasnativas/include/AWAJUN/BIENVENIDO.mp3"}'>
+                    <span class="ttip">Awajún</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" ></i>
+
+                  <i class="ico min_ico asha" data-expresion='{"idioma":"Asháninka","trad":"Kametsa pimpoke","orig":"Bienvenido", "audio":"/f/lenguasnativas/include/ASHANINKA/BIENVENIDO.mp3"}'>
+                    <span class="ttip">Asháninka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_ashaninka.png" ></i>
+                </div>
+                <div class="cr">
+                  <span>Bienvenido</span>
+                </div>
+
+              </div>
+              <div class="circle circle-11">
+
+                <div class="circle_group bottom">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Quechua","trad":"Tupananchikkama","orig":"Hasta pronto", "audio":"/f/lenguasnativas/include/QUECHUA/HASTA_PRONTO.mp3"}'>
+                    <span class="ttip">Quechua</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_quechua.png" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Aimara","trad":"Jakisiñkama","orig":"Hasta pronto", "audio":"/f/lenguasnativas/include/AYMARA/HASTA_PRONTO.mp3"}'>
+                    <span class="ttip">Aimara</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" ></i>
+
+                  <i class="ico min_ico ship" data-expresion='{"idioma":"Shipibo","trad":"Kabano noa winbano","orig":"Hasta pronto", "audio":"/f/lenguasnativas/include/SHIPIBO/HASTA_PRONTO.mp3"}'>
+                    <span class="ttip">Shipibo</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_shipibo.png" ></i>
+
+                  <i class="ico min_ico awaj" data-expresion='{"idioma":"Awajún","trad":"Ajum  wainiami","orig":"Hasta pronto", "audio":"/f/lenguasnativas/include/AWAJUN/HASTA_PRONTO.mp3"}'>
+                    <span class="ttip">Awajún</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" ></i>
+
+                  <i class="ico min_ico asha" data-expresion='{"idioma":"Asháninka","trad":"Añabakajia","orig":"Hasta pronto", "audio":"/f/lenguasnativas/include/ASHANINKA/HASTA_PRONTO.mp3"}'>
+                    <span class="ttip">Asháninka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_ashaninka.png" ></i>
+                </div>
+                <div class="cr">
+                  <span>Hasta<br> pronto</span>
+                </div>
+
+              </div>
+              <div class="circle circle-12">
+
+                <div class="circle_group bottom">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Quechua","trad":"Chayqa munaychan","orig":"Me encantó", "audio":"/f/lenguasnativas/include/QUECHUA/ME_ENCANTO.mp3"}'>
+                    <span class="ttip">Quechua</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_quechua.png" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Aimara","trad":"Khust’atanwa","orig":"Me encantó", "audio":"/f/lenguasnativas/include/AYMARA/ME_ENCANTO.mp3"}'>
+                    <span class="ttip">Aimara</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" ></i>
+
+                  <i class="ico min_ico ship" data-expresion='{"idioma":"Shipibo","trad":"Enra kenke","orig":"Me encantó", "audio":"/f/lenguasnativas/include/SHIPIBO/ME_ENCANTO.mp3"}'>
+                    <span class="ttip">Shipibo</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_shipibo.png" ></i>
+
+                  <i class="ico min_ico awaj" data-expresion='{"idioma":"Awajún","trad":"Pegkej  awajtuke","orig":"Me encantó", "audio":"/f/lenguasnativas/include/AWAJUN/ME_ENCANTO.mp3"}'>
+                    <span class="ttip">Awajún</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" ></i>
+
+                  <i class="ico min_ico asha" data-expresion='{"idioma":"Asháninka","trad":"Nonebetakaro","orig":"Me encantó", "audio":"/f/lenguasnativas/include/ASHANINKA/ME_ENCANTO.mp3"}'>
+                    <span class="ttip">Asháninka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_ashaninka.png" ></i>
+                </div>
+                <div class="cr">
+                  <span>Me<br> encantó</span>
+                </div>
+              </div>
+              <?/*<div class="circle circle-13">
+
+                <div class="circle_group left">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Quechua","trad":"Piru suyu","orig":"Perú", "audio":"/f/lenguasnativas/include/QUECHUA/PERU.mp3"}'>
+                    <span class="ttip">Quechua</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_quechua.png" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Aimara","trad":"Piru","orig":"Perú", "audio":"/f/lenguasnativas/include/QUECHUA/PERU.mp3"}'>
+                    <span class="ttip">Aimara</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" ></i>
+
+                  <i class="ico min_ico ship" data-expresion='{"idioma":"Shipibo","trad":"Piru","orig":"Perú", "audio":"/f/lenguasnativas/include/SHIPIBO/PERU.mp3"}'>
+                    <span class="ttip">Shipibo</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_shipibo.png" ></i>
+
+                  <i class="ico min_ico awaj" data-expresion='{"idioma":"Awajún","trad":"Perú","orig":"Perú", "audio":"/f/lenguasnativas/include/AWAJUN/PERU.mp3"}'>
+                    <span class="ttip">Awajún</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" ></i>
+
+                  <i class="ico min_ico asha" data-expresion='{"idioma":"Asháninka","trad":"Anampisato","orig":"Perú", "audio":"/f/lenguasnativas/include/ASHANINKA/PERU.mp3"}'>
+                    <span class="ttip">Asháninka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_ashaninka.png" ></i>
+                </div>
+                <div class="cr">
+                  <span>Perú</span>
+                </div>
+              </div>*/?>
+
+              <div class="circle circle-13">
+
+                <div class="circle_group left">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Quechua","trad":"Piru suyu","orig":"Perú", "audio":"/f/lenguasnativas/include/QUECHUA/PERU.mp3"}'>
+                    <span class="ttip">Quechua</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_quechua.png" ></i>
+
+                  <?/*<i class="ico min_ico ayma"  data-expresion='{"idioma":"Aimara","trad":"Pirwa","orig":"Perú", "audio":"/f/lenguasnativas/include/AYMARA/PERU.mp3"}'>
+                    <span class="ttip">Aimara</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" ></i>*/?>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Aimara","trad":"Piru","orig":"Perú", "audio":"/f/lenguasnativas/include/SHIPIBO/PERU.mp3"}'>
+                    <span class="ttip">Aimara</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_aymara.png" ></i>
+
+                  <i class="ico min_ico ship" data-expresion='{"idioma":"Shipibo","trad":"Piru","orig":"Perú", "audio":"/f/lenguasnativas/include/SHIPIBO/PERU.mp3"}'>
+                    <span class="ttip">Shipibo</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_shipibo.png" ></i>
+
+                  <i class="ico min_ico awaj" data-expresion='{"idioma":"Awajún","trad":"Perú","orig":"Perú", "audio":"/f/lenguasnativas/include/AWAJUN/PERU.mp3"}'>
+                    <span class="ttip">Awajún</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" ></i>
+
+                  <i class="ico min_ico asha" data-expresion='{"idioma":"Asháninka","trad":"Anampisato","orig":"Perú", "audio":"/f/lenguasnativas/include/ASHANINKA/PERU.mp3"}'>
+                    <span class="ttip">Asháninka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_ashaninka.png" ></i>
+                </div>
+                <div class="cr">
+                  <span>Perú</span>
+                </div>
+              </div>
+
+
+              <div class="center-sound">
+                <span class="min">en</span><br>
+                <div class="name-type"><i class="ico min_ico"><img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_awajun.png" alt=""></i> AWAJÚN</div>
+                <div class="translate">Takat emijuktin</div>
+                <div class="translate_esp">(Buenos dias)</div>
+
+                <span class="btn play"><i class="audio-ico"></i><span></span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <? if(detectar()){  
+        
+echo '<div class="container-inner">
+    <div class="header-page">	
+        <div class="title-box">
+            <div class="section_logo">
+                <a href="http://dev.2.peru21.pe/"><img src="/f/lenguasnativas/img/logos/100x100.jpg" alt="Perú 21"></a>
+            </div>
+            <h2>PORTADA DEL DÍA</h2>
+        </div>
+        <div class="social_share">
+            <a class="fb li_left" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fdev.2.peru21.pe%2Ftodaslasvoces%2Fpage%2Fportada" onclick="gec.fn.popup(this, event)"><i></i><span></span></a>
+            <a class="gp li_top" href="https://plus.google.com/share?url=http%3A%2F%2Fdev.2.peru21.pe%2Ftodaslasvoces%2Fpage%2Fportada" onclick="gec.fn.popup(this, event)"><i></i><span></span></a>
+            <a class="tw li_right" href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fdev.2.peru21.pe%2Ftodaslasvoces%2Fpage%2Fportada&amp;text=Todas+las+voces+Portadas&amp;hashtags=Todaslasvoces&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Fdev.2.peru21.pe%2Ftodaslaslenguas%2Fpage%2Fportada&amp;via=peru21pe" onclick="gec.fn.popup(this, event)"><i></i><span></span></a>
+            <a href="whatsapp://send?text=Todas+las+lenguas+Portadas - http%3A%2F%2Fdev.2.peru21.pe%2Ftodaslasvoces%2Fpage%2Fportada" class="wp li_bottom"><i></i><span></span></a>        </div>
+    </div>
+    <div class="header-portadas">
+        SELECCIONA LA LENGUA:
+        <ul class=" clearfix">
+            <li class="active"><a href="#" onclick="gec.fn.changeImage(this, event)" data-image="http://cde.peru21.pe/ima/0/0/3/0/0/300186.jpg" class="quecha">QUECHUA</a></li>            <li class=""><a href="#" onclick="gec.fn.changeImage(this, event)" data-image="http://cde.peru21.pe/ima/0/0/3/0/0/300717.jpg" class="aymara">AYMARA</a></li>            <li class=""><a href="#" onclick="gec.fn.changeImage(this, event)" data-image="http://cde.peru21.pe/ima/0/0/3/0/1/301384.jpg" class="shipibo">SHIPIBO</a></li>            <li class=""><a href="#" onclick="gec.fn.changeImage(this, event)" data-image="http://cde.peru21.pe/ima/0/0/3/0/1/301781.jpg" class="awajun">AWAJÚN</a></li>                    </ul>
+        <div class="title_active">
+            <ul class="title_after_before clearfix">
+                <li class="active"><a class="esp">PORTADA EN ESPAÑOL</a></li>
+                <li class="active"><a class="before quecha">PORTADA EN QUECHUA</a></li>
+            </ul>
+        </div>        
+    </div>
+    <div id="info_portada">
+        <div class="info_w">
+            <div class="twentytwenty-container">
+                <img src="http://dev.2.peru21.pe/f/lenguasnativas/tmp/d_peru21.jpg"/>
+
+                                        <img src="http://cde.peru21.pe/ima/0/0/3/0/0/300186.jpg" />
+                            </div>				
+        </div>
+    </div>
+</div>';
+
+       }else{ 
+        
+       echo '<div class="container-inner">
+    <div class="header-page">	
+        <div class="title-box">
+            <div class="section_logo">
+                <a href="http://dev.2.peru21.pe/"><img src="/f/lenguasnativas/img/logos/100x100.jpg" alt="Perú 21"></a>
+            </div>
+            <h2>PORTADA DEL DÍA</h2>
+        </div>
+        <div class="social_share">
+            <a class="fb li_left" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fdev.2.peru21.pe%2Ftodaslasvoces%2Fpage%2Fportada" onclick="gec.fn.popup(this, event)"><i></i><span></span></a>
+            <a class="gp li_top" href="https://plus.google.com/share?url=http%3A%2F%2Fdev.2.peru21.pe%2Ftodaslasvoces%2Fpage%2Fportada" onclick="gec.fn.popup(this, event)"><i></i><span></span></a>
+            <a class="tw li_right" href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fdev.2.peru21.pe%2Ftodaslasvoces%2Fpage%2Fportada&amp;text=Todas+las+voces+Portadas&amp;hashtags=Todaslasvoces&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Fdev.2.peru21.pe%2Ftodaslaslenguas%2Fpage%2Fportada&amp;via=peru21pe" onclick="gec.fn.popup(this, event)"><i></i><span></span></a>
+                    </div>
+    </div>
+    <div class="header-portadas">
+        SELECCIONA LA LENGUA:
+        <ul class=" clearfix">
+            <li class="active"><a href="#" onclick="gec.fn.changeImage(this, event)" data-image="http://cde.peru21.pe/ima/0/0/3/0/0/300186.jpg" class="quecha">QUECHUA</a></li>            <li class=""><a href="#" onclick="gec.fn.changeImage(this, event)" data-image="http://cde.peru21.pe/ima/0/0/3/0/0/300717.jpg" class="aymara">AYMARA</a></li>            <li class=""><a href="#" onclick="gec.fn.changeImage(this, event)" data-image="http://cde.peru21.pe/ima/0/0/3/0/1/301384.jpg" class="shipibo">SHIPIBO</a></li>            <li class=""><a href="#" onclick="gec.fn.changeImage(this, event)" data-image="http://cde.peru21.pe/ima/0/0/3/0/1/301781.jpg" class="awajun">AWAJÚN</a></li>                    </ul>
+        <div class="title_active">
+            <ul class="title_after_before clearfix">
+                <li class="active"><a class="esp">PORTADA EN ESPAÑOL</a></li>
+                <li class="active"><a class="before quecha">PORTADA EN QUECHUA</a></li>
+            </ul>
+        </div>        
+    </div>
+    <div id="info_portada">
+        <div class="info_w">
+            <div class="twentytwenty-container">
+                <img src="http://dev.2.peru21.pe/f/lenguasnativas/tmp/d_peru21.jpg"/>
+
+                                        <img src="http://cde.peru21.pe/ima/0/0/3/0/0/300186.jpg" />
+                            </div>				
+        </div>
+    </div>
+</div>' 
+
+     } ?>

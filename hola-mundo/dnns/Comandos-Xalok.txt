@@ -1,3 +1,57 @@
+git checkout master /home/usuario/multi/peru21/system/application/views/especiales/lenguasnativas/portada.php
+
+para enviar cambios puntuales de una rama a otra sin pedir merge request, se realiza de la siguiente forma como un ejemplo.
+cambios realizados en master y pasados a pre para su push en esta rama
+primero se realizan los cambios en master y se comitea 
+luego se mantiene la lista de todos los archivos, sus rutas para su uso posterior
+se cambia de rama checkout
+y con el siguiente comando
+    git checkout master /home/usuario/multi/peru21/system/application/views/especiales/lenguasnativas/portada.php
+posteriormente se commitea dentro de la rama pre
+y se hace pull y push
+
+
+rutinas para agregar cambios en pre desde dev en motor de peru21
+1ro:
+    chequear todos los commit hechos en master con git  log --oneline
+2dp: luego de chequear cual es el primer commit realizado, situarse en el commit  inmediato anterior y copiar su id
+3ro: correr git rebase -i [[idcommit]]
+4to: agregar al texto que sale en la parte inferior del prompt   %s/pick/squash/g  (anteriormente presionar tecla esc)
+5to: a continuacion ir al inicio y editar la primera linea, indicando solo pick idcommit y grabar texto
+6to: verificamos que se realize la compresion de todos los commit realizados 
+7mo: git log
+8vo: verificamos la id del commit que sale de la operacion anterior
+9no a continuacion nos vamos a la rama la cual queremos actualizar git checkout pre
+9no: git cherry-pick -n  [[idcommit]]
+fin
+commit motor peru21
+    928f01390ee5ffd0e6676f69ca42034c3415d25b
+
+
+
+<script type="text/javascript">
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    if (/android/i.test(userAgent)) {
+        console.log('soy android');
+        document.querySelector("#test").innerHTML = "soy android";
+    }
+   
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        console.log('soy iphone');
+        document.querySelector("#test").innerHTML = "soy iphone";
+    }
+    
+</script>
+
+
+
+Pasos para añadir un nuevo icono como tipografia de letra
+
+normalmente en una tipografia de iconos ya existen iconos establecidos, si se desea añadir se tiene que ubicar el archivo 
+svg usad por los iconos actualmente y añadirlo a la siguiente url https://icomoon.io/app/#/select junto con el svg del nuevo
+icono que se desea añadir, de estos se seleccionan los iconos en total que se añadiran a la nueva tipografia, se genera la letra
+ y a continuacion se confirma la codificacion para cada icono. posteriormente se descarga toda la nueva tipografia añadida.
+
     }
      elseif(($source=='local_goldfish')||($source=='goldfish_upload')){
           $codevideo = $this->container->getParameter('url.estaticos')."/media/".trim($codevideo).'?category=&movil=true&autoplay=0';

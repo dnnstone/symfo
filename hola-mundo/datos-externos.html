@@ -21,5 +21,698 @@
 		<script type="text/javascript" src="js/36-fetch.js"></script>
 		<script type="text/javascript" src="js/37-try-catch.js"></script>
 		<script type="text/javascript" src="js/38-fechas.js"></script>
-	</body>
+
+
+<div id="expresiones" class="box-page box4">
+    <div class="container">
+      <div class="container-inner">
+        <div class="header-page">
+          <div class="title-box">
+            <div class="section_logo">
+              <a href="/"><img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/min_logo.jpg" alt="Perú 21"></a>
+            </div>
+            <h2>EXPRESIONES</h2>
+          </div>
+          <div class="social_share">
+            <a class="fb li_left" href="https://www.facebook.com/sharer/sharer.php?u=<?=urlencode($this->config->item('base_url').'todaslasvoces/page/expresiones')?>" onclick="gec.fn.popup(this,event)"><i></i><span></span></a>
+            <a class="tw li_right" href="https://twitter.com/intent/tweet?original_referer=<?=urlencode($this->config->item('base_url').'todaslasvoces/page/expresiones')?>&text=Todas+las+voces+Expresiones&hashtags=Todaslasvoces&tw_p=tweetbutton&url=<?=urlencode($this->config->item('base_url').'todaslasvoces/page/expresiones')?>&via=peru21pe"  onclick="gec.fn.popup(this,event)"><i></i><span></span></a>
+            <?/*if(detectar()){?><a href="#" class="wp li_bottom"><i></i><span></span></a><?}*/?>
+            <?if(detectar()){?><a href="whatsapp://send?text=Todas+las+voces+Expresiones - <?=urlencode($this->config->item('base_url').'todaslasvoces/page/expresiones')?>" class="wp li_bottom"><i></i><span></span></a><?}?>
+          </div>
+        </div>
+        <div class="menu-expr">
+          <ul class="clearfix">
+              <li><i class="ico"><img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_matsigenka.jpg" alt="" style="height: 50px; width: 50px;"></i> MATSIGENKA</li>
+              <li><i class="ico"><img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_yine.jpg" alt=""  style="height: 50px; width: 50px;"></i> YINE</li>
+          </ul>
+        </div>
+        <div id="p21_expresiones" class="clearfix">
+          <div class="circle-sound">
+            <div class="circle-inner">
+              <div class="circle circle-1">
+
+                <div class="circle_group left">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Matsigenka","trad":"","orig":"Amo al Perú", "audio":"/f/lenguasnativas/include/MATSIGENKA/amo_al_peru.mp3"}'>
+                    <span class="ttip">Matsigenka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_matsigenka.jpg"  style="height: 50px; width: 50px;"></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Yine","trad":"","orig":"Amo al Perú", "audio":"/f/lenguasnativas/include/YINE/amo_al_peru.mp3"}'>
+                    <span class="ttip">Yine</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_yine.jpg" ></i>
+                </div>
+                <div class="cr">
+                  <span>Amo al<br> Perú</span>
+                </div>
+              </div>
+              <div class="circle circle-2">
+
+                <div class="circle_group left">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Matsigenka","trad":"","orig":"Buenos Días", "audio":"/f/lenguasnativas/include/MATSIGENKA/buenos_dias.mp3"}'>
+                    <span class="ttip">Matsigenka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_matsigenka.jpg" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Yine","trad":"","orig":"Buenos Días", "audio":"/f/lenguasnativas/include/YINE/buenos_dias.mp3"}'>
+                    <span class="ttip">Yine</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_yine.jpg" ></i>
+                </div>
+                <div class="cr">
+                  <span>Buenos <br>  Días</span>
+                </div>
+              </div>
+              <div class="circle circle-3">
+                <div class="circle_group top">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Matsigenka","trad":"","orig":"Buenas Tardes", "audio":"/f/lenguasnativas/include/MATSIGENKA/buenas_tardes.mp3"}'>
+                    <span class="ttip">Matsigenka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_matsigenka.jpg" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Yine","trad":"","orig":"Buenas Tardes", "audio":"/f/lenguasnativas/include/YINE/buenas_tardes.mp3"}'>
+                    <span class="ttip">Yine</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_yine.jpg" ></i>
+                </div>
+                <div class="cr">
+                  <span>Buenas <br> Tardes</span>
+                </div>
+              </div>
+              <div class="circle circle-4">
+                <div class="circle_group top">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Matsigenka","trad":"","orig":"Buenas Noches", "audio":"/f/lenguasnativas/include/MATSIGENKA/buenas_noches.mp3"}'>
+                    <span class="ttip">Matsigenka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_matsigenka.jpg" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Yine","trad":"","orig":"Buenas Noches", "audio":"/f/lenguasnativas/include/YINE/buenas_noches.mp3"}'>
+                    <span class="ttip">Yine</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_yine.jpg" ></i>
+                </div>
+                <div class="cr">
+                  <span>Buenas  <br> Noches</span>
+                </div>
+              </div>
+              <div class="circle circle-5">
+                <div class="circle_group top">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Matsigenka","trad":"","orig":"Por favor", "audio":"/f/lenguasnativas/include/MATSIGENKA/por_favor.mp3"}'>
+                    <span class="ttip">Matsigenka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_matsigenka.jpg" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Yine","trad":"","orig":"Por favor", "audio":"/f/lenguasnativas/include/YINE/por_favor.mp3"}'>
+                    <span class="ttip">Yine</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_yine.jpg" ></i>
+                </div>
+                <div class="cr">
+                  <span>Por <br>favor</span>
+                </div>
+              </div>
+              <div class="circle circle-6">
+                <div class="circle_group leftTop">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Matsigenka","trad":"","orig":"Gracias", "audio":"/f/lenguasnativas/include/MATSIGENKA/gracias.mp3"}'>
+                    <span class="ttip">Matsigenka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_matsigenka.jpg" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Yine","trad":"","orig":"Gracias", "audio":"/f/lenguasnativas/include/YINE/gracias.mp3"}'>
+                    <span class="ttip">Yine</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_yine.jpg" ></i>
+                </div>
+                <div class="cr">
+                  <span>Gracias</span>
+                </div>
+              </div>
+              <div class="circle circle-7">
+                <div class="circle_group right">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Matsigenka","trad":"","orig":"Estoy feliz", "audio":"/f/lenguasnativas/include/MATSIGENKA/estoy_feliz.mp3"}'>
+                    <span class="ttip">Matsigenka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_matsigenka.jpg" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Yine","trad":"","orig":"Estoy feliz", "audio":"/f/lenguasnativas/include/YINE/estoy_feliz.mp3"}'>
+                    <span class="ttip">Yine</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_yine.jpg" ></i>
+                </div>
+                <div class="cr">
+                  <span>Estoy <br> feliz</span>
+                </div>
+              </div>
+              <div class="circle circle-8">
+                <div class="circle_group right">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Matsigenka","trad":"í","orig":"Si", "audio":"/f/lenguasnativas/include/MATSIGENKA/si.mp3"}'>
+                    <span class="ttip">Matsigenka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_matsigenka.jpg" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Yine","trad":"","orig":"Si", "audio":"/f/lenguasnativas/include/YINE/si.mp3"}'>
+                    <span class="ttip">Yine</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_yine.jpg" ></i>
+
+                 
+                </div>
+                <div class="cr">
+                  <span>Si</span>
+                </div>
+              </div>
+              <div class="circle circle-9">
+
+                <div class="circle_group bottom">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Matsigenka","trad":"","orig":"No", "audio":"/f/lenguasnativas/include/MATSIGENKA/no.mp3"}'>
+                    <span class="ttip">Matsigenka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_matsigenka.jpg" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Yine","trad":"","orig":"No", "audio":"/f/lenguasnativas/include/YINE/no.mp3"}'>
+                    <span class="ttip">Yine</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_yine.jpg" ></i>
+                </div>
+                <div class="cr">
+                  <span>No</span>
+                </div>
+              </div>
+              <div class="circle circle-10">
+
+                <div class="circle_group bottom">
+                  <i class="ico min_ico quec" data-expresion='{"idioma":"Matsigenka","trad":"","orig":"Te quiero", "audio":"/f/lenguasnativas/include/MATSIGENKA/te_quiero.mp3"}'>
+                    <span class="ttip">Matsigenka</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_matsigenka.jpg" ></i>
+
+                  <i class="ico min_ico ayma"  data-expresion='{"idioma":"Yine","trad":"","orig":"Te quiero", "audio":"/f/lenguasnativas/include/YINE/te_quiero.mp3"}'>
+                    <span class="ttip">Yine</span>
+                    <img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_yine.jpg" ></i>
+                </div>
+                <div class="cr">
+                  <span>Te <br>quiero</span>
+                </div>
+              </div>
+              <div class="center-sound">
+                <span class="min">en</span><br>
+                <div class="name-type"><i class="ico min_ico"><img src="<?=$this->config->item('url_estaticos')?>/f/lenguasnativas/img/ico_matsigenka.jpg" alt=""></i> Matsigenka</div>
+                <div class="translate"></div>
+                <div class="translate_esp">(Amo al Peru)</div>
+
+                <span class="btn play"><i class="audio-ico"></i><span></span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+     </div>
+    </div>
+</div>
+
+
+	
+
+        <styles>
+.box4 {
+    background: url(../img/bg_box4.jpg) no-repeat center bottom;
+}
+
+
+/*.box4 .container .container-inner{ height: 830px;}*/
+
+.box4 .circle-sound {
+    position: relative;
+    width: 592px;
+    margin: 120px auto 50px;
+}
+
+.box4 .circle-sound .circle-inner {
+    height: 416px;
+    width: 592px;
+    background: url(../img/circle_main.png);
+}
+
+.box4 .circle-sound .circle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: default;
+    border-radius: 70px;
+}
+
+.box4 .circle-sound .circle .ttip {
+    height: 24px;
+    color: #fff;
+    display: none;
+    line-height: 24px;
+    background: #000;
+    padding: 0 7px;
+    position: absolute;
+    right: 50px;
+    top: 2px;
+}
+
+.box4 .circle-sound .circle .ttip:after {
+    content: "";
+    display: block;
+    height: 24px;
+    width: 11px;
+    position: absolute;
+    right: -11px;
+    top: 0;
+    background: url(../img/border_cint.png) no-repeat 0 -312px;
+}
+
+.box4 .circle-sound .circle .ttip:before {
+    content: "";
+    display: block;
+    height: 24px;
+    width: 11px;
+    position: absolute;
+    left: -11px;
+    top: 0;
+    background: url(../img/border_cint.png) no-repeat 0 -288px;
+}
+
+.box4 .circle-sound .circle .ico:hover {
+    position: relative;
+    z-index: 1;
+}
+
+.box4 .circle-sound .circle .ico:hover .ttip {
+    display: block;
+}
+
+.box4 .circle-sound .circle .top .ttip {
+    right: auto;
+    left: 10px;
+    top: auto;
+    bottom: 45px;
+}
+
+.box4 .circle-sound .circle .leftTop .ttip,
+.box4 .circle-sound .circle .right .ttip {
+    right: auto;
+    left: 50px;
+    top: auto;
+    bottom: 10px;
+}
+
+.box4 .circle-sound .circle .bottom .ttip {
+    right: auto;
+    left: 10px;
+    top: 45px;
+    bottom: auto;
+}
+
+.box4 .circle-sound .circle .cr {
+    width: 90px;
+    height: 90px;
+    font-weight: 500;
+    color: #fff;
+    font-family: "exo";
+    font-size: 14px;
+    transition: all .3s ease;
+    border-radius: 70px;
+    line-height: 90px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    text-align: center;
+    background-color: #505050;
+}
+
+.box4 .circle-sound .circle.active {}
+
+.box4 .circle-sound .circle.active .cr {
+    line-height: 110px;
+    width: 110px;
+    height: 110px;
+    background-color: #000;
+    margin-top: -10px;
+    margin-left: -10px;
+}
+
+.box4 .circle-sound .circle .cr span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.box4 .circle-sound .circle .circle_group {
+    position: absolute;
+    z-index: 9;
+    top: -43px;
+    left: -30px;
+    width: 150px;
+    /*width: 0; overflow: hidden;*/
+    text-align: center;
+    line-height: normal;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .5s ease;
+}
+
+.box4 .circle-sound .circle .circle_group i.ico {
+    cursor: pointer;
+    width: 25px;
+    margin-right: 4px;
+    text-align: center;
+    transform: translate(0, 60px);
+    -webkit-transform: translate(0, 60px);
+    transition: all .2s ease;
+}
+
+.box4 .circle-sound .circle .circle_group i.ico:last-child {
+    margin-right: 0;
+}
+
+.box4 .circle_group i.ico.awaj {
+    width: 15px!important;
+}
+
+.box4 .circle.active .circle_group {
+    opacity: 1!important;
+    visibility: visible!important;
+}
+
+.box4 .circle.active .top i.quec {
+    transform: translate(0, 15px);
+    -webkit-transform: translate(0, 15px);
+    transition-delay: 0s;
+}
+
+.box4 .circle.active .top i.ayma {
+    transform: translate(0, 5px);
+    -webkit-transform: translate(0, 5px);
+    transition-delay: .1s;
+}
+
+.box4 .circle.active .top i.ship {
+    transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    transition-delay: .2s;
+}
+
+.box4 .circle.active .top i.awaj {
+    transform: translate(0, 5px);
+    -webkit-transform: translate(0, 5px);
+    transition-delay: .3s;
+}
+
+.box4 .circle.active .top i.asha {
+    transform: translate(0, 17px);
+    -webkit-transform: translate(0, 17px);
+    transition-delay: .4s;
+}
+
+.box4 .circle.active .right i.quec {
+    transform: translate(100px, 5px);
+    -webkit-transform: translate(100px, 5px);
+    transition-delay: 0s;
+}
+
+.box4 .circle.active .right i.ayma {
+    transform: translate(95px, 30px);
+    -webkit-transform: translate(95px, 30px);
+    transition-delay: .1s;
+}
+
+.box4 .circle.active .right i.ship {
+    transform: translate(74px, 65px);
+    -webkit-transform: translate(74px, 65px);
+    transition-delay: .2s;
+}
+
+.box4 .circle.active .right i.awaj {
+    transform: translate(35px, 100px);
+    -webkit-transform: translate(35px, 100px);
+    transition-delay: .3s;
+}
+
+.box4 .circle.active .right i.asha {
+    transform: translate(-10px, 135px);
+    -webkit-transform: translate(-10px, 135px);
+    transition-delay: .4s;
+}
+
+.box4 .circle.active .bottom i.quec {
+    transform: translate(9px, 130px);
+    -webkit-transform: translate(9px, 130px);
+    transition-delay: 0s;
+}
+
+.box4 .circle.active .bottom i.ayma {
+    transform: translate(9px, 150px);
+    -webkit-transform: translate(9px, 150px);
+    transition-delay: .1s;
+}
+
+.box4 .circle.active .bottom i.ship {
+    transform: translate(9px, 150px);
+    -webkit-transform: translate(9px, 150px);
+    transition-delay: .2s;
+}
+
+.box4 .circle.active .bottom i.awaj {
+    transform: translate(8px, 140px);
+    -webkit-transform: translate(8px, 140px);
+    transition-delay: .3s;
+}
+
+.box4 .circle.active .bottom i.asha {
+    transform: translate(5px, 120px);
+    -webkit-transform: translate(5px, 120px);
+    transition-delay: .4s;
+}
+
+.box4 .circle.active .left i.quec {
+    transform: translate(5px, 27px);
+    -webkit-transform: translate(5px, 27px);
+    transition-delay: 0s;
+}
+
+.box4 .circle.active .left i.ayma {
+    transform: translate(-47px, 58px);
+    -webkit-transform: translate(-47px, 58px);
+    transition-delay: .1s;
+}
+
+.box4 .circle.active .left i.ship {
+    transform: translate(-78px, 93px);
+    -webkit-transform: translate(-78px, 93px);
+    transition-delay: .2s;
+}
+
+.box4 .circle.active .left i.awaj {
+    transform: translate(-90px, 120px);
+    -webkit-transform: translate(-90px, 120px);
+    transition-delay: .3s;
+}
+
+.box4 .circle.active .left i.asha {
+    transform: translate(-93px, 139px);
+    -webkit-transform: translate(-93px, 139px);
+    transition-delay: .4s;
+}
+
+.box4 .circle.active .leftTop i.quec {
+    transform: translate(65px, -1px);
+    -webkit-transform: translate(65px, -1px);
+    transition-delay: 0s;
+}
+
+.box4 .circle.active .leftTop i.ayma {
+    transform: translate(70px, 11px);
+    -webkit-transform: translate(70px, 11px);
+    transition-delay: .1s;
+}
+
+.box4 .circle.active .leftTop i.ship {
+    transform: translate(63px, 41px);
+    -webkit-transform: translate(63px, 41px);
+    transition-delay: .2s;
+}
+
+.box4 .circle.active .leftTop i.awaj {
+    transform: translate(38px, 73px);
+    -webkit-transform: translate(38px, 73px);
+    transition-delay: .3s;
+}
+
+.box4 .circle.active .leftTop i.asha {
+    transform: translate(3px, 110px);
+    -webkit-transform: translate(3px, 110px);
+    transition-delay: .4s;
+}
+
+.box4 .circle-sound .circle.circle-1 {
+    left: -43px;
+    top: 165px;
+}
+
+.box4 .circle-sound .circle.circle-2 {
+    left: 9px;
+    top: 50px;
+    transition-delay: .2s;
+}
+
+.box4 .circle-sound .circle.circle-3 {
+    left: 107px;
+    top: -24px;
+    transition-delay: .4s;
+}
+
+.box4 .circle-sound .circle.circle-4 {
+    left: 235px;
+    top: -46px;
+    transition-delay: .6s;
+}
+
+.box4 .circle-sound .circle.circle-5 {
+    left: 357px;
+    top: -32px;
+    transition-delay: .8s;
+}
+
+.box4 .circle-sound .circle.circle-6 {
+    left: 463px;
+    top: 23px;
+    transition-delay: 1s;
+}
+
+.box4 .circle-sound .circle.circle-7 {
+    left: 535px;
+    top: 118px;
+    transition-delay: 1.2s;
+}
+
+.box4 .circle-sound .circle.circle-8 {
+    left: 541px;
+    top: 233px;
+    transition-delay: 1.4s;
+}
+
+.box4 .circle-sound .circle.circle-9 {
+    left: 463px;
+    top: 314px;
+    transition-delay: 1.6s;
+}
+
+.box4 .circle-sound .circle.circle-10 {
+    left: 350px;
+    top: 350px;
+    transition-delay: 1.8s;
+}
+
+.box4 .circle-sound .circle.circle-11 {
+    left: 225px;
+    top: 378px;
+    transition-delay: 2.0s;
+}
+
+.box4 .circle-sound .circle.circle-12 {
+    left: 105px;
+    top: 354px;
+    transition-delay: 2.2s;
+}
+
+.box4 .circle-sound .circle.circle-13 {
+    left: 6px;
+    top: 282px;
+    transition-delay: 2.4s;
+}
+
+.box4 .center-sound {
+    width: 270px;
+    text-align: center;
+    height: 265px;
+    position: relative;
+    margin: 0 auto 0;
+    top: 100px;
+    font-family: "exo";
+}
+
+.box4 .center-sound .min {
+    display: inline-block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.box4 .center-sound .name-type {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.box4 .center-sound .translate {
+    font-size: 23px;
+    font-weight: 600;
+    line-height: 120%;
+    margin-bottom: 5px;
+}
+
+.box4 .center-sound .translate_esp {
+    font-style: italic;
+    font-size: 13px;
+}
+
+.box4 .menu-expr {
+    text-align: center;
+    margin-bottom: 35px;
+    margin-top: 35px;
+}
+
+.box4 .menu-expr>ul {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: #000;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.box4 .menu-expr>ul>li {
+    float: left;
+    margin-right: 21px;
+}
+
+.box4 .menu-expr>ul>li:last-child {
+    margin-right: 0;
+}
+
+.box4 .ico {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.box4 .menu-expr {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.box4 .menu-expr.active {
+    opacity: 1;
+}
+
+.box4 .ico.min_ico {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    text-align: right;
+}
+
+.box4 .ico.min_ico img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.box4 .center-sound .play {
+    margin: 25px auto 0;
+}
+
+
+/*.box4 .center-sound .play{ display: block; width: 72px; height: 72px; background: url(../img/button_play_sound.png); margin: 25px auto 0; cursor: pointer; }*/
+
+.box4 .circle-sound .circle {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    opacity: 0;
+    transition: transform .3s ease, opacity .3s;
+}
+
+#p21_expresiones.active .circle-sound .circle {
+    opacity: 1;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+}
+</styles>
+
+
+    </body>
 </html>
