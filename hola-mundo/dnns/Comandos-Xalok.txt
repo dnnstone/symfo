@@ -1248,6 +1248,7 @@ $data = parent::indexAction($query, $page, $request);
 	2	// esto es para usar el usuario ssh de la maquina virtual.
 		//	https://www.youtube.com/watch?v=G69dfwG2DJ4
 		// localizate en la carpeta /.ssh i ubica el archivo .pub
+                // pueden haber varias claves y puedes usar distintas en distintos repositorios
 		//a continuacion solicitamos un agente 
 		$	eval $(ssh-agent -s)
 		//nos saldra la id de agente 
