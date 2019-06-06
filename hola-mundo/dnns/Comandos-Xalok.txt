@@ -1255,6 +1255,13 @@ $data = parent::indexAction($query, $page, $request);
 		Agent pid 34345
 		// luego hacemos que el agente agregue en memoria a usuario ssh mediante el siguiente comando
 		$	ssh-add /home/god/.ssh/id_rsa    //donde la ruta corresponde al archivo ssh sin pub
+
+2.1 ya tenemos el agente ahora para empezar a obtener el repositorio tenemos que usar su ruta ssh (git@github.com:dnnstone/symfo.git)
+ creamos la carpeta en la que alojaremos y  con git init inicializamos el repositorio (activamos el uso de git en esa carpeta)
+
+2.2 direccionamos el repositorio a usar con el comando git remote add  origin git@github.com:dnnstone/symfo.git
+2.3 y bajamos con git pull origin master  
+
 	3   El  composer.json  que hace referencia la actual maquina virtual Server ElComercio tiene un git que hace referencia a 
 		git@git.webflow.ro:sol90/eltiempogroup-wfcms.git
 		y no a la ruta indicada en el correo del proyecto del comercio
