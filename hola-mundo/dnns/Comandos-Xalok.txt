@@ -1260,7 +1260,8 @@ $data = parent::indexAction($query, $page, $request);
  creamos la carpeta en la que alojaremos y  con git init inicializamos el repositorio (activamos el uso de git en esa carpeta)
 
 2.2 direccionamos el repositorio a usar con el comando git remote add  origin git@github.com:dnnstone/symfo.git
-2.3 y bajamos con git pull origin master  
+2.3 y bajamos con git pull origin master 
+2.4 fin ahora podemos pushear o pullear lo que sea en este repositorio sin autenticacion por correo 
 
 	3   El  composer.json  que hace referencia la actual maquina virtual Server ElComercio tiene un git que hace referencia a 
 		git@git.webflow.ro:sol90/eltiempogroup-wfcms.git

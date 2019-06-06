@@ -35,3 +35,5 @@
 
 # Composer PHAR
 /composer.phar
+/hola-mundo/JsLibrary/nbproject/private/
+/nbproject/private/
