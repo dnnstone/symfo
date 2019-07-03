@@ -1,3 +1,128 @@
+SYNFONY
+para tener todo a la mano en cualquier lugar, tomar el ejemplo de 
+/home/usuario/xalok/cms/src/App/Bundle/CmsBundle/Twig/Extension/StructuredDataMarkupExtension.php
+ inicialmente se declaran las variables las cuales inicializaremos en el constructor con 
+
+class StructuredDataMarkupExtension extends \Twig_Extension
+{
+    protected $container;
+    protected $site;
+    protected $urlBase;
+    protected $request;
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+        $this->site = $this->container->getParameter('wf_sitio');
+        $this->urlBase = $this->container->getParameter('wf_cms.admin.publicUrl');
+        $this->urlBase =  str_replace("http", "https", $this->container->getParameter('wf_cms.admin.publicUrl'));
+        $this->request = $container->get('request_stack')->getCurrentRequest();
+    }
+    public function appnexusFunction($type = null, $name = 'appnexus')
+    {
+        $e = $this->container->get('app.eplanning');
+        $slug = str_replace($this->request->getHttpHost(), $this->request->getHttpHost().'/amp/'.$this->site, $value['slug']);
+    }
+PROMOCIONES DE DIARIOS
+http://promociones.eclabs.io/admin
+
+admin
+aiC7oFou0be8Ah
+
+Alli estan todas las promociones de todos los sitios, los formularios se setean de acuerdo a la cantidad de campos que
+se requiere, se setea la imagen , se setean los textos, y las redirecciones.s
+
+
+
+
+instalando angular en proyecto 
+1ro actualizar node.js
+    sudo npm install -g n
+    sudo n latest
+2do
+    instalar angular
+    sudo npm install -g @angular/cli
+    crear tu directorio en el que se alojara el proyecto
+    crear proyecto con sgte comando
+        ng new aprendiendoangular
+
+
+JSON Publicidad: https://archivo.elcomercio.pe/html/portada/newsletter/depor/publicidad.json
+Newsletter
+Newsletter en general (json publicidad)
+https://archivo.elcomercio.pe/html/portada/newsletter/depor/publicidad.json
+[
+{
+"plantilla": "dep02",
+"xalok": "1",
+"publicidades": [
+{
+"id": "10",
+"plantilla_id": "10",
+"nombre": "TOP-Prueba Newsletter Depor",
+"fecha_inicio": "1560229200",
+"fecha_fin": "1560260880",
+"url": "https://depor.com/",
+"posicion": "Top",
+"imagen": "https://cde.3.elcomercio.pe/img/0/1/7/0/2/1702963.gif",
+"estado": "1"
+}
+]
+}
+]
+
+
+Información sobre su cuenta:
+
+Identificador: vastahuaman
+Contraseña: 1qaz2wsx
+Iniciar sesión: https://ecodigital.com.pe/login
+
+
+<a href="https://peru21.pe/noticias/copa-america-2019"> 
+<picture>
+  <source media="(min-width: 600px)" srcset="/uploads/2019/06/10/5cfe776a3f93e.jpeg?d=1560180586659">
+  <source media="(max-width: 600px)" srcset="/uploads/2019/06/10/5cfe73eee3b54.jpeg?d=1560179695351">
+  <img src="/uploads/2019/06/10/5cfe776a3f93e.jpeg?d=1560180586659" alt="HTML5 logo">
+</picture>
+</a>
+
+<a href="https://peru21.pe/noticias/copa-america-2019"> 
+<picture>
+  <source media="(min-width: 600px)" srcset="html5-logo-xl.png">
+  <source media="(min-width: 300px) and (max-width: 600px)"
+                                    srcset="/files/article_content_ec_fotos/uploads/2019/06/10/5cfe73eee3b54.jpeg?d=1560179695351">
+  <source media="(max-width: 50px)" srcset="html5-logo-small.png">
+  <img src="html5-logo-medium.png" alt="HTML5 logo">
+</picture>
+</a>
+
+<div><a href="https://peru21.pe/noticias/copa-america-2019">
+    <picture>
+    	<img src="https://peru21.pe/uploads/2019/06/10/5cfe960083fbc.jpeg" alt="Copa América" title="Copa América">
+    	<source srcset="https://peru21.pe/uploads/2019/06/10/5cfe96cb243e5.jpeg" media="(min-width: 320px) and (max-width: 640px)">
+        <source  srcset="https://peru21.pe/uploads/2019/06/10/5cfe97661b3d2.jpeg" media="(max-width: 320px)">
+    </picture>
+</a></div>
+
+        modificado:    src/App/Bundle/CmsAdminBundle/Resources/views/Javascript/i18n.js.twig
+	modificado:    src/App/Bundle/CmsBundle/Resources/views/Template/Board/peru21/home/portada-p21tv-v3.html.twig
+	modificado:    src/App/Bundle/CmsBundle/Resources/views/TemplateModule/modulos/peru21/peru21tv/portada-p21tv-v3-programa.html.twig
+	nuevo archivo: web/img/p21tv/al-pie-del-misti.jpg
+	nuevo archivo: web/img/p21tv/banner-al-pie-del-misti.png
+git checkout masterdnnsp21_qs web/img/p21tv/banner-pez-en-el-agua.png
+git checkout masterdnnsp21_qs web/img/p21tv/logo-al-pie-del-misti.png
+git checkout masterdnnsp21_qs web/img/p21tv/logo-m-al-pie-del-misti.png
+git checkout masterdnnsp21_qs web/img/p21tv/logo-m-pez-en-el-agua
+git checkout masterdnnsp21_qs  web/img/p21tv/logo-pez-en-el-agua.png
+git checkout masterdnnsp21_qs  web/img/p21tv/pez-en-el-agua.jpg
+
+
+
+masterdnnsp21_qs
+https://pwaperu21.page.link/?link=https://pwa.peru21.pe/news/IDNOTA&apn=com.eeec.peru21&amv=1&ibi=com.eeec.Peru21r&isi=991197788&efr=1
+https://pwaperu21.page.link/?link=https://pwa.peru21.pe/&apn=com.eeec.peru21&amv=1&ibi=com.eeec.Peru21r&isi=991197788&efr=1
+https://pwadevperu21.page.link/?link=https://pwa.peru21.pe/news/IDNOTA&apn=com.eeec.peru21&amv=1&ibi=com.eeec.Peru21&isi=991197788&efr=1
+https://pwadevperu21.page.link/?link=https://pwa.peru21.pe/&apn=com.eeec.peru21&amv=1&ibi=com.eeec.Peru21&isi=991197788&efr=1
 git checkout master /home/usuario/multi/peru21/system/application/views/especiales/lenguasnativas/portada.php
 
 para enviar cambios puntuales de una rama a otra sin pedir merge request, se realiza de la siguiente forma como un ejemplo.

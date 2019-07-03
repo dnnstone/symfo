@@ -1,0 +1,81 @@
+<div        
+    wf-module="wfed/composite/module"
+    wf-group="group_main1x1"
+    wf-role="pa21"
+    wf-allow="" 
+    wf-toolbar-position="bottom"
+    class="listing-item-news {{ posicion }} pa21" 
+    >
+    <a href="/peru21tv/pez-en-el-agua">
+        <figure class="image"><img src="{{ url_estaticos }}/img/p21tv/pez-en-el-agua.jpg"></figure>
+    </a>
+    <div class="title">
+        <h3 class="treste30">
+            <span
+                wf-module="wfed/title/title"
+                wf-role="title"
+                wf-toolbar-position="none"
+                class="page-link enlace30"
+                itemprop="headline name" 
+                >Título
+        </span>
+        </h3>
+    </div>
+</div>
+
+<div        
+    wf-module="wfed/composite/module"
+    wf-group="group_main1x1"
+    wf-role="pm21"
+    wf-allow="" 
+    wf-toolbar-position="bottom"
+    class="listing-item-news {{ posicion }} pm21" 
+    >
+    <a href="/peru21tv/al-pie-del-misti">
+        <figure class="image"><img src="{{ url_estaticos }}/img/p21tv/al-pie-del-misti.jpg"></figure>
+    </a>
+    <div class="title">
+        <h3 class="treste31">
+            <span
+                wf-module="wfed/title/title"
+                wf-role="title"
+                wf-toolbar-position="none"
+                class="page-link enlace31"
+                itemprop="headline name" 
+                >Título
+        </span>
+        </h3>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+    'admin/composite/pa21':'Pez Agua',
+    'admin/composite/pm21':'Pie Misti',
+    
+    
+body.ui-flyout-actived .btn-open-app
+  bottom: 70px
+
+.content_ads_m_movil0 ~ .btn-open-app
+  bottom: 85px
+
+.content_ads_m_movil0 + .btn-open-app
+  bottom: 85px
+  
+  hay un tamaño por defecto del espacio de publicidad vacio ads_m_movil0 cuyo css
+  position:fixed; afecta el boton abrir en app, para ello lo que hemos hecho es darle mayor espacio desde la base
+  
+  se establecio que cuando haya publicidad desde este espacio (ads_m_movil0) mayor a (60px de tamaño) se agregue por tag manager 
+  la clase  content_ads_m_movil0 al div ads_m_movil0 para que el boton pueda correr y tener el espacio suficiente
+  para que se visualize el boton y la publicidad. para espacios regulares (50px) añadimos la clase "ui-flyout-actived"
+  al body desde tag manager tambien.
+
+  
