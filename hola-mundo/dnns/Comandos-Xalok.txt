@@ -1,3 +1,65 @@
+https://ecodigital.com.pe/projects/suad-pp/time_entries?utf8=%E2%9C%93&set_filter=1&sort=spent_on%3Adesc&f%5B%5D=spent_on&op%5Bspent_on%5D=*&f%5B%5D=user_id&op%5Buser_id%5D=%3D&v%5Buser_id%5D%5B%5D=me&f%5B%5D=&c%5B%5D=spent_on&c%5B%5D=user&c%5B%5D=activity&c%5B%5D=issue&c%5B%5D=comments&c%5B%5D=hours&c%5B%5D=issue.status&group_by=&t%5B%5D=hours&t%5B%5D=
+
+http://ww4.essalud.gob.pe:7777/acredita/
+http://www.sunat.gob.pe/cl-ti-itmrconsruc/FrameCriterioBusquedaMovil.jsp
+
+
+arc 
+
+Instalación de CMS Arc
+
+Solicitar permisos para el repositorio de Arc y clonar el proyecto
+git clone git@gitlab.ec.pe:contenidos/arc.git
+Desinstalamos cualquier versión de Docker que tengamos e instalamos la última versión CE
+Fedora: https://docs.docker.com/install/linux/docker-ce/fedora/
+Ubuntu: https://docs.docker.com/install/linux/docker-ce/ubuntu/
+Luego de instalar Docker CE no olvidar agregar nuestro usuario al grupo docker creado
+$ sudo usermod -aG docker $USER
+Revisamos las dependencias indicadas en el proyecto
+Creamos el archivo .env
+		CONTEXT_PATH=pf
+CONTENT_BASE=https://2018-12:1e2d52d4ead4a36107f31f30ad5d2562@api.elcomercio.arcpublishing.com
+resizerUrl=http://resizer.shared.arcpublishing.com
+resizerSecret=Fmkgru2rZ2uPZ5wXs7B2HbVDHS2SZuA7
+
+Ejecutamos el proyecto
+npm install
+npm install --save-dev @arc-fusion/cli
+npx fusion init
+npx fusion start
+
+
+https://pwadeporcom.page.link/?link=https://depor.com
+
+
+
+
+
+//      considerando varias urls en un mismo espacio html libre
+//      
+             preg_match_all('/src="(\S*)"/', $contenido, $output_array);
+             
+             foreach ($output_array[1] as $out)
+             {
+                 echo "salida: ".$out."<br>salida2: ".strpos($out, 'youtube'). "<br>";  
+               if (strpos($out, 'youtube'))
+                {
+                    $this->ampscript['youtube'] = true;
+                    echo "ahñañay3";
+                }
+                if(preg_match('/\.(gif)$/', $out)) {
+                $this->ampscript['gifanim'] = true;
+              }
+             }
+//            fin considerando
+
+
+
+
+ruta campañas
+http://gestion.minoticia.pe/digcomzcampaign/list
+
+
 SYNFONY
 para tener todo a la mano en cualquier lugar, tomar el ejemplo de 
 /home/usuario/xalok/cms/src/App/Bundle/CmsBundle/Twig/Extension/StructuredDataMarkupExtension.php

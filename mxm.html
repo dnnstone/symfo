@@ -1,3 +1,59 @@
+https://myaccount.mercadolibre.com.pe/summary
+
+
+
+https://t.17track.net/es#nums=UR572452817CN,S00000029755123
+
+pre
+    pwa_site: 'https://pwadevperu21.page.link/?link=https://pwa.peru21.pe/'
+
+prod
+    pwa_site: 'https://pwaperu21.page.link/?link=https://pwa.peru21.pe/'
+
+Las URL a configurar son las siguientes:
+
+Portada PRO:
+https://pwaperu21.page.link/?link=https://peru21.pe/?appData=/&apn=com.eeec.peru21&amv=30&ibi=com.eeec.Peru21&ipbi=com.eeec.Peru21&isi=991197788&imv=31&ofl=HREF&efr=1&utm_source=btn_openapp_home&mt=8&ct=btn_openapp_home
+
+Portada DEV:
+https://pwadevperu21.page.link/?link=https://qa.peru21.pe/?appData=/&apn=com.eeec.peru21&amv=30&ibi=com.eeec.Peru21&ipbi=com.eeec.Peru21&isi=991197788&imv=31&ofl=HREF&efr=1
+
+Nota interna PRO:
+https://pwaperu21.page.link/?link=https://peru21.pePATHNAME/?appData=/news/IDNOTA&apn=com.eeec.peru21&amv=30&ibi=com.eeec.Peru21&ipbi=com.eeec.Peru21&isi=991197788&imv=31&ofl=HREF&efr=1&utm_source=btn_openapp_note&mt=8&ct=btn_openapp_note
+
+Nota interna DEV:
+https://pwadevperu21.page.link/?link=https://qa.peru21.pePATHNAME/?appData=/news/IDNOTA&apn=com.eeec.peru21&amv=30&ibi=com.eeec.Peru21&ipbi=com.eeec.Peru21&isi=991197788&imv=31&ofl=HREF&efr=1
+
+Donde:
+PATHNAME = window.location.pathname
+HREF = window.location.href
+IDNOTA = ID de la nota
+
+
+
+
+
+https://pwaperu21.page.link/?link=https://peru21.pe
+
+
+https://peru21.pe/uploads/2019/07/15/5d2cb17046812.jpeg?d=1563210096687
+https://peru21.pe/uploads/2019/07/15/5d2cb24a3bf18.jpeg?d=1563210314558
+https://peru21.pe/uploads/2019/07/15/5d2cb2e66cc85.jpeg?d=1563210470807
+
+
+<div>
+    <a href="/noticias/juegos-panamericanos-lima-2019">
+        <picture>
+            <source srcset="https://peru21.pe/uploads/2019/07/15/5d2cb24a3bf18.jpeg?d=1563210314558" media="(min-width: 320px) and (max-width: 640px)">
+            <source  srcset="https://peru21.pe/uploads/2019/07/15/5d2cb17046812.jpeg?d=1563210096687" media="(max-width: 320px)">
+            <img src="https://peru21.pe/uploads/2019/07/15/5d2cb2e66cc85.jpeg?d=1563210470807" alt="Juegos Panamericanos" title="Juegos Panamericanos" style="width:100%;">
+        </picture>
+    </a>
+</div>
+
+<script src=”https://cdn.polyfill.io/v2/polyfill.min.js"”””></script>
+
+
 <div        
     wf-module="wfed/composite/module"
     wf-group="group_main1x1"
@@ -78,4 +134,28 @@ body.ui-flyout-actived .btn-open-app
   para que se visualize el boton y la publicidad. para espacios regulares (50px) añadimos la clase "ui-flyout-actived"
   al body desde tag manager tambien.
 
+  las reglas son las sgtes:
   
+  p21
+  
+  body.ui-flyout-actived .btn-open-app
+  bottom: 65px
+
+.content_ads_m_movil0 ~ .btn-open-app
+  bottom: 85px
+
+.content_ads_m_movil0 + .btn-open-app
+  bottom: 85px
+  
+  
+  depor
+  
+  
+  
+  <h3 class="news-subtitle ddd " id="p244280-m261-260-262" style=" position: relative; ">
+      MESA REDONDA
+      <span style="position:absolute;right:0;top: 11px;text-transform: capitalize;font-family:Open Sans;font-size: 15px;"> 
+          Auspiciador:
+          <img style="margin-left: 5px;position: relative;top: 4px;" src="https://gestion.pe/uploads/2019/07/11/5d276303a47a3.png?d=1562862339935">; 
+      </span>
+  </h3>
