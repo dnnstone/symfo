@@ -1435,13 +1435,18 @@ $data = parent::indexAction($query, $page, $request);
 	2	// esto es para usar el usuario ssh de la maquina virtual.
 		//	https://www.youtube.com/watch?v=G69dfwG2DJ4
 		// localizate en la carpeta /.ssh i ubica el archivo .pub
-                // pueden haber varias claves y puedes usar distintas en distintos repositorios
+                // pueden haber varias claves o podemos crear una con 
+                ssh-keygen -t rsa
+                tambien se puede usar distintas en distintos repositorios en el servidor local
 		//a continuacion solicitamos un agente 
 		$	eval $(ssh-agent -s)
 		//nos saldra la id de agente 
 		Agent pid 34345
 		// luego hacemos que el agente agregue en memoria a usuario ssh mediante el siguiente comando
 		$	ssh-add /home/god/.ssh/id_rsa    //donde la ruta corresponde al archivo ssh sin pub
+                esto nos facilitara el acceso al repositorio sin la necesidad de autenticarnos, dado que ya lo
+                hace la clave publica por nosotros.
+
 
 2.1 ya tenemos el agente ahora para empezar a obtener el repositorio tenemos que usar su ruta ssh (git@github.com:dnnstone/symfo.git)
  creamos la carpeta en la que alojaremos y  con git init inicializamos el repositorio (activamos el uso de git en esa carpeta)
@@ -1621,7 +1626,30 @@ elasticsearch: curl -XGET 'localhost:9200'
 		  "tagline" : "You Know, for Search"
 		}
 
-		
+---todo git 2
+Esta es una experiencia propia para la creacion de un proyecto en un repositorio desde consola con un usuario ssh
+
+
+inicialmente creamos un proyecto en github o en nuestro servidor preferido,
+creamos nuestra clave publica y privada en nuestro servidor local y la mantenemos en memoria siempre
+    ssh-keygen -t rsa
+    Enter file in which to save the key (/home/youruser/.ssh/id_rsa):  //si se desea se cambia de ruta
+
+
+configuramos nuestra clave publica en nuestro servidor remoto de github (agregamos la clave para el proyecto)
+
+Si tenemos una carpeta inicial, llamanda "proyecto" tenemos que inicializarla con git 
+(en el caso que venga con una carpeta .git tendriamos que eliminarla para inicializarla con nuestra propia config)
+la inicializamos con el siguiente comando:
+cd "proyecto"
+git init
+git add .
+git commit -m "repositorio inicial"
+git remote add origin git@github.com:dnnstone/ReacDnns.git     //ruta ssh, tambien funciona con ruta https sin clave ssh
+git push -u origin master
+
+
+
 ----//////////////Comandos Adicionales para Instalación de XALOK
 // para estos comandos asegurarse de agregar al  /etc/hosts del servidor las rutas de la aplicacion creada (admin u front)
 make wf_assets
