@@ -1,3 +1,110 @@
+ {
+                "date": "2019-09-03T23:45:21+02:00",
+                "metadata": {
+                    "tournament_name": "WTA 125K New Haven",
+                    "loser_name": "Katherine Sebov",
+                    "tournament_round_name": "round_of_64",
+                    "tournament_type": "women singles",
+                    "winner_name": "Danielle Lao",
+                    "match_start_time": "2019-09-03 21:02",
+                    "players_tags": "Danielle_Lao Katherine_Sebov",
+                    "tournament_city": "New Haven"
+                },
+                "author": "Narrativa",
+                "_rev": "1-a1722b373e12fa8a09c9727e8d9e395c",
+                "language": "ES",
+                "title": "Danielle Lao consigue clasificarse para los dieciseisavos de final del torneo de New Haven",
+                "section1": "deportes",
+                "section2": "tenis",
+                "content": "  <p>La jugadora estadounidense <strong>Danielle Lao</strong>, número 174 de la WTA, ganó en dos horas y veintiocho minutos por <strong>3-6, 6-4 y 6-2</strong> a la tenista canadiense <strong>Katherine Sebov</strong>, número 200 de la WTA, en los treintaidosavos de final del torneo de <strong>New Haven</strong>. Con este resultado, seguiremos viendo a la vencedora del partido en la siguiente fase del torneo de <strong>New Haven</strong>, los dieciseisavos de final.</p> <p>La celebración del torneo de <strong>New Haven</strong> (<strong>WTA 125K New Haven</strong>) se produce desde el 2 hasta el 8 de septiembre sobre pista dura al aire libre. En esta competición participan un total de 50 jugadoras. De todas las aspirantes, un total de 48 llegan a la fase final entre las que se clasifican directamente, las ganadoras de las rondas previas a la final del torneo y las jugadoras invitadas.</p>",
+                "section3": "cha",
+                "picurl": "https://4i2g925ohj.execute-api.eu-west-3.amazonaws.com/pro/tennis?set1sideA=6&set2sideA=4&set3sideA=2&set4sideA=&set5sideA=&set1sideB=3&set2sideB=6&set3sideB=6&set4sideB=&set5sideB=&sideA=K.+Sebov+%28200%29&sideB=D.+Lao+%28174%29&tournament=WTA+125K+New+Haven&stadiumanddate=Pista+3+-+martes+3+septiembre&surface=hard&round=Individual+Femenino+%C2%B7+Treintaidosavos+de+final&sgl=True&winner=sideB&client=MAD&gender=wta",
+                "metatitle": "Danielle Lao - Katherine Sebov: Resultado, resumen y estadísticas en directo del partido del WTA 125K New Haven",
+                "subtitle": "Conocemos los detalles de los treintaidosavos de final del torneo de New Haven (Estados Unidos)",
+                "_id": "88851c9668d6133f22e7eadc722b00bd",
+                "id": "TENNIS_2019-09-03_WTA_19345358_MAD_ES_1",
+                "metadesc": "Todos los datos y el resultado al minuto del partido entre Danielle Lao - Katherine Sebov del WTA 125K New Haven 2019",
+                "tag": "Tennis,WTA 125K New Haven,Danielle Lao,Katherine Sebov,New Haven"
+            },
+
+
+ {
+        "nid": "TENNIS_2019-09-03_WTA_19345358_MAD_ES_1",
+        "titulo": "Danielle Lao consigue clasificarse para los dieciseisavos de final del torneo de New Haven",
+        "seo_titulo": "Danielle Lao consigue clasificarse para los dieciseisavos de final del torneo de New Haven",
+        "seo_descripcion": "Conocemos los detalles de los treintaidosavos de final del torneo de New Haven (Estados Unidos)",
+        "seo_etiquetas": "Tennis,WTA 125K New Haven,Danielle Lao,Katherine Sebov,New Haven",
+        "sign_wall": "yes",
+        "instant_article": "yes",
+        "comments": "allowed",
+        "bajada": "Conocemos los detalles de los treintaidosavos de final del torneo de New Haven (Estados Unidos)",
+        "tipo": "**** TIPO ****",
+        "autor": "Narrativa",
+        "fecha_publicacion": "2019-09-03T23:45:21+02:00",
+        "media": [
+            {
+                "type": "image",
+                "ruta": "https://4i2g925ohj.execute-api.eu-west-3.amazonaws.com/pro/tennis?set1sideA=6&set2sideA=4&set3sideA=2&set4sideA=&set5sideA=&set1sideB=3&set2sideB=6&set3sideB=6&set4sideB=&set5sideB=&sideA=K.+Sebov+%28200%29&sideB=D.+Lao+%28174%29&tournament=WTA+125K+New+Haven&stadiumanddate=Pista+3+-+martes+3+septiembre&surface=hard&round=Individual+Femenino+%C2%B7+Treintaidosavos+de+final&sgl=True&winner=sideB&client=MAD&gender=wta",
+                "name": "Danielle Lao consigue clasificarse para los dieciseisavos de final del torneo de New Haven",
+                "thumb": "https://4i2g925ohj.execute-api.eu-west-3.amazonaws.com/pro/tennis?set1sideA=6&set2sideA=4&set3sideA=2&set4sideA=&set5sideA=&set1sideB=3&set2sideB=6&set3sideB=6&set4sideB=&set5sideB=&sideA=K.+Sebov+%28200%29&sideB=D.+Lao+%28174%29&tournament=WTA+125K+New+Haven&stadiumanddate=Pista+3+-+martes+3+septiembre&surface=hard&round=Individual+Femenino+%C2%B7+Treintaidosavos+de+final&sgl=True&winner=sideB&client=MAD&gender=wta",
+                "title": "Danielle Lao consigue clasificarse para los dieciseisavos de final del torneo de New Haven",
+                "description": "Danielle Lao consigue clasificarse para los dieciseisavos de final del torneo de New Haven"
+            }
+        ],
+        "tags": [
+            {
+                "slug": "Tennis",
+                "titulo": "Tennis"
+            },
+            {
+                "slug": "WTA 125K New Haven",
+                "titulo": "WTA 125K New Haven"
+            },
+            {
+                "slug": "Danielle Lao",
+                "titulo": "Danielle Lao"
+            },
+            {
+                "slug": "Katherine Sebov",
+                "titulo": "Katherine Sebov"
+            },
+            {
+                "slug": "New Haven",
+                "titulo": "New Haven"
+            }
+        ],
+        "contenido_json": [
+            {
+                "type": "parrafo",
+                "data": "<p>La jugadora estadounidense <strong>Danielle Lao</strong>, número 174 de la WTA, ganó en dos horas y veintiocho minutos por <strong>3-6, 6-4 y 6-2</strong> a la tenista canadiense <strong>Katherine Sebov</strong>, número 200 de la WTA, en los treintaidosavos de final del torneo de <strong>New Haven</strong>. Con este resultado, seguiremos viendo a la vencedora del partido en la siguiente fase del torneo de <strong>New Haven</strong>, los dieciseisavos de final.</p> "
+            },
+            {
+                "type": "parrafo",
+                "data": "<p>La celebración del torneo de <strong>New Haven</strong> (<strong>WTA 125K New Haven</strong>) se produce desde el 2 hasta el 8 de septiembre sobre pista dura al aire libre. En esta competición participan un total de 50 jugadoras. De todas las aspirantes, un total de 48 llegan a la fase final entre las que se clasifican directamente, las ganadoras de las rondas previas a la final del torneo y las jugadoras invitadas.</p>"
+            }
+        ],
+        "seccion": {
+            "nombre": "tenis",
+            "id": "",
+            "parent_id": "",
+            "url": "",
+            "sitio": "deportes"
+        },
+        "secciones": [
+            {
+                "nombre": "tenis",
+                "id": "",
+                "parent_id": "",
+                "url": "",
+                "sitio": "deportes"
+            }
+        ]
+    },
+
+
+
+
+
 https://ecodigital.com.pe/projects/suad-pp/time_entries?utf8=%E2%9C%93&set_filter=1&sort=spent_on%3Adesc&f%5B%5D=spent_on&op%5Bspent_on%5D=*&f%5B%5D=user_id&op%5Buser_id%5D=%3D&v%5Buser_id%5D%5B%5D=me&f%5B%5D=&c%5B%5D=spent_on&c%5B%5D=user&c%5B%5D=activity&c%5B%5D=issue&c%5B%5D=comments&c%5B%5D=hours&c%5B%5D=issue.status&group_by=&t%5B%5D=hours&t%5B%5D=
 
 http://ww4.essalud.gob.pe:7777/acredita/
