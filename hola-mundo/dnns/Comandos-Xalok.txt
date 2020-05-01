@@ -1,3 +1,889 @@
+YB695HJ7D7E    
+
+
+
+Script getAdsDisplayFunction que detecta el dispositivo en front para Mostrarle
+el adscolection respectivo, tendriamos que cambiar nuevamente este script  y ser aun mas
+fino en el filtro para obtener 0 request en los reportes
+
+Este script se modifico hace 2 semanas aprox, se tendria q modificar denuevo
+
+
+
+142  const flagHb = ((arcSite === 'trome' && section === 'espectaculos')||(arcSite === 'ojo' && section === 'ojo-show'))? true:''
+
+153
+        // agregando informacion en commit de hb para ojo/ojo-show
+        if(flagHb){
+          if(space === 'top'){
+            formatSpace.bidding={
+              prebid:{
+                enabled: true,
+                bids: [
+                  {
+                    bidder: 'appnexus',
+                    labels: ['desktop', 'phone'],
+                    params: {
+                      placementId: `<::getAdsDisplay() === 'mobile' ? '19003326' : '19003302' ::>`
+                    }
+                  },
+                  {
+                    bidder: 'rubicon',
+                    labels: ['desktop', 'phone'],
+                    params: {
+                      accountId: '19186',
+                      siteId : `<::getAdsDisplay() === 'mobile' ? '215782' : '215780' ::>`,
+                      zoneId : `<::getAdsDisplay() === 'mobile' ? '1655590' : '1655560' ::>`
+                    }
+                  },
+                  {
+                    bidder: 'criteo',
+                    labels: ['desktop', 'phone'],
+                    params: {
+                      networkId: '7890' 
+                    }
+                  }
+                ]
+              }
+            }
+          }else if(space === 'caja1'){
+            formatSpace.bidding={
+              prebid:{
+                enabled: true,
+                bids: [
+                  {
+                    bidder: 'appnexus',
+                    labels: ['desktop'],
+                    params: {
+                      placementId: '19003320'
+                    }
+                  },
+                  {
+                    bidder: 'rubicon',
+                    labels: ['desktop'],
+                    params: {
+                      accountId: '19186',
+                      siteId : '215780',
+                      zoneId : '1655524',
+                    }
+                  },
+                  {
+                    bidder: 'criteo',
+                    labels: ['desktop'],
+                    params: {
+                      networkId: '7890' 
+                    }
+                  }
+                ]
+              }
+            }
+          }else if(space === 'caja2'){
+            formatSpace.bidding={
+              prebid:{
+                enabled: true,
+                bids: [
+                  {
+                    bidder: 'appnexus',
+                    labels: ['desktop'],
+                    params: {
+                      placementId: '19003321'
+                    }
+                  },
+                  {
+                    bidder: 'rubicon',
+                    labels: ['desktop'],
+                    params: {
+                      accountId: '19186',
+                      siteId : '215780',
+                      zoneId : '1655534',
+                    }
+                  },
+                  {
+                    bidder: 'criteo',
+                    labels: ['desktop'],
+                    params: {
+                      networkId: '7890' 
+                    }
+                  }
+                ]
+              }
+            }
+          }else if(space === 'caja3'){
+            formatSpace.bidding={
+              prebid:{
+                enabled: true,
+                bids: [
+                  {
+                    bidder: 'appnexus',
+                    labels: ['phone'],
+                    params: {
+                      placementId: '19003329'
+                    }
+                  },
+                  {
+                    bidder: 'rubicon',
+                    labels: ['phone'],
+                    params: {
+                      accountId: '19186',
+                      siteId : '215782',
+                      zoneId : '1655576',
+                    }
+                  },
+                  {
+                    bidder: 'criteo',
+                    labels: ['phone'],
+                    params: {
+                      networkId: '7890' 
+                    }
+                  }
+                ]
+              }
+            }
+          }else if(space === 'caja4'){
+            formatSpace.bidding={
+              prebid:{
+                enabled: true,
+                bids: [
+                  {
+                    bidder: 'appnexus',
+                    labels: ['phone'],
+                    params: {
+                      placementId: '19003330'
+                    }
+                  },
+                  {
+                    bidder: 'rubicon',
+                    labels: ['phone'],
+                    params: {
+                      accountId: '19186',
+                      siteId : '215782',
+                      zoneId : '1655580',
+                    }
+                  },
+                  {
+                    bidder: 'criteo',
+                    labels: ['phone'],
+                    params: {
+                      networkId: '7890' 
+                    }
+                  }
+                ]
+              }
+            }
+          }else if(space === 'caja5'){
+            formatSpace.bidding={
+              prebid:{
+                enabled: true,
+                bids: [
+                  {
+                    bidder: 'appnexus',
+                    labels: ['phone'],
+                    params: {
+                      placementId: '19003331'
+                    }
+                  },
+                  {
+                    bidder: 'rubicon',
+                    labels: ['phone'],
+                    params: {
+                      accountId: '19186',
+                      siteId : '215782',
+                      zoneId : '1655582',
+                    }
+                  },
+                  {
+                    bidder: 'criteo',
+                    labels: ['phone'],
+                    params: {
+                      networkId: '7890' 
+                    }
+                  }
+                ]
+              }
+            }
+          }else if(space === 'laterall'){
+            formatSpace.bidding={
+              prebid:{
+                enabled: true,
+                bids: [
+                  {
+                    bidder: 'appnexus',
+                    labels: ['desktop'],
+                    params: {
+                      placementId: '19003306'
+                    }
+                  },
+                  {
+                    bidder: 'rubicon',
+                    labels: ['desktop'],
+                    params: {
+                      accountId: '19186',
+                      siteId : '215780',
+                      zoneId : '1655542',
+                    }
+                  },
+                  {
+                    bidder: 'criteo',
+                    labels: ['desktop'],
+                    params: {
+                      networkId: '7890' 
+                    }
+                  }
+                ]
+              }
+            }
+          }else if(space === 'lateralr'){
+            formatSpace.bidding={
+              prebid:{
+                enabled: true,
+                bids: [
+                  {
+                    bidder: 'appnexus',
+                    labels: ['desktop'],
+                    params: {
+                      placementId: '19003308'
+                    }
+                  },
+                  {
+                    bidder: 'rubicon',
+                    labels: ['desktop'],
+                    params: {
+                      accountId: '19186',
+                      siteId : '215780',
+                      zoneId : '1655554',
+                    }
+                  },
+                  {
+                    bidder: 'criteo',
+                    labels: ['desktop'],
+                    params: {
+                      networkId: '7890' 
+                    }
+                  }
+                ]
+              }
+            }
+          }else if(space === 'zocalo'){
+            formatSpace.bidding={
+              prebid:{
+                enabled: true,
+                bids: [
+                  {
+                    bidder: 'appnexus',
+                    labels: ['desktop', 'phone'],
+                    params: {
+                      placementId: `<::getAdsDisplay() === 'mobile' ? '19003327' : '19003319' ::>`
+                    }
+                  },
+                  {
+                    bidder: 'rubicon',
+                    labels: ['desktop', 'phone'],
+                    params: {
+                      accountId: '19186',
+                      siteId : `<::getAdsDisplay() === 'mobile' ? '215782' : '215780' ::>`,
+                      zoneId : `<::getAdsDisplay() === 'mobile' ? '1655592' : '1655566' ::>`,
+                    }
+                  },
+                  {
+                    bidder: 'criteo',
+                    labels: ['desktop', 'phone'],
+                    params: {
+                      networkId: '7890' 
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+prebid = header bidding? si es una implementacion de hb prebbid
+
+espacios y tamaños de hb los mismos ? configuracion 
+
+en un ticket vi que se tenia que agregar 
+una linea arcads.js?? hay algo nuevo por configurar alli?
+
+
+
+causas 
+18 de mayo limpio 
+laterales, caja 1 y 2  en smarthphones 
+
+
+
+gtag('config', 'UA-3055636-39', { 'optimize_id': 'GTM-5T98DXR'});
+
+taboola-below-content-thumbnails
+
+
+vastahuaman@rmgperustaff.com
+1quecomience
+
+
+
+
+
+
+
+
+
+
+
+
+afino la presentacion con los resultados que salian de la prueba AB
+se hizo la presentacion a yobana para empezar con la prueba con structuredTaboola
+realize un test con redirección para ver si era tambien una alternativa
+    al parecer no creo q lo usemos les mandare la url
+
+Si no hay alguna prioridad,Hoy creare mi primer objetivo en analitics  y lo verificare 
+con una prueba en optimize
+
+Objetivo para taboola:
+basico para urls diferentes a elcomercio y googleadservices (para identificar las urls de taboola)
+
+
+
+
+https://aspesin.org/ec-nota-standar.html
+
+
+
+
+
+
+
+
+https://pubads.g.doubleclick.net/gampad/ads?iu=/28253241/publimetro/web/post/actualidad/preroll&description_url=https%3A%2F%2Fpublimetro.pe%2F&tfcd=0&npa=0&sz=640x480&cust_params=fuente%3Dweb%26publisher%3Dpublimetro%26seccion%3Dactualidad%26tipoplantilla%3Dpost&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=
+
+
+
+npm install --save-dev @arc-fusion/cli@latest
+
+
+<amp-ad width="300" height="250" type="doubleclick"
+  data-slot="/28253241/depor/amp/post/default/inline" data-multi-size="1x1"
+  data-multi-size-validation="false"  ></amp-ad>
+
+
+
+
+https://d2dvq461rdwooi.cloudfront.net/output/publicidad/espacios.json 
+     
+     content_restrictions: {content_code:contentCode='standar'}={},   // 28
+    
+     // 102
+    const getTargetFunction = `var getTarget=function getTarget(){ return {"contenido":"${contentCode}","publisher":"${arcSite}","seccion":"${section}","categoria":"${subsection}","fuente":"WEB","tipoplantilla":"${page}","phatname":"${siteUrl}${requestUri.split('?')[0]}","tags":'${targetingTags}',"ab_test":"","tmp_ad":getTmpAd()}};`
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+        const flagDimension = (space === 'laterall'||space === 'lateralr' )? 'true':'false'
+       
+       
+        if (flagDimension==='true') {
+          formatSpace.dimensions = [[[120,600],[160,600]]]
+          formatSpace.sizemap={
+            breakpoints:[[1250,0]],
+            refresh:true
+        }
+      }
+
+
+
+https://2018-12:1e2d52d4ead4a36107f31f30ad5d2562@api.sandbox.elcomercio.arcpublishing.com/content/v4/stories/?website_url=/futbol-internacional/pablo-bengoechea-sobre-jean-deza-y-carlos-ascues-no-es-lindo-convivir-con-noticias-que-perturban-el-ambiente-noticia/&website=depor&_sourceExclude=owner,address,websites,language
+https://api.sandbox.elcomercio.arcpublishing.com/content/v4/stories/?website_url=/economia/test-1-noticia/&website=gestion&_sourceExclude=owner,address,websites,language
+
+
+
+12:28
+daniel.polo@fractal.com.pe
+
+
+
+
+
+12:28
+poringero88
+12:31
+https://admanager.google.com/28253241#inventory/ad_unit/list
+
+https://securepubads.g.doubleclick.net/gampad/ads
+        ?gdfp_req=1
+        &pvsid=3102825725551379
+        &correlator=1420393937826536
+        &output=ldjh
+        &impl=fif
+        &adsid=ChAIgIXO8gUQqpjbk_uS9OoQEkUALrL4Uw-Dc4IJ2VMU8XLgCJPxqCTtcsXjwaM7xOn9wxebP6LECwm0EjI7FUHfFXl_0Q5hCPkLDdy15G7xM1mHij7aRok
+        &jar=2020-02-24-15
+        &eid=676982996&vrg=2020021802
+        &guci=2.2.0.0.2.2.0.0
+        &sc=0
+        &sfv=1-0-37
+        &ecs=20200224
+        &iu=%2F28253241%2Fdepor%2Fweb%2Fhome%2Flaterall
+        &sz=1x0%7C0x1
+        &rc=3
+        &prevtos=124
+        &scp=publisher%3Ddepor%26fuente%3DWEB%26tipoplantilla%3Dhome%26phatname%3Dhttps%253A%252F%252Fdepor.com%252Fhomepage%253Fref%253Ddepr
+        &eri=1
+        &cookie_enabled=1
+        &bc=31
+        &abxe=1
+        &lmt=1582557835
+        &dt=1582557835615
+        &dlt=1582557678899
+        &idt=1900
+        &frm=20
+        &biw=1207
+        &bih=496
+        &oid=3&adx=-66&ady=103&adk=432637804
+        &uci=5
+        &ifi=5
+        &u_tz=-300&u_his=2&u_h=1080&u_w=1920&u_ah=1080&u_aw=1920&u_cd=24&u_nplug=3&u_nmime=4&u_sd=1&flash=0&url=http%3A%2F%2Flocalhost%2Fpf%2Fdepor%2F%3F_website%3Ddepor&dssz=53&icsg=12947860156&std=0&vis=1&dmc=8&scr_x=0&scr_y=371&psz=160x600&msz=160x600&psts=AA2WTGPNxr0CeNnB2GY4q-ltPz59&ga_vid=918987392.1572282416&ga_sid=1582557681&ga_hid=1710222967&fws=516&ohw=1207&btvi=0
+https://pubads.g.doubleclick.net/gampad/ads?iu=/28253241/publimetro_post_deportes_web_preroll&description_url=https%3A%2F%2Fpublimetro.pe%2F&tfcd=0&npa=0&sz=640x360&cust_params=fuente%3Dweb%26publisher%3Dpublimetro%26seccion%3Ddeportes%26tipoplantilla%3Dpost&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=
+
+
+
+
+
+
+
+antes de 
+const structuredTaboola = 
+//
+  const collapseDivs = `var googletag = window.googletag || {cmd: []}; googletag.cmd.push(function() {googletag.pubads().collapseEmptyDivs();console.log('collapse  paso');googletag.enableServices();});`
+//
+
+
+antes de 384
+//
+        {arcSite === 'publimetro' && !nodas && !isLivePage && 
+        (
+          <script
+            type="text/javascript"
+            defer
+            dangerouslySetInnerHTML={{ __html: collapseDivs }}
+          />
+        )
+        }
+
+//
+
+
+
+que le dijo el cesped a sol,
+no me calientes mucho que despues me hago una paja
+
+
+
+    const keysValue = {
+      publisher:'publimetro',
+      seccion:'sect',
+      categoria:'subs',
+      fuente:'web',
+      tipoplantilla:'pordeterminar',
+      phatname:'url',
+      tags:'tags',
+      ab_test:'determinar',
+      tmp_ad:'configurable',
+  };
+  console.log(keysValue,'dnns keysvalues');
+
+    console.log(siteProperties,'dnns sitepropietes');
+;console.log("${siteProperties}",'dnns propierties')
+
+
+
+
+
+
+
+237   const PREBID_TIMEOUT = site==='p21'? 2700:3000
+
+
+
+
+1. Primero vas a la rama sandbox, haces pull de la rama
+
+2. luego ejecutas "npm run zip" y eso generara el zip
+3.al terminar te vas a page builder y en la opcion "Desarollador Herramientas"
+nuevos mensajes
+se despliga una barra de opciones y dentro de ella esta "despliegue"
+le das ahi o a "distribuidor"
+cualquiera de las dos
+esperas a q termine de cargar.. el inicia con una ventana lateral abierta que es el historial..
+cierras esa ventana y veras la opcion "cargar paquete"
+donde indicaras el zip y un nombre
+
+
+
+// https://t.17track.net/es#nums=RV238591121CN,UW056400260CN,RV230616865CN
+//
+<ForecastExtended cityId={cityId} cityName={cityName}></ForecastExtended>
+
+
+
+
+
+
+
+// visa         <svg xmlns="http://www.w3.org/2000/svg" width="69" height="41"><defs><filter id="a" x="0" y="0" width="69" height="41" filterUnits="userSpaceOnUse"><feOffset dy="1"></feOffset><feGaussianBlur stdDeviation=".5" result="blur"></feGaussianBlur><feFlood flood-opacity=".161"></feFlood><feComposite operator="in" in2="blur"></feComposite><feComposite in="SourceGraphic"></feComposite></filter></defs><g data-name="Grupo 505"><rect data-name="RectÃ¡ngulo 674" width="66" height="38" rx="4" transform="translate(1.5 .5)" fill="#f4f4f4" filter="url(#a)"></rect><path data-name="Trazado 509" d="M28.449 26.06l2.166-12.154H34L31.9 26.06z" fill="#3c58bf"></path><path data-name="Trazado 510" d="M28.449 26.06l2.775-12.154h2.775l-2.1 12.154z" fill="#293688"></path><path data-name="Trazado 511" d="M44.322 14.04a8.6 8.6 0 0 0-3.114-.54c-3.385 0-5.822 1.688-5.822 4.119 0 1.823 1.692 2.769 3.046 3.377s1.76 1.013 1.76 1.553c0 .81-1.083 1.216-2.031 1.216a7.373 7.373 0 0 1-3.249-.675l-.474-.2-.473 2.765a11 11 0 0 0 3.858.675c3.588 0 5.957-1.688 5.957-4.254 0-1.418-.88-2.5-2.911-3.376-1.219-.608-1.963-.945-1.963-1.553 0-.54.609-1.08 1.963-1.08a6.221 6.221 0 0 1 2.572.473l.338.135.542-2.634z" fill="#3c58bf"></path><path data-name="Trazado 512" d="M44.322 14.04a8.6 8.6 0 0 0-3.114-.54c-3.385 0-5.212 1.688-5.212 4.119a3.531 3.531 0 0 0 2.437 3.377c1.354.608 1.76 1.013 1.76 1.553 0 .81-1.083 1.216-2.031 1.216a7.373 7.373 0 0 1-3.249-.675l-.474-.2-.474 2.765a11 11 0 0 0 3.858.675c3.588 0 5.957-1.688 5.957-4.254 0-1.418-.88-2.5-2.911-3.376-1.219-.608-1.963-.945-1.963-1.553 0-.54.609-1.08 1.963-1.08a6.221 6.221 0 0 1 2.572.473l.338.135.542-2.634z" fill="#293688"></path><path data-name="Trazado 513" d="M50.403 13.906c-.812 0-1.422.068-1.76.878L43.566 26.06h3.655l.677-2.026h4.332l.406 2.026h3.249l-2.842-12.154zm-1.557 8.1c.2-.608 1.354-3.579 1.354-3.579s.271-.743.474-1.215l.2 1.148s.677 3.038.812 3.714h-2.84z" fill="#3c58bf"></path><path data-name="Trazado 514" d="M51.215 13.906c-.812 0-1.422.068-1.76.878L43.566 26.06h3.655l.677-2.026h4.332l.406 2.026h3.249l-2.842-12.154zm-2.369 8.1c.271-.675 1.354-3.579 1.354-3.579s.271-.743.474-1.215l.2 1.148s.677 3.038.812 3.714h-2.84z" fill="#293688"></path><path data-name="Trazado 515" d="M21.909 22.414l-.338-1.756a9.8 9.8 0 0 0-4.739-5.334l3.046 10.8h3.654l5.485-12.15h-3.656z" fill="#3c58bf"></path><path data-name="Trazado 516" d="M21.909 22.414l-.338-1.756a9.8 9.8 0 0 0-4.739-5.334l3.046 10.8h3.654l5.485-12.15h-2.979z" fill="#293688"></path><path data-name="Trazado 517" d="M12.5 13.906l.609.135c4.332 1.015 7.311 3.588 8.462 6.634l-1.218-5.754c-.2-.812-.812-1.015-1.557-1.015z" fill="#ffbc00"></path><path data-name="Trazado 518" d="M12.5 13.906c4.332 1.015 7.92 3.655 9.071 6.7l-1.151-4.8a1.652 1.652 0 0 0-1.62-1.291z" fill="#f7981d"></path><path data-name="Trazado 519" d="M12.5 13.906c4.332 1.015 7.92 3.655 9.071 6.7l-.812-2.64a2.387 2.387 0 0 0-1.422-1.96z" fill="#ed7c00"></path><g data-name="Grupo 330" fill="#051244"><path data-name="Trazado 520" d="M25.294 22.01l-2.3-2.3-1.083 2.565-.271-1.688a9.794 9.794 0 0 0-4.74-5.327l3.046 10.8H23.6z"></path><path data-name="Trazado 521" d="M31.828 26.059l-2.911-2.978-.542 2.978z"></path><path data-name="Trazado 522" d="M39.79 21.863c.271.271.406.474.338.745 0 .812-1.083 1.218-2.031 1.218a7.358 7.358 0 0 1-3.249-.677l-.474-.2-.473 2.772a10.976 10.976 0 0 0 3.858.677 6.7 6.7 0 0 0 4.942-1.692z"></path><path data-name="Trazado 523" d="M44.04 26.06h3.182l.677-2.111h4.332l.406 2.111h3.249l-1.151-5.137-4.062-4.082.2 1.126s.677 3.167.812 3.871h-2.843c.271-.7 1.354-3.73 1.354-3.73s.271-.774.474-1.267"></path></g></g></svg>
+//mastercard    <svg xmlns="http://www.w3.org/2000/svg" width="69" height="41"><defs><filter id="a" x="0" y="0" width="69" height="41" filterUnits="userSpaceOnUse"><feOffset dy="1"></feOffset><feGaussianBlur stdDeviation=".5" result="blur"></feGaussianBlur><feFlood flood-opacity=".161"></feFlood><feComposite operator="in" in2="blur"></feComposite><feComposite in="SourceGraphic"></feComposite></filter></defs><g data-name="Grupo 504"><rect data-name="RectÃ¡ngulo 675" width="66" height="38" rx="4" transform="translate(1.5 .5)" fill="#f4f4f4" filter="url(#a)"></rect><g data-name="Layer 1"><path data-name="RectÃ¡ngulo 671" fill="none" d="M12.5 1.91h43.39V37.5H12.5z"></path><path data-name="Trazado 676" d="M23.244 33.022v-1.774a1.052 1.052 0 0 0-1.111-1.123 1.094 1.094 0 0 0-.993.5 1.037 1.037 0 0 0-.934-.5.934.934 0 0 0-.828.42v-.344h-.615v2.826h.621v-1.56a.662.662 0 0 1 .692-.751c.408 0 .615.266.615.745v1.572h.621v-1.566a.665.665 0 0 1 .692-.751c.42 0 .621.266.621.745v1.572zm9.183-2.821h-1.01v-.857h-.621v.857h-.562v.562h.573v1.3c0 .656.254 1.046.981 1.046a1.442 1.442 0 0 0 .768-.219l-.177-.526a1.135 1.135 0 0 1-.544.16c-.3 0-.408-.189-.408-.473v-1.293h1zm5.243-.071a.833.833 0 0 0-.745.414v-.343h-.609v2.826h.615v-1.59c0-.467.2-.727.591-.727a1 1 0 0 1 .384.071l.189-.591a1.315 1.315 0 0 0-.437-.077zm-7.927.3a2.113 2.113 0 0 0-1.153-.3c-.715 0-1.182.343-1.182.9 0 .461.343.745.975.834l.3.041c.337.047.5.136.5.3 0 .219-.225.343-.644.343a1.5 1.5 0 0 1-.94-.3l-.3.479a2.039 2.039 0 0 0 1.224.367c.816 0 1.289-.384 1.289-.922s-.372-.757-.987-.845l-.3-.041c-.266-.035-.479-.089-.479-.278s.2-.331.538-.331a1.821 1.821 0 0 1 .887.242zm16.466-.3a.833.833 0 0 0-.745.414v-.343h-.609v2.826h.618v-1.59c0-.467.2-.727.591-.727a1 1 0 0 1 .384.071l.189-.591a1.315 1.315 0 0 0-.437-.077zm-7.92 1.471a1.428 1.428 0 0 0 1.507 1.478 1.478 1.478 0 0 0 1.017-.337l-.3-.5a1.241 1.241 0 0 1-.739.254.907.907 0 0 1 0-1.809 1.241 1.241 0 0 1 .739.254l.3-.5a1.478 1.478 0 0 0-1.017-.337 1.428 1.428 0 0 0-1.507 1.478zm5.758 0v-1.4h-.615v.343a1.073 1.073 0 0 0-.887-.414 1.478 1.478 0 1 0 0 2.956 1.073 1.073 0 0 0 .887-.414v.343h.615zm-2.288 0a.848.848 0 1 1 .231.64.854.854 0 0 1-.231-.64zm-7.419-1.478a1.478 1.478 0 1 0 .041 2.956 1.717 1.717 0 0 0 1.173-.384l-.3-.455a1.345 1.345 0 0 1-.822.3.783.783 0 0 1-.845-.692h2.1v-.236a1.343 1.343 0 0 0-1.342-1.478zm0 .55a.7.7 0 0 1 .715.686h-1.482a.727.727 0 0 1 .751-.686zm15.4.934v-2.546h-.591v1.478a1.073 1.073 0 0 0-.887-.414 1.478 1.478 0 1 0 0 2.956 1.073 1.073 0 0 0 .887-.414v.343h.591zm1.026 1a.284.284 0 0 1 .266.168.275.275 0 0 1 0 .219.282.282 0 0 1-.154.148.278.278 0 0 1-.112.024.3.3 0 0 1-.266-.171.278.278 0 0 1 0-.219.287.287 0 0 1 .275-.168zm0 .5a.21.21 0 0 0 .086-.018.222.222 0 0 0 .068-.047.213.213 0 0 0-.068-.343.213.213 0 0 0-.086-.018.222.222 0 0 0-.086.018.216.216 0 0 0-.071.047.214.214 0 0 0 .166.361zm.018-.352a.118.118 0 0 1 .077.024.074.074 0 0 1 .027.062.071.071 0 0 1-.021.053.1.1 0 0 1-.062.027l.086.1h-.068l-.08-.1h-.027v.1h-.056v-.26zm-.065.05v.071h.065a.062.062 0 0 0 .035 0 185.587 185.587 0 0 1 0-.053.062.062 0 0 0-.035 0zm-3.251-1.2a.848.848 0 1 1 .231.64.854.854 0 0 1-.226-.636zm-20.758 0v-1.404h-.615v.343a1.073 1.073 0 0 0-.887-.414 1.478 1.478 0 0 0 0 2.956 1.073 1.073 0 0 0 .887-.414v.343h.615zm-2.288 0a.362.362 0 1 1-.006 0z" fill="#231f20"></path><g data-name="<Group>"><path data-name="RectÃ¡ngulo 672" fill="#ff5f00" d="M29.54 8.664h9.311v16.732H29.54z"></path><path data-name="<Path>" d="M30.132 17.035a10.623 10.623 0 0 1 4.064-8.368 10.641 10.641 0 1 0 0 16.732 10.623 10.623 0 0 1-4.064-8.364z" fill="#eb001b"></path><path data-name="Trazado 677" d="M51.413 17.031a10.641 10.641 0 0 1-17.217 8.365 10.641 10.641 0 0 0 0-16.732 10.641 10.641 0 0 1 17.217 8.365z" fill="#f79e1b"></path><path data-name="Trazado 678" d="M50.393 23.623v-.343h.139v-.071h-.352v.071h.151v.343zm.683 0v-.414h-.106l-.124.3-.124-.3h-.095v.414h.077v-.31l.115.269h.08l.115-.269v.313z" fill="#f79e1b"></path></g></g></g></svg>
+//amex          <svg xmlns="http://www.w3.org/2000/svg" width="69" height="41" viewBox="0 0 69 41"><defs><filter id="RectÃ¡ngulo_676" x="0" y="0" width="69" height="41" filterUnits="userSpaceOnUse"><feOffset dy="1" input="SourceAlpha"></feOffset><feGaussianBlur stdDeviation="0.5" result="blur"></feGaussianBlur><feComposite operator="in" in2="blur"></feComposite><feComposite in="SourceGraphic"></feComposite></filter></defs><g id="Grupo_501" data-name="Grupo 501" transform="translate(-643.5 -263.5)"><g transform="matrix(1, 0, 0, 1, 643.5, 263.5)" filter="url(#RectÃ¡ngulo_676)"><rect id="RectÃ¡ngulo_676-2" data-name="RectÃ¡ngulo 676" width="66" height="38" rx="4" transform="translate(1.5 0.5)" fill="#306fc5"></rect></g><g id="Grupo_434" data-name="Grupo 434" transform="translate(655 275)"><path id="Trazado_552" data-name="Trazado 552" d="M74.59,203.291h1.582l-.791-2.013Z" transform="translate(-70.677 -199.408)" fill="#fff"></path><path id="Trazado_553" data-name="Trazado 553" d="M155.946,286.107v.935h2.661v1.007h-2.661v1.079h2.948l1.366-1.51-1.294-1.51Z" transform="translate(-143.549 -275.465)" fill="#fff"></path><path id="Trazado_554" data-name="Trazado 554" d="M349.416,201.278l-.863,2.013h1.654Z" transform="translate(-316.137 -199.408)" fill="#fff"></path><path id="Trazado_555" data-name="Trazado 555" d="M214.138,285.34v-4.1l-1.87,2.014Z" transform="translate(-194.02 -271.102)" fill="#fff"></path><path id="Trazado_556" data-name="Trazado 556" d="M244.468,286.754a.726.726,0,0,0-.791-.647h-1.51V287.4h1.582C244.18,287.4,244.468,287.186,244.468,286.754Z" transform="translate(-220.809 -275.465)" fill="#fff"></path><path id="Trazado_557" data-name="Trazado 557" d="M295.634,287.884a.561.561,0,0,0,.216-.5.4.4,0,0,0-.216-.5,1.4,1.4,0,0,0-.575-.072h-1.438v1.151h1.438A1.4,1.4,0,0,0,295.634,287.884Z" transform="translate(-266.914 -276.091)" fill="#fff"></path><path id="Trazado_558" data-name="Trazado 558" d="M75.895,183.2v.863l-.434-.863h-3.4v.863l-.434-.863H67a4.422,4.422,0,0,0-2.024.432V183.2H61.724v.432a2.093,2.093,0,0,0-1.374-.432H48.709l-.8,1.8-.8-1.8H43.431v.863l-.362-.863H39.888l-1.446,3.379-1.663,3.667-.031.072h3.764l.026-.072.434-1.078h.94l.434,1.15h4.193v-.863l.362.863H49l.361-.863v.863H59.41v-1.87h.145c.144,0,.144,0,.144.216v1.582H64.9v-.431a4.345,4.345,0,0,0,1.952.431h2.169l.434-1.15h1.012l.434,1.15H75.1v-1.078l.651,1.078h3.4V183.2H75.895Zm-24.511,6.04H50.227v-3.955l-.072.165v0l-1.682,3.792H47.407l-1.735-3.955v3.955H43.214l-.506-1.079H40.249l-.506,1.079H38.472l2.139-5.033h1.807l2.024,4.818V184.2h1.916l.034.072h0l.912,1.975.655,1.479.023-.075,1.446-3.451h1.952v5.033Zm4.989-3.955h-2.82v.935H56.3v1.007H53.553v1.007h2.82v1.078H52.324V184.2h4.049v1.078Zm5.157,1.854.007,0a.818.818,0,0,1,.071.085,1.377,1.377,0,0,1,.256.843v.02s0,.007,0,.011,0,0,0,.006c0,.04,0,.08,0,.124v1.007H60.784v-.576a1.7,1.7,0,0,0-.217-1.007.658.658,0,0,0-.213-.145,1.451,1.451,0,0,0-.655-.071H58.4v1.8H57.168V184.2h2.748a2.786,2.786,0,0,1,1.446.216,1.213,1.213,0,0,1,.576,1.118,1.429,1.429,0,0,1-.866,1.327A.97.97,0,0,1,61.53,187.137Zm2.435,2.1H62.736V184.2h1.229Zm14.1,0H76.473l-2.314-3.811v3.164l-.008-.007v.658H72.931v0H71.7l-.434-1.079H68.737l-.434,1.15H66.929a2.167,2.167,0,0,1-2.386-2.516,2.937,2.937,0,0,1,.651-2.014A2.285,2.285,0,0,1,67,184.2h1.157v1.078H67a1.338,1.338,0,0,0-.94.288,1.684,1.684,0,0,0-.361,1.15,1.56,1.56,0,0,0,.361,1.222,1.157,1.157,0,0,0,.868.288h.506l1.663-3.955h1.808l2.025,4.818v-4.817h1.807l2.1,3.523v-3.523h1.23v4.961h0Z" transform="translate(-36.748 -183.198)" fill="#fff"></path><path id="Trazado_559" data-name="Trazado 559" d="M247.036,204.382a.385.385,0,0,0,.056-.077.777.777,0,0,0,.1-.542.409.409,0,0,0-.011-.066c0-.006,0-.011,0-.017h0a.4.4,0,0,0-.218-.245,1.409,1.409,0,0,0-.576-.072h-1.438v1.151h1.438a1.4,1.4,0,0,0,.576-.072.273.273,0,0,0,.059-.043h0Z" transform="translate(-223.299 -201.279)" fill="#fff"></path><path id="Trazado_560" data-name="Trazado 560" d="M169,269.37a2.755,2.755,0,0,0-.359-1.366v-3.236h0v-.216h-3.463a2.046,2.046,0,0,0-.993.431v-.431h-3.307a2.284,2.284,0,0,0-1.438.431v-.431h-5.9v.431a2.782,2.782,0,0,0-1.582-.431h-3.883v.431a2.732,2.732,0,0,0-1.654-.431h-4.314l-1.007,1.079-.935-1.079H133.7v7.263h6.328l1.04-1.04.9,1.04h4.027v-1.654h.36a4.369,4.369,0,0,0,1.654-.216v1.942h3.236v-1.87h.143c.216,0,.216,0,.216.216v1.654h9.779a2.818,2.818,0,0,0,1.654-.432v.432h3.092a3.229,3.229,0,0,0,1.726-.36,2.415,2.415,0,0,0,1.141-1.939c0-.025.006-.05.009-.075l0,0C169,269.463,169,269.417,169,269.37Zm-22.65-.431h-1.438v1.869h-2.363l-1.376-1.582,0,.005-.067-.077-1.582,1.654h-4.6v-5.033h4.674l1.277,1.4.268.293.036-.038,1.51-1.654h3.811a1.866,1.866,0,0,1,1.882.935,2.036,2.036,0,0,1,.06.5C148.435,268.651,147.429,268.939,146.35,268.939Zm7.19-.072a1.632,1.632,0,0,1,.216.935v1.006h-1.222v-.647a1.6,1.6,0,0,0-.216-1.007c-.143-.215-.431-.215-.863-.215h-1.294v1.869h-1.222V265.7h2.732a2.9,2.9,0,0,1,1.438.215,1.273,1.273,0,0,1,.647,1.151,1.432,1.432,0,0,1-.863,1.366A1.226,1.226,0,0,1,153.541,268.867Zm4.962-2.086h-2.8v.935h2.732v1.007H155.7v1.007h2.8v1.079h-4.027V265.7H158.5Zm3.02,4.027h-2.3V269.73h2.3a.607.607,0,0,0,.5-.144.522.522,0,0,0,0-.719.61.61,0,0,0-.432-.144c-1.151-.072-2.517,0-2.517-1.582,0-.719.431-1.51,1.726-1.51h2.373v1.222h-2.229a1.068,1.068,0,0,0-.5.072c-.143.072-.143.216-.143.36,0,.216.143.288.287.359a.911.911,0,0,0,.431.072h.647a1.83,1.83,0,0,1,1.366.432,1.489,1.489,0,0,1,.36,1.079C163.392,270.3,162.745,270.808,161.522,270.808Zm6.184-.5a2.1,2.1,0,0,1-1.51.5h-2.3V269.73h2.3a.606.606,0,0,0,.5-.144.521.521,0,0,0,0-.719.608.608,0,0,0-.431-.144c-1.15-.072-2.517,0-2.517-1.582a1.47,1.47,0,0,1,1.355-1.484,2.693,2.693,0,0,1,.371-.026h2.373v1.222h-2.229a1.064,1.064,0,0,0-.5.072.549.549,0,0,0-.144.36c0,.216.072.288.288.359a.91.91,0,0,0,.432.072h.647a2.245,2.245,0,0,1,.769.115,1.548,1.548,0,0,1,1.006,1.137,1.616,1.616,0,0,1,.022.258A1.462,1.462,0,0,1,167.706,270.3Z" transform="translate(-123.436 -256.139)" fill="#fff"></path></g></g></svg>
+// dinners      <svg xmlns="http://www.w3.org/2000/svg" width="69" height="41"><defs><filter id="a" x="0" y="0" width="69" height="41" filterUnits="userSpaceOnUse"><feOffset dy="1"></feOffset><feGaussianBlur stdDeviation=".5" result="blur"></feGaussianBlur><feFlood flood-opacity=".161"></feFlood><feComposite operator="in" in2="blur"></feComposite><feComposite in="SourceGraphic"></feComposite></filter></defs><g data-name="Grupo 500"><rect data-name="RectÃ¡ngulo 677" width="66" height="38" rx="4" transform="translate(1.5 .5)" fill="#f4f4f4" filter="url(#a)"></rect><g data-name="Grupo 435"><path data-name="Trazado 637" d="M28.807 18.263c0 .546.382.6.764.6a2.011 2.011 0 0 0 2.073-2.237 2.134 2.134 0 0 0-2.237-2.292 1.369 1.369 0 0 0-.546.055v3.874zm-.709-3.383c0-.655-.327-.6-.655-.6v-.164h2.073a2.593 2.593 0 0 1 2.837 2.51c0 .709-.436 2.51-2.946 2.51h-2.019v-.164c.436-.055.655-.055.655-.546v-3.547z" fill="#004a97"></path><path data-name="Trazado 638" d="M33.444 14.716a.365.365 0 0 1-.327-.382.328.328 0 0 1 .655 0 .365.365 0 0 1-.327.382m-.764 4.2h.164c.218 0 .327 0 .327-.218v-1.964c0-.327-.109-.382-.382-.491v-.109a5.089 5.089 0 0 0 .764-.273.169.169 0 0 1 .109-.055c.055 0 .055.055.055.109v2.728c0 .218.164.218.382.218h.109v.164H32.68z" fill="#004a97"></path><path data-name="Trazado 639" d="M34.863 16.79c0-.273-.055-.327-.436-.491v-.109c.327-.109.6-.218.928-.327a.053.053 0 0 1 .055.055v.491a2.18 2.18 0 0 1 1.255-.546c.6 0 .818.437.818.982V18.7c0 .218.164.218.382.218h.107v.164h-1.528v-.164h.109c.218 0 .327 0 .327-.218v-1.855a.588.588 0 0 0-.655-.6 1.728 1.728 0 0 0-.818.327V18.7c0 .218.164.218.382.218h.109v.164h-1.526v-.164h.164c.218 0 .327 0 .327-.218v-1.91z" fill="#004a97"></path><path data-name="Trazado 640" d="M39.773 16.899c.164 0 .218-.109.218-.164a.588.588 0 0 0-.6-.655.838.838 0 0 0-.818.818zm-1.255.218v.436c.055.655.491 1.255 1.037 1.255a1.427 1.427 0 0 0 .982-.491l.109.109a1.727 1.727 0 0 1-1.309.818 1.432 1.432 0 0 1-1.364-1.582c0-1.419.928-1.8 1.419-1.8a1.129 1.129 0 0 1 1.2 1.146v.109h-2.073z" fill="#004a97"></path><path data-name="Trazado 641" d="M40.755 18.917h.218c.218 0 .327 0 .327-.218V16.68c0-.218-.273-.273-.382-.327v-.109c.546-.218.818-.382.873-.382s.055 0 .055.109v.655c.164-.273.491-.709.928-.709a.37.37 0 0 1 .382.382c0 .218-.109.382-.327.382s-.218-.164-.491-.164a.632.632 0 0 0-.546.6v1.691c0 .218.164.218.327.218h.382v.164h-1.855v-.273z" fill="#004a97"></path><path data-name="Trazado 642" d="M43.538 18.099c.109.491.382.873.928.873.436 0 .6-.273.6-.491 0-.818-1.582-.546-1.582-1.746a1 1 0 0 1 1.091-.928 1.675 1.675 0 0 1 .818.218l.055.709h-.164a.733.733 0 0 0-.764-.709.5.5 0 0 0-.546.491c0 .818 1.637.6 1.637 1.691 0 .491-.382.982-1.255.982a2.568 2.568 0 0 1-.873-.218l-.055-.818z" fill="#004a97"></path><path data-name="Trazado 643" d="M52.05 15.371h-.164c-.109-.818-.709-1.146-1.528-1.146a2.047 2.047 0 0 0-2.019 2.292 2.326 2.326 0 0 0 2.128 2.455 1.414 1.414 0 0 0 1.419-1.255l.164.055-.164 1.037a4.5 4.5 0 0 1-1.582.382 2.535 2.535 0 0 1-2.728-2.674 2.624 2.624 0 0 1 2.728-2.51 4.5 4.5 0 0 1 1.691.382z" fill="#004a97"></path><path data-name="Trazado 644" d="M52.323 18.917h.109c.218 0 .327 0 .327-.218v-3.983c0-.491-.109-.491-.382-.546v-.109a5.321 5.321 0 0 0 .764-.327.2.2 0 0 1 .164-.055c.055 0 .055.055.055.109v4.965c0 .218.164.218.382.218h.109v.164h-1.528v-.218z" fill="#004a97"></path><path data-name="Trazado 645" d="M56.905 18.699c0 .109.055.109.218.109h.273v.164c-.327.055-.873.164-1.037.218h-.055v-.6a2.078 2.078 0 0 1-1.255.6.778.778 0 0 1-.764-.873v-1.855c0-.164-.055-.382-.437-.382v-.109c.273 0 .818-.055.928-.055.055 0 .055.055.055.218v1.855c0 .218 0 .818.6.818a1.619 1.619 0 0 0 .873-.437v-1.91c0-.164-.327-.218-.6-.273v-.109c.655-.055 1.037-.109 1.091-.109s.055.055.055.109v2.619z" fill="#004a97"></path><path data-name="Trazado 646" d="M58.325 18.263a.77.77 0 0 0 .764.709c.764 0 1.091-.764 1.091-1.364a1.385 1.385 0 0 0-1.146-1.419.951.951 0 0 0-.655.327v1.746zm0-1.91a1.841 1.841 0 0 1 1.091-.491 1.385 1.385 0 0 1 1.309 1.528 1.809 1.809 0 0 1-1.691 1.855 1.611 1.611 0 0 1-.982-.273l-.218.164-.164-.055a9.735 9.735 0 0 0 .109-1.255v-3.055c0-.491-.109-.491-.382-.546v-.109a5.32 5.32 0 0 0 .764-.327.2.2 0 0 1 .164-.055c.055 0 .055.055.055.109v2.51z" fill="#004a97"></path><path data-name="Trazado 647" d="M27.442 23.227h.055c.164 0 .273 0 .273-.218V20.99c0-.218-.164-.218-.273-.218h-.055v-.109h1.2v.109h-.054c-.164 0-.273 0-.273.218v2.019c0 .218.109.218.273.218h.054v.109h-1.145v-.109z" fill="#006ac9"></path><path data-name="Trazado 648" d="M28.642 23.336v-.109h-.054c-.164 0-.327 0-.327-.218V20.99c0-.218.164-.218.327-.218h.054v-.109h-1.145v.109h.054c.164 0 .327 0 .327.218v2.019c0 .218-.164.218-.327.218h-.054v.109h1.145m0 .055h-1.145v-.164h.054c.164 0 .273 0 .273-.218V20.99c0-.218-.109-.218-.273-.218h-.109v-.109h1.2v.109h-.054c-.164 0-.273 0-.273.218v2.019c0 .218.109.218.273.218h.054v.164z" fill="#006ac9"></path><path data-name="Trazado 649" d="M31.316 22.573V21.1c0-.327-.218-.382-.327-.382h-.109v-.109h1.037v.109h-.055c-.164 0-.327.055-.327.491v2.128h-.164L29.352 21.1v1.582c0 .327.055.437.382.437h.055v.109h-.982c.273 0 .327-.164.327-.491V21.1a.314.314 0 0 0-.327-.327v-.109h.764z" fill="#006ac9"></path><path data-name="Trazado 650" d="M31.316 22.573zm0 0zm.055.818h.109v-2.128c0-.491.218-.491.382-.491h.055v-.109h-.982v.109h.055a.363.363 0 0 1 .382.382v1.473l-1.747-1.964h-.764v.109h.055a.41.41 0 0 1 .382.382v1.637c0 .327-.109.491-.382.491h-.055v.109h.982v-.109h-.109c-.327 0-.382-.109-.382-.491v-1.637zm.164.055h-.164l-1.964-2.183v1.582c0 .327.055.436.327.436h.109v.109h-1.036v-.164h.055c.273 0 .327-.164.327-.491v-1.637a.315.315 0 0 0-.327-.327h-.11v-.108h.818l1.691 1.91v-1.419c0-.327-.218-.327-.327-.327h-.055v-.109h1.037v.109h-.054c-.164 0-.327 0-.327.491v2.128z" fill="#006ac9"></path><path data-name="Trazado 651" d="M32.517 20.827c-.273 0-.327.055-.382.327h-.109c0-.109.055-.218.055-.327V20.5h.109c.055.109.109.109.218.109h2.018c.109 0 .218 0 .218-.109h.109c0 .109-.055.218-.055.327v.327l-.109.055c0-.164 0-.382-.273-.382h-.655V22.9c0 .273.109.327.327.327h.055v.109h-1.308v-.109h.055c.218 0 .327 0 .327-.327v-2.073z" fill="#006ac9"></path><path data-name="Trazado 652" d="M34.045 23.392h-1.31v-.164h.055c.218 0 .327 0 .327-.327v-2.073h.055v2.073c0 .327-.109.327-.327.327h-.055v.109h.655a2.238 2.238 0 0 1 .6.055v-.109h-.055a.287.287 0 0 1-.327-.327v-2.073h.655c.273 0 .273.218.327.382l.109-.055v-.327a.409.409 0 0 1 .055-.273h-.055c0 .109-.109.109-.218.109h-2.019c-.109 0-.218 0-.218-.109h-.164v.327c0 .109-.055.218-.055.327h.109c.055-.273.109-.382.382-.327-.273 0-.273.055-.327.327h-.218c0-.109.055-.218.055-.327v-.328h.109c0 .109.109.109.218.109h2.018c.109 0 .164 0 .218-.109h.109c0 .109-.055.218-.055.327v.327h-.162c0-.164 0-.382-.273-.382h-.6v2.073c0 .273.109.327.327.327h.109l-.055.109z" fill="#006ac9"></path><path data-name="Trazado 653" d="M34.863 23.227h.055c.164 0 .273 0 .273-.218V20.99c0-.218-.164-.218-.273-.218h-.055v-.109h1.964v.6h-.109c0-.273-.055-.437-.491-.437h-.546v1.037h.491c.218 0 .273-.109.327-.327h.109v.873h-.109c0-.218-.055-.382-.327-.382h-.491v.928c0 .273.218.273.491.273.491 0 .655-.055.818-.491h.109a2.816 2.816 0 0 0-.109.6h-2.073v-.109z" fill="#006ac9"></path><path data-name="Trazado 654" d="M36.936 23.336c.055-.218.055-.382.109-.6h-.055c-.109.437-.327.491-.818.491-.218 0-.491 0-.491-.273v-.928h.491c.273 0 .273.164.327.382h.109v-.873h-.109a.289.289 0 0 1-.327.327h-.491v-1.037h.546c.382 0 .491.218.491.437h.109v-.546h-1.91v.109h.055c.164 0 .327 0 .327.218v2.02c0 .218-.164.218-.327.218h-.055v.109h1.037a5.93 5.93 0 0 1 .982-.055m0 .055h-2.073v-.164h.055c.164 0 .273 0 .273-.218v-2.019c0-.164-.109-.218-.273-.218h-.055v-.108h1.964v.6l-.109.055c0-.273-.055-.437-.436-.437h-.546v.982h.437c.218 0 .273-.109.273-.327h.109v.873h-.109c0-.218-.055-.382-.273-.382h-.437v.873c0 .218.218.218.437.218.491 0 .655 0 .764-.436l.109.055a2.738 2.738 0 0 1-.109.655z" fill="#006ac9"></path><path data-name="Trazado 655" d="M38.082 21.973h.164a.523.523 0 0 0 .6-.6.515.515 0 0 0-.546-.546h-.218zm-.491-.928c0-.273-.164-.273-.273-.273h-.055v-.109h1.2c.491 0 .928.109.928.709a.808.808 0 0 1-.546.709l.655.982a.365.365 0 0 0 .382.218v.109h-.764a24.225 24.225 0 0 1-.818-1.255h-.273v.818a.287.287 0 0 0 .327.327h.055v.109h-1.2v-.164h.055c.164 0 .273-.055.273-.218v-1.964z" fill="#006ac9"></path><path data-name="Trazado 656" d="M38.301 21.972c.382 0 .6-.109.6-.6a.516.516 0 0 0-.546-.546h-.218v1.146zm-.218 0v-1.2h.218a.572.572 0 0 1 .6.6c0 .491-.218.6-.6.6zm0 .109h.273a9.919 9.919 0 0 0 .818 1.255h.764v-.109a.412.412 0 0 1-.382-.218l-.655-1.037a.692.692 0 0 0 .546-.655c0-.546-.437-.655-.928-.655h-1.2v.109h.055c.109 0 .273 0 .273.327v1.965c0 .164-.164.218-.273.218h-.11v.109h1.2v-.109h-.055c-.164 0-.327 0-.327-.327v-.873zm1.855 1.309h-.764a24.225 24.225 0 0 1-.818-1.255h-.218v.818c0 .273.109.273.327.273h.109v.109h-1.2v-.109h.055c.164 0 .273-.055.273-.218v-1.964c0-.273-.164-.273-.273-.273h-.165v-.108h1.2c.491 0 .928.164.928.709a.808.808 0 0 1-.546.709l.655.982a.365.365 0 0 0 .382.218l.055.109z" fill="#006ac9"></path><path data-name="Trazado 657" d="M42.556 22.573V21.1c0-.327-.218-.382-.327-.382h-.109v-.109h1.037v.109h-.055c-.164 0-.327.055-.327.491v2.128h-.164L40.592 21.1v1.582c0 .327.055.437.382.437h.109v.109h-.982c.273 0 .327-.164.327-.491V21.1c0-.218-.164-.327-.382-.327h-.054v-.109h.764z" fill="#006ac9"></path><path data-name="Trazado 658" d="M42.556 22.573zm0 0zm.055.818h.109v-2.128c0-.491.218-.491.382-.491h.055v-.109h-.982v.109h.055a.363.363 0 0 1 .382.382v1.473l-1.746-1.964h-.764v.109h.055a.41.41 0 0 1 .382.382v1.637c0 .327-.109.491-.382.491h-.055v.109h.982v-.109h-.055c-.327 0-.382-.109-.382-.491v-1.637zm.164.055h-.164l-1.964-2.183v1.582c0 .327.055.436.327.436h.109v.109h-1.037v-.164h.055c.273 0 .327-.164.327-.491v-1.637a.315.315 0 0 0-.327-.327h-.109v-.108h.818l1.691 1.91v-1.419c0-.327-.218-.327-.327-.327h-.109v-.109h1.037v.109h-.055c-.164 0-.327 0-.327.491v1.745a.809.809 0 0 1 .055.382z" fill="#006ac9"></path><path data-name="Trazado 659" d="M44.357 21.1l-.382 1.091h.709zm-.546 1.691a.775.775 0 0 0-.109.327c0 .109.164.109.273.109h.055v.109h-.928v-.109a.346.346 0 0 0 .327-.273l.6-1.8.164-.491c.109-.055.273-.109.382-.164h.055c0 .055 0 .055.055.109l.764 2.073c.055.109.109.273.164.382a.252.252 0 0 0 .273.164v.109H44.74v-.109h.055c.109 0 .218 0 .218-.109a2.364 2.364 0 0 1-.055-.273l-.164-.436h-.873z" fill="#006ac9"></path><path data-name="Trazado 660" d="M44.357 21.1zm-.327 1.091h.709l-.382-1.091zm-.055 0l.382-1.146.382 1.146zm.764 1.146h1.091v-.109a.3.3 0 0 1-.273-.164.636.636 0 0 1-.109-.382l-.709-2.019c0-.055 0-.055-.055-.109a1.817 1.817 0 0 1-.327.164 1.734 1.734 0 0 1-.164.491l-.6 1.8a.41.41 0 0 1-.382.273v.109h.818v-.109c-.109 0-.327 0-.327-.164a2.146 2.146 0 0 1 .109-.327l.109-.436h.928l.164.436a.593.593 0 0 1 .055.273c0 .109-.164.109-.273.109v.164zm1.146.055h-1.146v-.164h.055c.109 0 .218 0 .218-.109a2.363 2.363 0 0 1-.055-.273l-.164-.436h-.873l-.109.382a.922.922 0 0 0-.109.273c0 .109.164.109.273.109h.055v.109h-.928v-.055a.368.368 0 0 0 .327-.218l.6-1.8.164-.491a1.817 1.817 0 0 0 .327-.164h.109c0 .055 0 .055.055.109l.764 2.019a2.659 2.659 0 0 0 .164.382c.055.109.109.164.218.164h.055v.164z" fill="#006ac9"></path><path data-name="Trazado 661" d="M46.048 20.827c-.273 0-.327.055-.382.327h-.109c0-.109.055-.218.055-.327V20.5h.109c.055.109.109.109.218.109h2.018c.109 0 .218 0 .218-.109h.109c0 .109-.055.218-.055.327v.327l-.109.055c0-.164-.055-.382-.273-.382h-.655V22.9c0 .273.109.327.327.327h.055v.109h-1.309v-.109h.055c.218 0 .327 0 .327-.327v-2.073z" fill="#006ac9"></path><path data-name="Trazado 662" d="M47.576 23.392h-1.309v-.164h.055c.218 0 .273 0 .327-.327v-2.073h.055v2.073c0 .327-.109.327-.327.327h-.056v.109h.655a2.238 2.238 0 0 1 .6.055v-.109h-.055a.287.287 0 0 1-.327-.327v-2.073h.655c.273 0 .273.218.327.382l.109-.055v-.327a.409.409 0 0 1 .055-.273h-.055c0 .109-.109.109-.218.109h-2.019c-.109 0-.164 0-.218-.109h-.055v.327c0 .109-.055.218-.055.327h.109c.055-.273.109-.382.382-.327-.273 0-.273.055-.327.327h-.163c0-.109.055-.218.055-.327v-.328h.109c0 .109.109.109.218.109h2.018c.109 0 .164 0 .218-.109h.109c0 .109-.055.218-.055.327v.327l-.164.055c0-.164 0-.382-.273-.382h-.6v2.073c0 .273.109.327.327.327h.109l-.218.055z" fill="#006ac9"></path><path data-name="Trazado 663" d="M48.394 23.227c.218 0 .327 0 .327-.218V20.99c0-.218-.164-.218-.273-.218h-.054v-.109h1.2v.109h-.055c-.164 0-.273 0-.273.218v2.019c0 .218.164.218.273.218h.055v.109h-1.146v-.109z" fill="#006ac9"></path><path data-name="Trazado 664" d="M49.595 23.336v-.109h-.055c-.164 0-.327 0-.327-.218V20.99c0-.218.164-.218.327-.218h.055v-.109h-1.146v.109h.055c.164 0 .327 0 .327.218v2.019c0 .218-.164.218-.327.218h-.055v.109h1.146m0 .055h-1.146v-.164h.055c.164 0 .273 0 .273-.218V20.99c0-.164-.109-.218-.273-.218h-.055v-.109h1.2v.109h-.055c-.164 0-.273 0-.273.218v2.019c0 .164.109.218.273.218h.055l-.055.164z" fill="#006ac9"></path><path data-name="Trazado 665" d="M51.232 23.228c.764 0 .873-.655.873-1.255 0-.546-.327-1.255-.928-1.255-.709 0-.873.6-.873 1.146-.055.709.273 1.364.928 1.364m-.055-2.619a1.347 1.347 0 0 1 1.473 1.364 1.434 1.434 0 0 1-1.473 1.473 1.39 1.39 0 0 1-1.473-1.419 1.422 1.422 0 0 1 1.473-1.419" fill="#006ac9"></path><path data-name="Trazado 666" d="M50.25 21.863c0-.546.218-1.146.928-1.146.655 0 .982.709.982 1.255s-.109 1.255-.928 1.255c.764 0 .873-.655.873-1.2s-.327-1.255-.928-1.255c-.709 0-.873.6-.928 1.091.055.709.327 1.364.982 1.364-.655.055-.982-.655-.982-1.364m-.546.164a1.467 1.467 0 0 1 1.473-1.473 1.542 1.542 0 0 0-1.473 1.473 1.41 1.41 0 0 0 1.473 1.364 1.434 1.434 0 0 0 1.473-1.473 1.337 1.337 0 0 0-1.473-1.31 1.426 1.426 0 0 1 1.528 1.364 1.448 1.448 0 0 1-1.473 1.528 1.48 1.48 0 0 1-1.528-1.473" fill="#006ac9"></path><path data-name="Trazado 667" d="M55.269 22.573V21.1c0-.327-.218-.382-.327-.382h-.109v-.109h1.037v.109h-.055c-.164 0-.327.055-.327.491v2.128h-.164L53.305 21.1v1.582c0 .327.055.437.382.437h.055v.109h-.982c.273 0 .327-.164.327-.491V21.1a.314.314 0 0 0-.327-.327h-.055v-.109h.764z" fill="#006ac9"></path><path data-name="Trazado 668" d="M55.269 22.573zm0 0zm.055.818h.109v-2.128c0-.491.218-.491.382-.491h.055v-.109h-.982v.109h.055a.363.363 0 0 1 .382.382v1.473l-1.746-1.964h-.764v.109h.055a.41.41 0 0 1 .382.382v1.637c0 .327-.109.491-.382.491h-.055v.109h.982v-.109h-.055c-.327 0-.382-.109-.382-.491v-1.637zm.164.055h-.164l-1.965-2.183v1.582c0 .327.055.436.327.436h.109v.109h-1.036v-.164h.055c.273 0 .327-.164.327-.491v-1.637a.315.315 0 0 0-.327-.327h-.055v-.108h.818l1.691 1.91v-1.419c0-.327-.218-.327-.327-.327h-.109v-.109h1.037v.109h-.055c-.164 0-.327 0-.327.491v2.128z" fill="#006ac9"></path><path data-name="Trazado 669" d="M57.07 21.1l-.382 1.091h.764zm-.546 1.691a.775.775 0 0 0-.109.327c0 .109.164.109.273.109h.055v.109h-.928v-.109a.346.346 0 0 0 .327-.273l.6-1.8.164-.491c.109-.055.273-.109.382-.164h.055c0 .055 0 .055.055.109l.709 2.019c.055.109.109.273.164.382.055.218.164.218.273.218v.109h-1.146v-.109h.055c.109 0 .218 0 .218-.109a2.366 2.366 0 0 1-.055-.273l-.164-.436h-.873z" fill="#006ac9"></path><path data-name="Trazado 670" d="M57.07 21.1zm-.327 1.091h.655l-.327-1.037zm-.055 0l.382-1.146.382 1.146zm.764 1.146h1.091v-.109a.3.3 0 0 1-.273-.164c-.055-.109-.109-.273-.164-.382l-.709-2.019c0-.055 0-.055-.055-.109a1.817 1.817 0 0 1-.327.164 1.734 1.734 0 0 1-.164.491l-.6 1.8a.4.4 0 0 1-.327.273v.109h.818v-.109c-.109 0-.327 0-.327-.164a2.146 2.146 0 0 1 .109-.327l.109-.436h.928l.164.436a.593.593 0 0 1 .055.273c0 .109-.164.109-.273.109v.164zm1.146.055h-1.146v-.164h.055c.109 0 .218 0 .218-.109a2.362 2.362 0 0 1-.055-.273l-.164-.436h-.873l-.109.382a.922.922 0 0 0-.109.273c0 .109.164.109.273.109h.055v.109h-.928v-.055a.368.368 0 0 0 .327-.218l.6-1.8.164-.491c.109-.055.273-.109.382-.164h.109c0 .055 0 .055.055.109l.709 2.019a2.659 2.659 0 0 0 .164.382c.055.109.109.164.218.164h.055v.164z" fill="#006ac9"></path><path data-name="Trazado 671" d="M59.58 23.009a.2.2 0 0 0 .218.218h.491a.459.459 0 0 0 .382-.218.924.924 0 0 0 .109-.273h.109l-.164.655h-2.073v-.164h.055c.164 0 .273 0 .273-.273v-2.019c0-.218-.164-.218-.273-.218h-.055v-.108h1.2v.109h-.109c-.164 0-.273 0-.273.218v2.073z" fill="#006ac9"></path><path data-name="Trazado 672" d="M60.725 23.336c.055-.218.109-.436.164-.6h-.055c0 .109-.055.164-.109.273a.459.459 0 0 1-.382.218h-.491c-.109 0-.273-.055-.273-.218V20.99c0-.218.109-.218.273-.218h.055v-.109h-1.2v.109h.055c.164 0 .327 0 .327.218v2.019c0 .273-.164.273-.327.273h-.056v.109h1.037a5.929 5.929 0 0 1 .982-.055m.055.055h-2.074v-.164h.055c.164 0 .273 0 .273-.218V20.99c0-.164-.109-.218-.273-.218h-.055v-.109h1.2v.109h-.109c-.164 0-.273 0-.273.218v2.019c0 .164.109.164.218.218h.491a.552.552 0 0 0 .382-.218c.055-.109.109-.164.109-.273h.109a1.343 1.343 0 0 1-.055.655z" fill="#006ac9"></path><path data-name="Trazado 673" d="M60.78 20.936c.109 0 .109-.055.109-.109a.191.191 0 0 0-.055-.109h-.055v.218zm-.109.218c.055 0 .055 0 .055-.055v-.327c0-.055 0-.055-.055-.055h.218c.055 0 .164.055.164.109a.117.117 0 0 1-.109.109l.055.109c.055.055.055.109.109.109h-.055c-.055 0-.055-.055-.164-.164h-.055v.109c0 .055 0 0 .055.055h-.218zm.164.109a.327.327 0 1 0-.327-.327c.055.164.164.327.327.327m0-.709a.43.43 0 0 1 .436.437c0 .273-.164.382-.436.382a.389.389 0 0 1-.436-.382.469.469 0 0 1 .436-.437" fill="#006ac9"></path><path data-name="Trazado 633" d="M10.446 19.266a3.866 3.866 0 0 0 2.51 3.656V15.61a3.866 3.866 0 0 0-2.51 3.656z" fill="#006ac9"></path><path data-name="Trazado 634" d="M15.739 15.61v7.311a3.921 3.921 0 0 0 2.51-3.656 3.867 3.867 0 0 0-2.51-3.655z" fill="#004a97"></path><g data-name="Grupo 430"><path data-name="Trazado 636" d="M17.54 12.5h-3.165a6.654 6.654 0 0 0-6.82 6.82 6.765 6.765 0 0 0 6.82 6.711h3.165a6.773 6.773 0 1 0 0-13.531zm-3.165 12.931a6.193 6.193 0 1 1 6.22-6.166 6.241 6.241 0 0 1-6.22 6.166z" fill="#023563"></path></g><path data-name="Trazado 674" d="M23.378 18.229a6.58 6.58 0 0 0-1.91-4.583A7.512 7.512 0 0 0 17.54 12.5h-3.165a6.654 6.654 0 0 0-6.82 6.82 6.74 6.74 0 0 0 1.691 4.42 9.094 9.094 0 0 0 3.819 1.528 6.331 6.331 0 1 1 1.473.109h.273c4.693.054 8.567-3.165 8.567-7.148z" fill="#004a97"></path><path data-name="Trazado 675" d="M14.32 12.5a6.654 6.654 0 0 0-6.82 6.82 6.41 6.41 0 0 0 1.637 4.31l.164.164a9.622 9.622 0 0 0 3.765 1.528 6.331 6.331 0 1 1 1.473.109h.273a4.13 4.13 0 0 0 .818-.055 7.258 7.258 0 0 0 5.238-8.4 7.587 7.587 0 0 0-2.455-4.42 4.129 4.129 0 0 0-.818-.055z" fill="#006ac9"></path></g></g></svg>
+
+
+
+
+
+
+
+
+
+
+
+
+Al parecer se usará otra solucion al tema de la pagina de opinion de Peru21
+(para q salga el nombre y url del autor de la nota) será mediante css activando y reasignando
+los datos ocultos en el widget.
+
+
+
+
+^\/blog[s]?\/((?![0-9]+(?=$|\/|\?))[\w\d-]+?)(?:\/)?([0-9]*)?\/?$       ///resolver blogs lista autor ^\/blog[s]?\/([\w\d-]+?)\/([0-9]*)?\/?$
+^\/blog[s]?\/((?![0-9]+(?=$|\/|\?))[\w\d-]+?)(?:\/)?([0-9]*)?\/?$
+
+Sol 
+^\/blog[s]?\/((?![0-9]+(?=$|\/|\?))[\w\d-]+?)(?:\/)([0-9]*)?\/?$
+
+^\/blog[s]?\/((?!\d+(?=$|\/|\?)).+?(?=$|\/|\?))(?:\/)?(\d*?(?=$|\/|\?))\/?$
+^\/blog[s]?\/((?!\d+(?=$|\/|\?)).+?(?=$|\/|\?))(?:\/)?(\d*?(?=$|\/|\?))        actual en sandbox
+
+
+ 
+                                                                       // https://regex101.com/
+
+http://blogs.gestion.pe/disrupcion-en-la-nube/wp-admin/index.php
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const dispatch={};
+const connect =(value1, value2)=>{
+  console.log(value1);
+  console.log(value2);
+  return (componentes)=>{
+    const result =`${componentes}-${value1()*value2()}`;
+console.log(result);
+return result;
+  }
+}
+const mapStateToProps=dispatch=>34;
+const mapDispatchToProps= dispatch=>8;
+const componenteConectado=connect(mapStateToProps,mapDispatchToProps)('bunda');
+
+
+
+
+
+
+
+
+
+//12-19 /home/usuario/arc/components/features/stories-lists/stories-news/_dependencies/custom-fields.js
+
+  link: PropTypes.oneOf(['author', 'seccion']).tag({
+    name: 'Indicar Enlace Superior de nota',
+    labels: {
+      author: 'Autor',
+      seccion: 'Sección',
+    },
+    defaultValue: 'seccion',
+  }),  
+
+
+// 27 y luego 100   /home/usuario/arc/components/features/stories-lists/stories-news/default.jsx
+
+link,
+
+// 44  /home/usuario/arc/components/global-components/story-new.jsx
+ link,
+
+
+// 54 -62  /home/usuario/arc/components/global-components/story-new.jsx
+ { link && link === 'author' ?
+            <a href={authorLink} className={classes.section}>
+              {author}
+            </a>
+             : 
+            <a href={primarySectionLink} className={classes.section}>
+                {primarySection}
+            </a>
+           }-
+
+
+
+
+Cambiar el nombre de seccion por el nombre del autor de la Nota en la landing de Opinión
+
+          ${ link && link === 'author' ?
+            <a href={authorLink} className={classes.section}>
+              {author}
+            </a>
+             : 
+             <a href={primarySectionLink} className={classes.section}>
+             {primarySection}
+           </a>
+      }
+
+
+      
+0011 0147 0200358732
+011 147 000200358732 -62
+
+MEJVXALTRRBJTPOK4WSTTFIPCM
+
+
+
+deborass
+Débora Dongo
+Soria Saito
+
+
+
+extraordinary-story/grid
+flujo para agregar un nuevo programa de p21tv
+1ro se crea la seccion dentro de la seccion p21tv, 
+    se agrega sus imagen de cabecera 1084 x 174 creo 
+2do se agregan videos a la seccion creada (para q no salga en blanco su landing)
+3ro se agrega al menu el item creado en  y para añadirla a la hamburguesa del
+     landing de p21tv, tambien en sites te vas a la pestaña "navegation"
+         y filtas por "diario peru21" y el api "tv-menu-default" y jalas 
+         del listado de la derecha al listado de la izquierda el nuevo 
+         programa que quieres agregar al menu 
+4to Si se quiere añadir el item al widget de la portada, simplemente se selecciona el
+widget y se edita en la posicion del orden en el que se quiere agregar, tener en
+cuenta  q te pedira la url de la nueva seccion y jalara por defecto sus campos (titulo e imagen)
+
+
+
+
+<div class="banner">
+<a href="https://trome.pe/horoscopo">
+ <img 
+    alt="Horóscopo" 
+    data-type="src" 
+    class="ui-lazy" 
+    src="https://assets.trome.pe/img/default_trome.jpg" 
+    data-src="https://cde.2.trome.pe/ima/0/1/2/2/6/1226316.jpg" 
+    height="100px">
+</a> 
+</div>
+
+
+
+
+
+
+
+
+
+10 x 176.68
+3 x 51
+
+El widget no soporta ningun script de dazn que no tenga como parametro  "videoid" 
+los scripts otorgados son scripts de canales tales como
+
+Fútbol internacional
+<script src="//player.daznservices.com/player.js#8723ad040ac67c58377eb34311.1pnawydbt7xx01ozn9dz9yw3y8" async></script>
+Fútbol sudamericano
+<script src="//player.daznservices.com/player.js#48723de66081e7e8b7c69cba76.1pnawydbt7xx01ozn9dz9yw3y8" async></script>
+Superliga Argentina
+<script src="//player.daznservices.com/player.js#ff707bcc5de6fe7b1d6891461d.1pnawydbt7xx01ozn9dz9yw3y8" async></script>
+Liga de España
+<script src="//player.daznservices.com/player.js#aaa1cb4e9c40607c0554b235ac.1pnawydbt7xx01ozn9dz9yw3y8" async></script>
+
+ los cuales no tienen este parametro en la url del script.
+ Por ello es necesario agregar este filtro en los desarrollos de tal manera que los considere
+
+
+
+
+<script src="//player.daznservices.com/player.js#da2e2f66a6ec11067e28aab239.1ch0fefkg2s4u1frfo5j7o5rh4$videoid=64ypfbljahe61xb1clrhusi9k" async></script>
+
+//player.daznservices.com/player.js#da2e2f66a6ec11067e28aab239.1ch0fefkg2s4u1frfo5j7o5rh4$videoid=64ypfbljahe61xb1clrhusi9k
+
+
+
+<script src="//player.daznservices.com/eplayer.js
+    #48723de66081e7e8b7c69cba76.1pnawydbt7xx01ozn9dz9yw3y8" async=""></script>
+
+<script src="//player.daznservices.com/player.js
+    #da2e2f66a6ec11067e28aab239.1ch0fefkg2s4u1frfo5j7o5rh4
+    $videoid=64ypfbljahe61xb1clrhusi9k" async></script>
+
+
+
+
+//video publimetro de gerrero 
+<script src="//player.performgroup.com/eplayer.js#48723de66081e7e8b7c69cba76.1pnawydbt7xx01ozn9dz9yw3y8" async></script>
+//aumenta tiempo
+<script src="//player.daznservices.com/eplayer.js#48723de66081e7e8b7c69cba76.1pnawydbt7xx01ozn9dz9yw3y8$videoid=64ypfbljahe61xb1clrhusi9k" async></script>
+
+
+
+
+
+
+<script src="https://player.daznservices.com/player.js#aaa1cb4e9c40607c0554b235ac.1pnawydbt7xx01ozn9dz9yw3y8" async></script>
+
+
+
+GESTION
+La portada tiene su propio mapa de posiciones en la que se establece cuales corresponden a 
+publicidad, cuales a notas premium (paga) y cuales a notas simples, por tanto no se podria
+ubicar una nota premiun en un espacio normal y viceversa.y, aunque el sistema accede. no habria
+consistencia al momento de navegar en el caso de un espacio premium dado q al posicionar 
+una nota premium en un espacio normal, (no se va a pintar el icono de plus g)
+
+
+
+
+Observando las funcionalidades de arc para el tema de  la busqueda 
+la logica es la siguiente:
+
+Arc tiene la funcionalidad de hacer plantillas estas plantillas son usadas basicamente
+para responder  a urls que tienen parametros por consumir, como es el caso en la 
+busqueda. La busqueda tiene como primer parametro el termino a buscar,
+este administrador de rutas se configura en los resolvers, en los cuales se 
+identifican los parametros en la plantilla  a usar y se resuelve el uso del 
+"recurso del contenido" que, junto a los parametros muestran el contenido propio que se desea.
+para el caso de la busqueda, el content source, es "story-feed-by-search".
+
+Al ser usado un source propio del core de ARC, no seria posible añadir a las busquedas, 
+a menos que se toque este source del core de ARC y se añadan a la evaluacion tambien el servicio
+de los blogs o tambien que se puedan migrar  los blogs como notas de ARC.
+
+
+Para el tema del orden:
+Observando la funcionalidad encontrada, se usa un content source (get-user-blog-and-posts)
+que brinda la información
+de los ultimos 5 blogs que se publicaron, con orden de llegada
+
+Se podria crear un componente que destaque blogs, y de la posibilidad de seleccionar al 
+bloguero  y por defecto nos muestra su  ultimo articulo 
+(usando el content source: "get-user-and-posts-by-blog-path").
+al destacar 5  indicando 5 nombres de blogs, ya completariamos el widget que funciona 
+como separador blogs, con la salvedad que guarda relacion con los destaques y ya no con el 
+orden de publicado.
+
+en un siguiente desarrollo y basandonos del anterior, se podria definir manualmente tambien (destaque)
+la nota especifica del blog seleccionado (no necesariamente la ultima publicada).
+tambien con la posibilidad de destacar 5.
+ 
+ 
+ 
+ 
+ buenos dias este es el listado inicial sobre gestion :
+-             NO se pueden encontrar con el buscador de gestión.pe.   
+                     <probe el buscador y si funciona/>
+-             NO aparecen en el flujo de Últimas Noticias.
+                     <q no aparecen?, las ultimas noticias?/ >
+-             NO se están contando como páginas vistas para el sign y pay Wall. 
+                     <???>
+-              NO podemos cerrarlos para Plus G en forma individual o grupal. 
+                     <cerrar q? las notas?/>
+-              NO podemos ordenarlos en la portada en el espacio de firmas con orden de importancia.
+                    <entiendo que se quiere tener control del orden de las firmas del widget q sale en la portada
+                    de gestion/>
+algunos puntos no se pueden hacer por la logica del flujo  como el ultimo punto
+
+pero igual validemos y solventemos los puntos que si se pueden atender
+recordar crear solicitud de servicio historia de usuario y tarea
+y cerrarlas al terminar
+ 
+
+en el ultimo punto , es asi ! quieren tener el control de los blog en el espacio de firma
+es decir, quieren manejar el orden de los blogs , actualmente el orden lo define la actualizacion
+todos estos puntos estan relacionado a los blogueros
+es decir, el primer punto es el buscador de gestion.pe para los blogueros
+-             NO se pueden encontrar con el buscador de gestión.pe.
+                   los bogueros-             NO aparecen en el flujo de Últimas Noticias.
+                   <q no aparecen?, las ultimas noticias?/ >
+-             NO se están contando como páginas vistas para el sign y pay Wall.
+                   <???>
+-              NO podemos cerrarlos para Plus G en forma individual o grupal.
+                   <cerrar q? las notas?/>
+-              NO podemos ordenarlos en la portada en el espacio de firmas con orden de importancia.
+                  <entiendo que se quiere tener control del orden de las firmas del widget q sale en la portada
+                  de gestion/>
+NO se están contando como páginas vistas para el sign y pay Wall.
+                 La entrada a los blog no se estan contando para el control de la valla
+-              NO podemos ordenarlos en la portada en el espacio de firmas con orden de importancia.
+                 el orden de los blogueros , actualmente se maneja por actualizacion
+si me explique mejor ????
+
+
+
+
+
+
+
+
+
+
+
+ http://blogs.gestion.pe/mas-alla-del-efectivo/wp-content/uploads/sites/165/2018/05/Foto-Felipe-Rinco%CC%81n-126x126.jpg
+ http://blogs.gestion.pe/mas-alla-del-efectivo/wp-content/uploads/sites/165/2018/05/Foto-Felipe-Rinco%CC%81n-126x126.jpg
+ https://gestion.pe/resizer/SClFcKbhxMAFUD7OGVEKhfiS7Aw=/125x125/smart/blogs.gestion.pe/mas-alla-de-efectivo/wp-content/uploads/sites/165/2018/05/Foto-Felipe-Rinco%CC%81n-126x126.jpg
+ 
+
+https://gestion.pe/resizer/SClFcKbhxMAFUD7OGVEKhfiS7Aw=/125x125/smart/
+https://gestion.pe/resizer/1oMA6p_E3rfGr8jWL2MTyGWCBNs=/125x125/smart/blogs.gestion.pe/herejias-economicas/wp-content/uploads/sites/128/2019/08/herejias-economicas.jpg
+
+
+ npm install --save-dev @arc-fusion/cli@latest
+
+// api para obtener los datos de menus configurados
+https://elcomercio-elcomercio-sandbox.cdn.arcpublishing.com
+/pf/api/v3/content/fetch/navigation-by-hierarchy?query=%7B"hierarchy"%3A"navbar-default"%7D&filter=%7Bchildren%7B_id%2Cchildren%7B_id%2Cchildren%7B_id%2Cchildren%7B_id%2Cdisplay_name%2Cname%2Curl%7D%2Cdisplay_name%2Cname%2Curl%7D%2Cdisplay_name%2Cname%2Curl%7D%2Cdisplay_name%2Cname%2Curl%7D%7D&d=$LATEST&_website=elcomercio
+
+http://localhost/pf/?_website=elcomercio
+
+contraseña arc
+        url: https://arcpublishing-elcomercio.okta.com
+    usuario: vastahuaman@rmgperustaff.com
+ contraseña: tbY64SEeJY8KuwZ
+
  {
                 "date": "2019-09-03T23:45:21+02:00",
                 "metadata": {
@@ -104,7 +990,7 @@
 
 
 
-
+https://ecodigital.com.pe/projects/suad-gesac/time_entries
 https://ecodigital.com.pe/projects/suad-pp/time_entries?utf8=%E2%9C%93&set_filter=1&sort=spent_on%3Adesc&f%5B%5D=spent_on&op%5Bspent_on%5D=*&f%5B%5D=user_id&op%5Buser_id%5D=%3D&v%5Buser_id%5D%5B%5D=me&f%5B%5D=&c%5B%5D=spent_on&c%5B%5D=user&c%5B%5D=activity&c%5B%5D=issue&c%5B%5D=comments&c%5B%5D=hours&c%5B%5D=issue.status&group_by=&t%5B%5D=hours&t%5B%5D=
 
 http://ww4.essalud.gob.pe:7777/acredita/
@@ -1555,8 +2441,10 @@ $data = parent::indexAction($query, $page, $request);
                 hace la clave publica por nosotros.
 
 
-2.1 ya tenemos el agente ahora para empezar a obtener el repositorio tenemos que usar su ruta ssh (git@github.com:dnnstone/symfo.git)
- creamos la carpeta en la que alojaremos y  con git init inicializamos el repositorio (activamos el uso de git en esa carpeta)
+2.1 ya tenemos el agente ahora para empezar a obtener el repositorio tenemos que usar su ruta ssh 
+(git@github.com:dnnstone/symfo.git)
+ creamos la carpeta en la que alojaremos y  
+con git init inicializamos el repositorio (activamos el uso de git en esa carpeta)
 
 2.2 direccionamos el repositorio a usar con el comando git remote add  origin git@github.com:dnnstone/symfo.git
 2.3 y bajamos con git pull origin master 
@@ -2086,5 +2974,79 @@ app/admin/console wf:cm:re:me
 
 IMgH3AH_1vSo
 O6RffLbwbVTk
+
+
+
+
+Accesorio impresindible para  tu bicicleta, te brindara seguridad y comodidad en su uso.
+sumamente práctico, ligero, resistente y duradero ten la seguridad que te acompañara muchos años con tu
+bicicleta.Funciona con bateria interna recargable para el dispositivo, y a pila 
+de reloj para el mando a distancia que fácil  te dura 3 años antes q la reemplaces por otra pila 
+(yo la uso todos los dias desde ya hace 3 años y aún no la cambio) es decir,
+ te olvidas de todo una vez instalado.
+
+Disuade cualquier intento de robo, activando su alarma con sensor de movimiento, y desactivandolo 
+para cuando ya no lo necesites, todo con el mando a distancia, también, ubica el mando en el manillar,
+y ten el timbre a tu disposición para advertir el paso a los peatones y el control de las luces con sus 3
+efectos de intermitencia para aumentar el efecto de vizualización trasero. 
+
+Viene con todos sus accesorios y soportes para el mando y el dispositivo, 
+muy firmes fuertes, de fácil instalación, no te preocupes por vibraciones o fallos de compatibilidad,
+el dispositivo puede instalarse en cualquier sillin de bicicleta dado que el soporte tiene un sistema de
+encaje que se acopla a presion en los fierros que soportan el sillin y el mando en cualquier manillar.
+para la carga, tiene un push que otorga un facil sacado y un perno para su ajuste si es que no se 
+sacara de la bici, lo puedes cargar incluso en la misma bici.
+
+Lo recomiendo a ojo cerrado, vengo ya usandolo por mas de 3 años y no he tenido inconvenientes,
+ lo puse en 3 sillines distintos y el los 3 se ajusto perfectamente, se nota que el material es bueno
+ y que es un dispositivo que te va a durar y que soportara trabajo rudo, es ideal para andar en bici 
+ por la ciudad todos los dias y a cualquier horario, y dependiendo del uso lo recargaras 1 o 2 veces al mes
+ en mi caso lo hago 2 veces al mes usandolo todos los dias un promedio de 1 a 2 horas diarias.
+
+
+Características:
+1. Hecho de plástico de alta calidad y gran resistencia, duradero y ligero.
+2. Las luces traseras se controlan con boton en el dispositivo y 
+   también con el control inalámbrico.
+3. 3 efectos de sonido del Altavoz con 120 dB de intensidad.
+4. Hay 3 efectos de luces traseras. 
+   
+5. Carga USB con conector universal para el cargador, con protector de resistenncia al agua.
+6. También tiene un diseño impermeable que lo hace ideal para su uso incluso bajo la lluvia.
+
+Especificaciones:
+Tipo: bloqueo de seguridad para bicicleta
+Tamaño del paquete: 21x9x4,6 cm
+Material: de plástico
+Color: Negro
+Sonido de alarma: 120 decibeles
+Distancia remota: 1-100m (Área abierta)
+Batería: 3.7V 800mA batería de litio
+Impermeable: IPX5 impermeable
+Fuente de luz:  LED
+Crisol de grafito mini con fusión del metatitle
+
+
+LA CAJA CONTIENE:
+1x dispositivo de luz y alarma
+1x Mando a distancia
+1x Soporte de Mando a distancia
+1x Soporte de dispositivo de luz y alarma
+1x cable USB
+1x Junta
+1x cinturón fijo
+3x interior hexagonal destornillador
+1x instrucciones
+
+
+
+Advertencia:
+1. Mantener alejado de los niños. dado que el sonido y la luz podria afectarlos cuando lo ven o escuchan de muy cerca
+2. Después de un largo tiempo de inactividad, debe cargarlo por completo cuando lo vuelva a utilizar, y cuando lo cargue, la luz emitirá un sonido de alarma.
+3. Sugiere que lo cargue regularmente, si no lo usa por un tiempo prolongado.
+
+
+
+
 
 
